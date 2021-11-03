@@ -1,0 +1,11 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.lyh.ssMapper">
+   <resultMap id="ss" type="cn.gson.jd2021.model.pojos.S">
+       <result column="s_id" property="sId"></result>
+      <result column="s_name" property="sName"></result>
+   </resultMap>
+   <select id="findAll" resultMap="ss">
+        select * from ss
+
+   </select>
+</mapper>

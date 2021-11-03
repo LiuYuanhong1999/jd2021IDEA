@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit name="JPA" persistenceXmlPath="src/main/resources/META-INF/persistence.xml">
+        <packages>
+          <package value="" />
+        </packages>
+        <entities>
+          <entity value="org.springframework.data.jpa.domain.AbstractPersistable" />
+        </entities>
+      </persistence-unit>
+      <persistence-unit name="JPA2" persistenceXmlPath="src/main/resources/META-INF/persistence.xml">
+        <packages>
+          <package value="" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
+  </component>
+</project>

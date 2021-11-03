@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <class>cn.gson.jd2021.model.pojos.NewEntity</class>
+        <class>cn.gson.jd2021.model.pojos.S</class>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://120.78.234.91:3306/202111"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="202111"/>
+            <property name="hibernate.connection.password" value="123456"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <!--<property name="hibernate.format_sql" value="true"/>-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="persistenceUnit"/>
+</persistence>
