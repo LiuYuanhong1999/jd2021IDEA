@@ -10,6 +10,6 @@ public interface ssMapper {
 
 
 
-
+     
     List<S> findAll();
 }
