@@ -13,6 +13,7 @@ public class ssController {
     @Resource
     ssService s;
 
+    public void dd(){}
 
     @RequestMapping("find-all")
     public List<S>  findAll(){
