@@ -9,4 +9,6 @@ import java.util.List;
 public interface SsMapper {
 
     List<S> findAll();
+
+    Integer doInsert(S s);
 }

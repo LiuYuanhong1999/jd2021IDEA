@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-public class ssController {
+public class SsController {
     @Resource
     SsService s;
 
@@ -19,6 +19,12 @@ public class ssController {
 
     public void rr(){}
 
+    @RequestMapping("/doInsert")
+    public void doInsert(){
+        S ss=new S();
+        ss.setsName("哈哈哈");
+        s.doInsert(ss);
+    }
     @RequestMapping("find-all")
     public List<S>  findAll(){
         return s.findAll();

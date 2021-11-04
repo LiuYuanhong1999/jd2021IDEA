@@ -12,6 +12,9 @@ public class SsService {
     @Resource
     SsMapper s;
 
+    public Integer doInsert(S ss){
+        return s.doInsert(ss);
+    }
 
     public List<S> findAll(){
         return s.findAll();
