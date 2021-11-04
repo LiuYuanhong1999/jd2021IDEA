@@ -25,5 +25,5 @@ public class S {
 
     public void setsName(String sName) {
         this.sName = sName;
-    }   
+    }     
 }
