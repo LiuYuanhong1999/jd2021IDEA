@@ -15,6 +15,8 @@ public class ssController {
 
     public void dd(){}
 
+    public void ee(){}
+
     @RequestMapping("find-all")
     public List<S>  findAll(){
         return s.findAll();
