@@ -97,4 +97,167 @@ public class SellCoustomer implements Serializable {
     private BigDecimal cusBudget;
 
     private static final long serialVersionUID = 1L;
+
+    public SellCoustomer(Integer acId, String cusNo, String cusName, String cusCellphone, String cusQq, String cusPost, Date cusTime, String cusState, String cusReamrk, Integer listNum, Integer ctId, Integer sourceId, Integer factoryId, Integer brandId, Integer ggColor, String cusFactor, BigDecimal cusBudget) {
+        this.acId = acId;
+        this.cusNo = cusNo;
+        this.cusName = cusName;
+        this.cusCellphone = cusCellphone;
+        this.cusQq = cusQq;
+        this.cusPost = cusPost;
+        this.cusTime = cusTime;
+        this.cusState = cusState;
+        this.cusReamrk = cusReamrk;
+        this.listNum = listNum;
+        this.ctId = ctId;
+        this.sourceId = sourceId;
+        this.factoryId = factoryId;
+        this.brandId = brandId;
+        this.ggColor = ggColor;
+        this.cusFactor = cusFactor;
+        this.cusBudget = cusBudget;
+    }
+
+    public SellCoustomer() {
+    }
+
+    public Integer getAcId() {
+        return acId;
+    }
+
+    public void setAcId(Integer acId) {
+        this.acId = acId;
+    }
+
+    public String getCusNo() {
+        return cusNo;
+    }
+
+    public void setCusNo(String cusNo) {
+        this.cusNo = cusNo;
+    }
+
+    public String getCusName() {
+        return cusName;
+    }
+
+    public void setCusName(String cusName) {
+        this.cusName = cusName;
+    }
+
+    public String getCusCellphone() {
+        return cusCellphone;
+    }
+
+    public void setCusCellphone(String cusCellphone) {
+        this.cusCellphone = cusCellphone;
+    }
+
+    public String getCusQq() {
+        return cusQq;
+    }
+
+    public void setCusQq(String cusQq) {
+        this.cusQq = cusQq;
+    }
+
+    public String getCusPost() {
+        return cusPost;
+    }
+
+    public void setCusPost(String cusPost) {
+        this.cusPost = cusPost;
+    }
+
+    public Date getCusTime() {
+        return cusTime;
+    }
+
+    public void setCusTime(Date cusTime) {
+        this.cusTime = cusTime;
+    }
+
+    public String getCusState() {
+        return cusState;
+    }
+
+    public void setCusState(String cusState) {
+        this.cusState = cusState;
+    }
+
+    public String getCusReamrk() {
+        return cusReamrk;
+    }
+
+    public void setCusReamrk(String cusReamrk) {
+        this.cusReamrk = cusReamrk;
+    }
+
+    public Integer getListNum() {
+        return listNum;
+    }
+
+    public void setListNum(Integer listNum) {
+        this.listNum = listNum;
+    }
+
+    public Integer getCtId() {
+        return ctId;
+    }
+
+    public void setCtId(Integer ctId) {
+        this.ctId = ctId;
+    }
+
+    public Integer getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(Integer sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public Integer getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(Integer factoryId) {
+        this.factoryId = factoryId;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public Integer getGgColor() {
+        return ggColor;
+    }
+
+    public void setGgColor(Integer ggColor) {
+        this.ggColor = ggColor;
+    }
+
+    public String getCusFactor() {
+        return cusFactor;
+    }
+
+    public void setCusFactor(String cusFactor) {
+        this.cusFactor = cusFactor;
+    }
+
+    public BigDecimal getCusBudget() {
+        return cusBudget;
+    }
+
+    public void setCusBudget(BigDecimal cusBudget) {
+        this.cusBudget = cusBudget;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 }

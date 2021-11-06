@@ -51,4 +51,86 @@ public class SellVisitorlogs implements Serializable {
     private Integer cusId;
 
     private static final long serialVersionUID = 1L;
+
+    public SellVisitorlogs() {
+    }
+
+    public Integer getLogId() {
+        return logId;
+    }
+
+    public void setLogId(Integer logId) {
+        this.logId = logId;
+    }
+
+    public Date getLogTime() {
+        return logTime;
+    }
+
+    public void setLogTime(Date logTime) {
+        this.logTime = logTime;
+    }
+
+    public Integer getLogState() {
+        return logState;
+    }
+
+    public void setLogState(Integer logState) {
+        this.logState = logState;
+    }
+
+    public String getLogContext() {
+        return logContext;
+    }
+
+    public void setLogContext(String logContext) {
+        this.logContext = logContext;
+    }
+
+    public String getLogType() {
+        return logType;
+    }
+
+    public void setLogType(String logType) {
+        this.logType = logType;
+    }
+
+    public Integer getListNum() {
+        return listNum;
+    }
+
+    public void setListNum(Integer listNum) {
+        this.listNum = listNum;
+    }
+
+    public Integer getAcId() {
+        return acId;
+    }
+
+    public void setAcId(Integer acId) {
+        this.acId = acId;
+    }
+
+    public Integer getCusId() {
+        return cusId;
+    }
+
+    public void setCusId(Integer cusId) {
+        this.cusId = cusId;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public SellVisitorlogs(Integer logId, Date logTime, Integer logState, String logContext, String logType, Integer listNum, Integer acId, Integer cusId) {
+        this.logId = logId;
+        this.logTime = logTime;
+        this.logState = logState;
+        this.logContext = logContext;
+        this.logType = logType;
+        this.listNum = listNum;
+        this.acId = acId;
+        this.cusId = cusId;
+    }
 }

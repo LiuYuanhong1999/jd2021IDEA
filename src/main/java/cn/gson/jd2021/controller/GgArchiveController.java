@@ -16,13 +16,14 @@ public class GgArchiveController {
     @Autowired
     private GgArchiveService ggArchiveService;
     //查询归档 归档原因表
-    @PostMapping
+
     public List<GgArchive> post(@RequestBody GgArchive ggArchive){
         return ggArchiveService.selectall(ggArchive);
     }
     //新增归档
-    @PutMapping
+    @PostMapping("/add-w")
     public Integer put(@RequestBody GgArchive ggArchive){
+        System.out.println("我的参数"+ggArchive.getAcCause()+"\t"+ggArchive.getAcType()+"\t"+ggArchive.getAcType());
         return ggArchiveService.doInsert(ggArchive);
     }
 

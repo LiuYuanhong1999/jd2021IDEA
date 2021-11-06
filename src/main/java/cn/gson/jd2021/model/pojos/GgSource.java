@@ -20,4 +20,32 @@ public class GgSource implements Serializable {
     private String sourceName;
 
     private static final long serialVersionUID = 1L;
+
+    public GgSource() {
+    }
+
+    public GgSource(Integer sourceId, String sourceName) {
+        this.sourceId = sourceId;
+        this.sourceName = sourceName;
+    }
+
+    public Integer getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(Integer sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 }
