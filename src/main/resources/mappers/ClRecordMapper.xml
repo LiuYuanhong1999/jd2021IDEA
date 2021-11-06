@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.lyh.ClRecordMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.ClRecord">
+    <id column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="design_id" jdbcType="INTEGER" property="designId" />
+    <result column="color_id" jdbcType="INTEGER" property="colorId" />
+    <result column="record_leave_time" jdbcType="TIMESTAMP" property="recordLeaveTime" />
+    <result column="record_variator" jdbcType="VARCHAR" property="recordVariator" />
+    <result column="record_displacement" jdbcType="VARCHAR" property="recordDisplacement" />
+    <result column="record_mileage" jdbcType="INTEGER" property="recordMileage" />
+    <result column="record_begain" jdbcType="TIMESTAMP" property="recordBegain" />
+    <result column="record_name" jdbcType="VARCHAR" property="recordName" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
+    <result column="record_price" jdbcType="DECIMAL" property="recordPrice" />
+    <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="record_way" jdbcType="VARCHAR" property="recordWay" />
+    <result column="record_note" jdbcType="VARCHAR" property="recordNote" />
+  </resultMap>
+
+
+  <select id="findByClRecord" resultMap="BaseResultMap">
+
+        select * from cl_record order by record_time desc
+
+  </select>
+
+
+
+  <sql id="Base_Column_List">
+    record_id, factory_id, brand_id, design_id, color_id, record_leave_time, record_variator, 
+    record_displacement, record_mileage, record_begain, record_name, contact_name, contact_phone, 
+    contact_email, record_price, record_time, record_way, record_note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_record
+    where record_id = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cl_record
+    where record_id = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="record_id" keyProperty="recordId" parameterType="cn.gson.jd2021.model.pojos.ClRecord" useGeneratedKeys="true">
+    insert into cl_record (factory_id, brand_id, design_id, 
+      color_id, record_leave_time, record_variator, 
+      record_displacement, record_mileage, record_begain, 
+      record_name, contact_name, contact_phone, 
+      contact_email, record_price, record_time, 
+      record_way, record_note)
+    values (#{factoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{designId,jdbcType=INTEGER}, 
+      #{colorId,jdbcType=INTEGER}, #{recordLeaveTime,jdbcType=TIMESTAMP}, #{recordVariator,jdbcType=VARCHAR}, 
+      #{recordDisplacement,jdbcType=VARCHAR}, #{recordMileage,jdbcType=INTEGER}, #{recordBegain,jdbcType=TIMESTAMP}, 
+      #{recordName,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{contactEmail,jdbcType=VARCHAR}, #{recordPrice,jdbcType=DECIMAL}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{recordWay,jdbcType=VARCHAR}, #{recordNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="record_id" keyProperty="recordId" parameterType="cn.gson.jd2021.model.pojos.ClRecord" useGeneratedKeys="true">
+    insert into cl_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="factoryId != null">
+        factory_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="designId != null">
+        design_id,
+      </if>
+      <if test="colorId != null">
+        color_id,
+      </if>
+      <if test="recordLeaveTime != null">
+        record_leave_time,
+      </if>
+      <if test="recordVariator != null">
+        record_variator,
+      </if>
+      <if test="recordDisplacement != null">
+        record_displacement,
+      </if>
+      <if test="recordMileage != null">
+        record_mileage,
+      </if>
+      <if test="recordBegain != null">
+        record_begain,
+      </if>
+      <if test="recordName != null">
+        record_name,
+      </if>
+      <if test="contactName != null">
+        contact_name,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
+      </if>
+      <if test="contactEmail != null">
+        contact_email,
+      </if>
+      <if test="recordPrice != null">
+        record_price,
+      </if>
+      <if test="recordTime != null">
+        record_time,
+      </if>
+      <if test="recordWay != null">
+        record_way,
+      </if>
+      <if test="recordNote != null">
+        record_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="factoryId != null">
+        #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="designId != null">
+        #{designId,jdbcType=INTEGER},
+      </if>
+      <if test="colorId != null">
+        #{colorId,jdbcType=INTEGER},
+      </if>
+      <if test="recordLeaveTime != null">
+        #{recordLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordVariator != null">
+        #{recordVariator,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDisplacement != null">
+        #{recordDisplacement,jdbcType=VARCHAR},
+      </if>
+      <if test="recordMileage != null">
+        #{recordMileage,jdbcType=INTEGER},
+      </if>
+      <if test="recordBegain != null">
+        #{recordBegain,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordName != null">
+        #{recordName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null">
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="recordPrice != null">
+        #{recordPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="recordTime != null">
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordWay != null">
+        #{recordWay,jdbcType=VARCHAR},
+      </if>
+      <if test="recordNote != null">
+        #{recordNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.ClRecord">
+    update cl_record
+    <set>
+      <if test="factoryId != null">
+        factory_id = #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="designId != null">
+        design_id = #{designId,jdbcType=INTEGER},
+      </if>
+      <if test="colorId != null">
+        color_id = #{colorId,jdbcType=INTEGER},
+      </if>
+      <if test="recordLeaveTime != null">
+        record_leave_time = #{recordLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordVariator != null">
+        record_variator = #{recordVariator,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDisplacement != null">
+        record_displacement = #{recordDisplacement,jdbcType=VARCHAR},
+      </if>
+      <if test="recordMileage != null">
+        record_mileage = #{recordMileage,jdbcType=INTEGER},
+      </if>
+      <if test="recordBegain != null">
+        record_begain = #{recordBegain,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordName != null">
+        record_name = #{recordName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null">
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="recordPrice != null">
+        record_price = #{recordPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="recordTime != null">
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordWay != null">
+        record_way = #{recordWay,jdbcType=VARCHAR},
+      </if>
+      <if test="recordNote != null">
+        record_note = #{recordNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.ClRecord">
+    update cl_record
+    set factory_id = #{factoryId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      design_id = #{designId,jdbcType=INTEGER},
+      color_id = #{colorId,jdbcType=INTEGER},
+      record_leave_time = #{recordLeaveTime,jdbcType=TIMESTAMP},
+      record_variator = #{recordVariator,jdbcType=VARCHAR},
+      record_displacement = #{recordDisplacement,jdbcType=VARCHAR},
+      record_mileage = #{recordMileage,jdbcType=INTEGER},
+      record_begain = #{recordBegain,jdbcType=TIMESTAMP},
+      record_name = #{recordName,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      record_price = #{recordPrice,jdbcType=DECIMAL},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      record_way = #{recordWay,jdbcType=VARCHAR},
+      record_note = #{recordNote,jdbcType=VARCHAR}
+    where record_id = #{recordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

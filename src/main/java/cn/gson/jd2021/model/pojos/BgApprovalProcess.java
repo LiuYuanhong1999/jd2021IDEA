@@ -1,4 +1,4 @@
-package cn.gson.jd2021.model.pojos.jl;
+package cn.gson.jd2021.model.pojos;
 
 import java.io.Serializable;
 import lombok.Data;
