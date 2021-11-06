@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.lyh.ClAssessMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.ClAssess">
+    <id column="assess_id" jdbcType="VARCHAR" property="assessId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="assess_card" jdbcType="VARCHAR" property="assessCard" />
+    <result column="assess_type" jdbcType="VARCHAR" property="assessType" />
+    <result column="assess_drive" jdbcType="VARCHAR" property="assessDrive" />
+    <result column="assess_engine" jdbcType="VARCHAR" property="assessEngine" />
+    <result column="assess_tap" jdbcType="VARCHAR" property="assessTap" />
+    <result column="assess_transfer_times" jdbcType="INTEGER" property="assessTransferTimes" />
+    <result column="assess_license" jdbcType="VARCHAR" property="assessLicense" />
+    <result column="assess_appraise" jdbcType="VARCHAR" property="assessAppraise" />
+    <result column="assess_newcar_price" jdbcType="DECIMAL" property="assessNewcarPrice" />
+    <result column="assess_office" jdbcType="DECIMAL" property="assessOffice" />
+    <result column="assess_user" jdbcType="VARCHAR" property="assessUser" />
+    <result column="assess_review" jdbcType="VARCHAR" property="assessReview" />
+    <result column="assess_note" jdbcType="VARCHAR" property="assessNote" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    assess_id, order_id, assess_card, assess_type, assess_drive, assess_engine, assess_tap, 
+    assess_transfer_times, assess_license, assess_appraise, assess_newcar_price, assess_office, 
+    assess_user, assess_review, assess_note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_assess
+    where assess_id = #{assessId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cl_assess
+    where assess_id = #{assessId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="assess_id" keyProperty="assessId" parameterType="cn.gson.jd2021.model.pojos.ClAssess" useGeneratedKeys="true">
+    insert into cl_assess (order_id, assess_card, assess_type, 
+      assess_drive, assess_engine, assess_tap, 
+      assess_transfer_times, assess_license, assess_appraise, 
+      assess_newcar_price, assess_office, assess_user, 
+      assess_review, assess_note)
+    values (#{orderId,jdbcType=VARCHAR}, #{assessCard,jdbcType=VARCHAR}, #{assessType,jdbcType=VARCHAR}, 
+      #{assessDrive,jdbcType=VARCHAR}, #{assessEngine,jdbcType=VARCHAR}, #{assessTap,jdbcType=VARCHAR}, 
+      #{assessTransferTimes,jdbcType=INTEGER}, #{assessLicense,jdbcType=VARCHAR}, #{assessAppraise,jdbcType=VARCHAR}, 
+      #{assessNewcarPrice,jdbcType=DECIMAL}, #{assessOffice,jdbcType=DECIMAL}, #{assessUser,jdbcType=VARCHAR}, 
+      #{assessReview,jdbcType=VARCHAR}, #{assessNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="assess_id" keyProperty="assessId" parameterType="cn.gson.jd2021.model.pojos.ClAssess" useGeneratedKeys="true">
+    insert into cl_assess
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="assessCard != null">
+        assess_card,
+      </if>
+      <if test="assessType != null">
+        assess_type,
+      </if>
+      <if test="assessDrive != null">
+        assess_drive,
+      </if>
+      <if test="assessEngine != null">
+        assess_engine,
+      </if>
+      <if test="assessTap != null">
+        assess_tap,
+      </if>
+      <if test="assessTransferTimes != null">
+        assess_transfer_times,
+      </if>
+      <if test="assessLicense != null">
+        assess_license,
+      </if>
+      <if test="assessAppraise != null">
+        assess_appraise,
+      </if>
+      <if test="assessNewcarPrice != null">
+        assess_newcar_price,
+      </if>
+      <if test="assessOffice != null">
+        assess_office,
+      </if>
+      <if test="assessUser != null">
+        assess_user,
+      </if>
+      <if test="assessReview != null">
+        assess_review,
+      </if>
+      <if test="assessNote != null">
+        assess_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="assessCard != null">
+        #{assessCard,jdbcType=VARCHAR},
+      </if>
+      <if test="assessType != null">
+        #{assessType,jdbcType=VARCHAR},
+      </if>
+      <if test="assessDrive != null">
+        #{assessDrive,jdbcType=VARCHAR},
+      </if>
+      <if test="assessEngine != null">
+        #{assessEngine,jdbcType=VARCHAR},
+      </if>
+      <if test="assessTap != null">
+        #{assessTap,jdbcType=VARCHAR},
+      </if>
+      <if test="assessTransferTimes != null">
+        #{assessTransferTimes,jdbcType=INTEGER},
+      </if>
+      <if test="assessLicense != null">
+        #{assessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="assessAppraise != null">
+        #{assessAppraise,jdbcType=VARCHAR},
+      </if>
+      <if test="assessNewcarPrice != null">
+        #{assessNewcarPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="assessOffice != null">
+        #{assessOffice,jdbcType=DECIMAL},
+      </if>
+      <if test="assessUser != null">
+        #{assessUser,jdbcType=VARCHAR},
+      </if>
+      <if test="assessReview != null">
+        #{assessReview,jdbcType=VARCHAR},
+      </if>
+      <if test="assessNote != null">
+        #{assessNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.ClAssess">
+    update cl_assess
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="assessCard != null">
+        assess_card = #{assessCard,jdbcType=VARCHAR},
+      </if>
+      <if test="assessType != null">
+        assess_type = #{assessType,jdbcType=VARCHAR},
+      </if>
+      <if test="assessDrive != null">
+        assess_drive = #{assessDrive,jdbcType=VARCHAR},
+      </if>
+      <if test="assessEngine != null">
+        assess_engine = #{assessEngine,jdbcType=VARCHAR},
+      </if>
+      <if test="assessTap != null">
+        assess_tap = #{assessTap,jdbcType=VARCHAR},
+      </if>
+      <if test="assessTransferTimes != null">
+        assess_transfer_times = #{assessTransferTimes,jdbcType=INTEGER},
+      </if>
+      <if test="assessLicense != null">
+        assess_license = #{assessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="assessAppraise != null">
+        assess_appraise = #{assessAppraise,jdbcType=VARCHAR},
+      </if>
+      <if test="assessNewcarPrice != null">
+        assess_newcar_price = #{assessNewcarPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="assessOffice != null">
+        assess_office = #{assessOffice,jdbcType=DECIMAL},
+      </if>
+      <if test="assessUser != null">
+        assess_user = #{assessUser,jdbcType=VARCHAR},
+      </if>
+      <if test="assessReview != null">
+        assess_review = #{assessReview,jdbcType=VARCHAR},
+      </if>
+      <if test="assessNote != null">
+        assess_note = #{assessNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where assess_id = #{assessId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.ClAssess">
+    update cl_assess
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      assess_card = #{assessCard,jdbcType=VARCHAR},
+      assess_type = #{assessType,jdbcType=VARCHAR},
+      assess_drive = #{assessDrive,jdbcType=VARCHAR},
+      assess_engine = #{assessEngine,jdbcType=VARCHAR},
+      assess_tap = #{assessTap,jdbcType=VARCHAR},
+      assess_transfer_times = #{assessTransferTimes,jdbcType=INTEGER},
+      assess_license = #{assessLicense,jdbcType=VARCHAR},
+      assess_appraise = #{assessAppraise,jdbcType=VARCHAR},
+      assess_newcar_price = #{assessNewcarPrice,jdbcType=DECIMAL},
+      assess_office = #{assessOffice,jdbcType=DECIMAL},
+      assess_user = #{assessUser,jdbcType=VARCHAR},
+      assess_review = #{assessReview,jdbcType=VARCHAR},
+      assess_note = #{assessNote,jdbcType=VARCHAR}
+    where assess_id = #{assessId,jdbcType=VARCHAR}
+  </update>
+</mapper>
