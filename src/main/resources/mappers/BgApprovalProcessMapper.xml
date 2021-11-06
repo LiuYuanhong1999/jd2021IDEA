@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.jl.BgApprovalProcessMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.jl.BgApprovalProcess">
+    <id column="bgap_id" jdbcType="INTEGER" property="bgapId" />
+    <result column="bgap_name" jdbcType="INTEGER" property="bgapName" />
+    <result column="bgap_node" jdbcType="INTEGER" property="bgapNode" />
+    <result column="bgap_result" jdbcType="INTEGER" property="bgapResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bgap_id, bgap_name, bgap_node, bgap_result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_approval_process
+    where bgap_id = #{bgapId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bg_approval_process
+    where bgap_id = #{bgapId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="bgap_id" keyProperty="bgapId" parameterType="cn.gson.jd2021.model.pojos.jl.BgApprovalProcess" useGeneratedKeys="true">
+    insert into bg_approval_process (bgap_name, bgap_node, bgap_result
+      )
+    values (#{bgapName,jdbcType=INTEGER}, #{bgapNode,jdbcType=INTEGER}, #{bgapResult,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="bgap_id" keyProperty="bgapId" parameterType="cn.gson.jd2021.model.pojos.jl.BgApprovalProcess" useGeneratedKeys="true">
+    insert into bg_approval_process
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bgapName != null">
+        bgap_name,
+      </if>
+      <if test="bgapNode != null">
+        bgap_node,
+      </if>
+      <if test="bgapResult != null">
+        bgap_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bgapName != null">
+        #{bgapName,jdbcType=INTEGER},
+      </if>
+      <if test="bgapNode != null">
+        #{bgapNode,jdbcType=INTEGER},
+      </if>
+      <if test="bgapResult != null">
+        #{bgapResult,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.jl.BgApprovalProcess">
+    update bg_approval_process
+    <set>
+      <if test="bgapName != null">
+        bgap_name = #{bgapName,jdbcType=INTEGER},
+      </if>
+      <if test="bgapNode != null">
+        bgap_node = #{bgapNode,jdbcType=INTEGER},
+      </if>
+      <if test="bgapResult != null">
+        bgap_result = #{bgapResult,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bgap_id = #{bgapId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.jl.BgApprovalProcess">
+    update bg_approval_process
+    set bgap_name = #{bgapName,jdbcType=INTEGER},
+      bgap_node = #{bgapNode,jdbcType=INTEGER},
+      bgap_result = #{bgapResult,jdbcType=INTEGER}
+    where bgap_id = #{bgapId,jdbcType=INTEGER}
+  </update>
+</mapper>
