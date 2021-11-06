@@ -4,6 +4,39 @@
     <persistence-unit name="NewPersistenceUnit">
         <class>cn.gson.jd2021.model.pojos.NewEntity</class>
         <class>cn.gson.jd2021.model.pojos.S</class>
+        <class>cn.gson.jd2021.model.pojos.BgApprovalProcess</class>
+        <class>cn.gson.jd2021.model.pojos.BgCalendar</class>
+        <class>cn.gson.jd2021.model.pojos.BgCourse</class>
+        <class>cn.gson.jd2021.model.pojos.BgExpenseAccount</class>
+        <class>cn.gson.jd2021.model.pojos.BgFlow</class>
+        <class>cn.gson.jd2021.model.pojos.BgFlowEdition</class>
+        <class>cn.gson.jd2021.model.pojos.BgGrade</class>
+        <class>cn.gson.jd2021.model.pojos.BgLeave</class>
+        <class>cn.gson.jd2021.model.pojos.BgMail</class>
+        <class>cn.gson.jd2021.model.pojos.ClAssess</class>
+        <class>cn.gson.jd2021.model.pojos.ClOrders</class>
+        <class>cn.gson.jd2021.model.pojos.ClRecord</class>
+        <class>cn.gson.jd2021.model.pojos.ClReturnVist</class>
+        <class>cn.gson.jd2021.model.pojos.ClStorage</class>
+        <class>cn.gson.jd2021.model.pojos.CustomerRecord</class>
+        <class>cn.gson.jd2021.model.pojos.FinancePayment</class>
+        <class>cn.gson.jd2021.model.pojos.GgArchive</class>
+        <class>cn.gson.jd2021.model.pojos.GgBrand</class>
+        <class>cn.gson.jd2021.model.pojos.GgColor</class>
+        <class>cn.gson.jd2021.model.pojos.GgCoustomertype</class>
+        <class>cn.gson.jd2021.model.pojos.GgDesign</class>
+        <class>cn.gson.jd2021.model.pojos.GgFactory</class>
+        <class>cn.gson.jd2021.model.pojos.GgSource</class>
+        <class>cn.gson.jd2021.model.pojos.LoginRizhi</class>
+        <class>cn.gson.jd2021.model.pojos.OtherBop</class>
+        <class>cn.gson.jd2021.model.pojos.SellOrder</class>
+        <class>cn.gson.jd2021.model.pojos.SellVisitorlogs</class>
+        <class>cn.gson.jd2021.model.pojos.SysMenu</class>
+        <class>cn.gson.jd2021.model.pojos.SysOrg</class>
+        <class>cn.gson.jd2021.model.pojos.SysRolemenu</class>
+        <class>cn.gson.jd2021.model.pojos.SysRoleuser</class>
+        <class>cn.gson.jd2021.model.pojos.UserJuese</class>
+        <class>cn.gson.jd2021.model.pojos.UserList</class>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <properties>

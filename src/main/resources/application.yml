@@ -1,6 +1,6 @@
 server:
   port: 8088
-spring:
+spring:bg_approval_process
   devtools:
     restart:
       enabled: true  #???????
