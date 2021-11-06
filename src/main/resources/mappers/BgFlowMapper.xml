@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.jl.BgFlowMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.BgFlow">
+    <id column="bgfw_id" jdbcType="INTEGER" property="bgfwId" />
+    <result column="bgfw_name" jdbcType="VARCHAR" property="bgfwName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bgfw_id, bgfw_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_flow
+    where bgfw_id = #{bgfwId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bg_flow
+    where bgfw_id = #{bgfwId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="bgfw_id" keyProperty="bgfwId" parameterType="cn.gson.jd2021.model.pojos.BgFlow" useGeneratedKeys="true">
+    insert into bg_flow (bgfw_name)
+    values (#{bgfwName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="bgfw_id" keyProperty="bgfwId" parameterType="cn.gson.jd2021.model.pojos.BgFlow" useGeneratedKeys="true">
+    insert into bg_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bgfwName != null">
+        bgfw_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bgfwName != null">
+        #{bgfwName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.BgFlow">
+    update bg_flow
+    <set>
+      <if test="bgfwName != null">
+        bgfw_name = #{bgfwName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bgfw_id = #{bgfwId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.BgFlow">
+    update bg_flow
+    set bgfw_name = #{bgfwName,jdbcType=VARCHAR}
+    where bgfw_id = #{bgfwId,jdbcType=INTEGER}
+  </update>
+</mapper>

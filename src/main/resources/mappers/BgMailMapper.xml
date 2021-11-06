@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.jl.BgMailMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.BgMail">
+    <id column="bgml_id" jdbcType="INTEGER" property="bgmlId" />
+    <result column="bgml_theme" jdbcType="VARCHAR" property="bgmlTheme" />
+    <result column="bgml_grade" jdbcType="INTEGER" property="bgmlGrade" />
+    <result column="bgml_recipients" jdbcType="INTEGER" property="bgmlRecipients" />
+    <result column="bgml_invoice" jdbcType="VARCHAR" property="bgmlInvoice" />
+    <result column="bgml_cause" jdbcType="VARCHAR" property="bgmlCause" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bgml_id, bgml_theme, bgml_grade, bgml_recipients, bgml_invoice, bgml_cause
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_mail
+    where bgml_id = #{bgmlId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bg_mail
+    where bgml_id = #{bgmlId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="bgml_id" keyProperty="bgmlId" parameterType="cn.gson.jd2021.model.pojos.BgMail" useGeneratedKeys="true">
+    insert into bg_mail (bgml_theme, bgml_grade, bgml_recipients, 
+      bgml_invoice, bgml_cause)
+    values (#{bgmlTheme,jdbcType=VARCHAR}, #{bgmlGrade,jdbcType=INTEGER}, #{bgmlRecipients,jdbcType=INTEGER}, 
+      #{bgmlInvoice,jdbcType=VARCHAR}, #{bgmlCause,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="bgml_id" keyProperty="bgmlId" parameterType="cn.gson.jd2021.model.pojos.BgMail" useGeneratedKeys="true">
+    insert into bg_mail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bgmlTheme != null">
+        bgml_theme,
+      </if>
+      <if test="bgmlGrade != null">
+        bgml_grade,
+      </if>
+      <if test="bgmlRecipients != null">
+        bgml_recipients,
+      </if>
+      <if test="bgmlInvoice != null">
+        bgml_invoice,
+      </if>
+      <if test="bgmlCause != null">
+        bgml_cause,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bgmlTheme != null">
+        #{bgmlTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="bgmlGrade != null">
+        #{bgmlGrade,jdbcType=INTEGER},
+      </if>
+      <if test="bgmlRecipients != null">
+        #{bgmlRecipients,jdbcType=INTEGER},
+      </if>
+      <if test="bgmlInvoice != null">
+        #{bgmlInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="bgmlCause != null">
+        #{bgmlCause,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.BgMail">
+    update bg_mail
+    <set>
+      <if test="bgmlTheme != null">
+        bgml_theme = #{bgmlTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="bgmlGrade != null">
+        bgml_grade = #{bgmlGrade,jdbcType=INTEGER},
+      </if>
+      <if test="bgmlRecipients != null">
+        bgml_recipients = #{bgmlRecipients,jdbcType=INTEGER},
+      </if>
+      <if test="bgmlInvoice != null">
+        bgml_invoice = #{bgmlInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="bgmlCause != null">
+        bgml_cause = #{bgmlCause,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bgml_id = #{bgmlId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.BgMail">
+    update bg_mail
+    set bgml_theme = #{bgmlTheme,jdbcType=VARCHAR},
+      bgml_grade = #{bgmlGrade,jdbcType=INTEGER},
+      bgml_recipients = #{bgmlRecipients,jdbcType=INTEGER},
+      bgml_invoice = #{bgmlInvoice,jdbcType=VARCHAR},
+      bgml_cause = #{bgmlCause,jdbcType=VARCHAR}
+    where bgml_id = #{bgmlId,jdbcType=INTEGER}
+  </update>
+</mapper>

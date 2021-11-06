@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.jl.BgExpenseAccountMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.BgExpenseAccount">
+    <id column="bget_id" jdbcType="INTEGER" property="bgetId" />
+    <result column="bget_proposer" jdbcType="INTEGER" property="bgetProposer" />
+    <result column="bget_money" jdbcType="DECIMAL" property="bgetMoney" />
+    <result column="bget_invoice" jdbcType="VARCHAR" property="bgetInvoice" />
+    <result column="bget_cause" jdbcType="VARCHAR" property="bgetCause" />
+    <result column="bget_time" jdbcType="TIMESTAMP" property="bgetTime" />
+    <result column="bget_state" jdbcType="INTEGER" property="bgetState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bget_id, bget_proposer, bget_money, bget_invoice, bget_cause, bget_time, bget_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_expense_account
+    where bget_id = #{bgetId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bg_expense_account
+    where bget_id = #{bgetId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="bget_id" keyProperty="bgetId" parameterType="cn.gson.jd2021.model.pojos.BgExpenseAccount" useGeneratedKeys="true">
+    insert into bg_expense_account (bget_proposer, bget_money, bget_invoice, 
+      bget_cause, bget_time, bget_state
+      )
+    values (#{bgetProposer,jdbcType=INTEGER}, #{bgetMoney,jdbcType=DECIMAL}, #{bgetInvoice,jdbcType=VARCHAR}, 
+      #{bgetCause,jdbcType=VARCHAR}, #{bgetTime,jdbcType=TIMESTAMP}, #{bgetState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="bget_id" keyProperty="bgetId" parameterType="cn.gson.jd2021.model.pojos.BgExpenseAccount" useGeneratedKeys="true">
+    insert into bg_expense_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bgetProposer != null">
+        bget_proposer,
+      </if>
+      <if test="bgetMoney != null">
+        bget_money,
+      </if>
+      <if test="bgetInvoice != null">
+        bget_invoice,
+      </if>
+      <if test="bgetCause != null">
+        bget_cause,
+      </if>
+      <if test="bgetTime != null">
+        bget_time,
+      </if>
+      <if test="bgetState != null">
+        bget_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bgetProposer != null">
+        #{bgetProposer,jdbcType=INTEGER},
+      </if>
+      <if test="bgetMoney != null">
+        #{bgetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="bgetInvoice != null">
+        #{bgetInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="bgetCause != null">
+        #{bgetCause,jdbcType=VARCHAR},
+      </if>
+      <if test="bgetTime != null">
+        #{bgetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgetState != null">
+        #{bgetState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.BgExpenseAccount">
+    update bg_expense_account
+    <set>
+      <if test="bgetProposer != null">
+        bget_proposer = #{bgetProposer,jdbcType=INTEGER},
+      </if>
+      <if test="bgetMoney != null">
+        bget_money = #{bgetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="bgetInvoice != null">
+        bget_invoice = #{bgetInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="bgetCause != null">
+        bget_cause = #{bgetCause,jdbcType=VARCHAR},
+      </if>
+      <if test="bgetTime != null">
+        bget_time = #{bgetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgetState != null">
+        bget_state = #{bgetState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bget_id = #{bgetId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.BgExpenseAccount">
+    update bg_expense_account
+    set bget_proposer = #{bgetProposer,jdbcType=INTEGER},
+      bget_money = #{bgetMoney,jdbcType=DECIMAL},
+      bget_invoice = #{bgetInvoice,jdbcType=VARCHAR},
+      bget_cause = #{bgetCause,jdbcType=VARCHAR},
+      bget_time = #{bgetTime,jdbcType=TIMESTAMP},
+      bget_state = #{bgetState,jdbcType=INTEGER}
+    where bget_id = #{bgetId,jdbcType=INTEGER}
+  </update>
+</mapper>

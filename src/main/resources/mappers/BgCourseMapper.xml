@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.jl.BgCourseMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.BgCourse">
+    <id column="bgce_id" jdbcType="INTEGER" property="bgceId" />
+    <result column="bgce_apid" jdbcType="INTEGER" property="bgceApid" />
+    <result column="bgce_approver" jdbcType="INTEGER" property="bgceApprover" />
+    <result column="bgce_flowid" jdbcType="INTEGER" property="bgceFlowid" />
+    <result column="bgce_floweditionid" jdbcType="INTEGER" property="bgceFloweditionid" />
+    <result column="bgce_state" jdbcType="INTEGER" property="bgceState" />
+    <result column="bgce_opinion" jdbcType="VARCHAR" property="bgceOpinion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bgce_id, bgce_apid, bgce_approver, bgce_flowid, bgce_floweditionid, bgce_state, bgce_opinion
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_course
+    where bgce_id = #{bgceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bg_course
+    where bgce_id = #{bgceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="bgce_id" keyProperty="bgceId" parameterType="cn.gson.jd2021.model.pojos.BgCourse" useGeneratedKeys="true">
+    insert into bg_course (bgce_apid, bgce_approver, bgce_flowid, 
+      bgce_floweditionid, bgce_state, bgce_opinion
+      )
+    values (#{bgceApid,jdbcType=INTEGER}, #{bgceApprover,jdbcType=INTEGER}, #{bgceFlowid,jdbcType=INTEGER}, 
+      #{bgceFloweditionid,jdbcType=INTEGER}, #{bgceState,jdbcType=INTEGER}, #{bgceOpinion,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="bgce_id" keyProperty="bgceId" parameterType="cn.gson.jd2021.model.pojos.BgCourse" useGeneratedKeys="true">
+    insert into bg_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bgceApid != null">
+        bgce_apid,
+      </if>
+      <if test="bgceApprover != null">
+        bgce_approver,
+      </if>
+      <if test="bgceFlowid != null">
+        bgce_flowid,
+      </if>
+      <if test="bgceFloweditionid != null">
+        bgce_floweditionid,
+      </if>
+      <if test="bgceState != null">
+        bgce_state,
+      </if>
+      <if test="bgceOpinion != null">
+        bgce_opinion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bgceApid != null">
+        #{bgceApid,jdbcType=INTEGER},
+      </if>
+      <if test="bgceApprover != null">
+        #{bgceApprover,jdbcType=INTEGER},
+      </if>
+      <if test="bgceFlowid != null">
+        #{bgceFlowid,jdbcType=INTEGER},
+      </if>
+      <if test="bgceFloweditionid != null">
+        #{bgceFloweditionid,jdbcType=INTEGER},
+      </if>
+      <if test="bgceState != null">
+        #{bgceState,jdbcType=INTEGER},
+      </if>
+      <if test="bgceOpinion != null">
+        #{bgceOpinion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.BgCourse">
+    update bg_course
+    <set>
+      <if test="bgceApid != null">
+        bgce_apid = #{bgceApid,jdbcType=INTEGER},
+      </if>
+      <if test="bgceApprover != null">
+        bgce_approver = #{bgceApprover,jdbcType=INTEGER},
+      </if>
+      <if test="bgceFlowid != null">
+        bgce_flowid = #{bgceFlowid,jdbcType=INTEGER},
+      </if>
+      <if test="bgceFloweditionid != null">
+        bgce_floweditionid = #{bgceFloweditionid,jdbcType=INTEGER},
+      </if>
+      <if test="bgceState != null">
+        bgce_state = #{bgceState,jdbcType=INTEGER},
+      </if>
+      <if test="bgceOpinion != null">
+        bgce_opinion = #{bgceOpinion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bgce_id = #{bgceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.BgCourse">
+    update bg_course
+    set bgce_apid = #{bgceApid,jdbcType=INTEGER},
+      bgce_approver = #{bgceApprover,jdbcType=INTEGER},
+      bgce_flowid = #{bgceFlowid,jdbcType=INTEGER},
+      bgce_floweditionid = #{bgceFloweditionid,jdbcType=INTEGER},
+      bgce_state = #{bgceState,jdbcType=INTEGER},
+      bgce_opinion = #{bgceOpinion,jdbcType=VARCHAR}
+    where bgce_id = #{bgceId,jdbcType=INTEGER}
+  </update>
+</mapper>

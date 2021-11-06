@@ -1,6 +1,6 @@
 package cn.gson.jd2021.model.mapper.jl;
 
-import cn.gson.jd2021.model.pojos.jl.BgApprovalProcess;
+import cn.gson.jd2021.model.pojos.BgApprovalProcess;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
