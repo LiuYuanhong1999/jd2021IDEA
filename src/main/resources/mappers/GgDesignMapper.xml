@@ -6,6 +6,14 @@
     <result column="design_name" jdbcType="VARCHAR" property="designName" />
     <result column="brand_id" jdbcType="INTEGER" property="brandId" />
   </resultMap>
+
+<!--  收车登记款式查询-->
+  <select id="findDesign" resultMap="BaseResultMap">
+
+    select * from gg_design where brand_id=#{brandId}
+
+  </select>
+
   <sql id="Base_Column_List">
     design_id, design_name, brand_id
   </sql>

@@ -3,6 +3,8 @@ package cn.gson.jd2021.model.mapper.tjq;
 import cn.gson.jd2021.model.pojos.GgBrand;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface GgBrandMapper {
     int deleteByPrimaryKey(Integer brandId);
@@ -16,4 +18,8 @@ public interface GgBrandMapper {
     int updateByPrimaryKeySelective(GgBrand record);
 
     int updateByPrimaryKey(GgBrand record);
+
+    //收车登记品牌查询
+    List<GgBrand> findBrand();
+
 }

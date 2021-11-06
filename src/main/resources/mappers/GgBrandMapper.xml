@@ -5,6 +5,16 @@
     <id column="brand_id" jdbcType="INTEGER" property="brandId" />
     <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
   </resultMap>
+
+
+<!--  收车登记品牌查询-->
+  <select id="findBrand" resultMap="BaseResultMap">
+
+    select * from gg_brand
+
+  </select>
+
+
   <sql id="Base_Column_List">
     brand_id, brand_name
   </sql>

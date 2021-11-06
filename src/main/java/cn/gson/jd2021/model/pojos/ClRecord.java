@@ -103,5 +103,180 @@ public class ClRecord implements Serializable {
      */
     private String recordNote;
 
-    private static final long serialVersionUID = 1L;
+    public String getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(String recordId) {
+        this.recordId = recordId;
+    }
+
+    public Integer getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(Integer factoryId) {
+        this.factoryId = factoryId;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public Integer getDesignId() {
+        return designId;
+    }
+
+    public void setDesignId(Integer designId) {
+        this.designId = designId;
+    }
+
+    public Integer getColorId() {
+        return colorId;
+    }
+
+    public void setColorId(Integer colorId) {
+        this.colorId = colorId;
+    }
+
+    public Date getRecordLeaveTime() {
+        return recordLeaveTime;
+    }
+
+    public void setRecordLeaveTime(Date recordLeaveTime) {
+        this.recordLeaveTime = recordLeaveTime;
+    }
+
+    public String getRecordVariator() {
+        return recordVariator;
+    }
+
+    public void setRecordVariator(String recordVariator) {
+        this.recordVariator = recordVariator;
+    }
+
+    public String getRecordDisplacement() {
+        return recordDisplacement;
+    }
+
+    public void setRecordDisplacement(String recordDisplacement) {
+        this.recordDisplacement = recordDisplacement;
+    }
+
+    public Integer getRecordMileage() {
+        return recordMileage;
+    }
+
+    public void setRecordMileage(Integer recordMileage) {
+        this.recordMileage = recordMileage;
+    }
+
+    public Date getRecordBegain() {
+        return recordBegain;
+    }
+
+    public void setRecordBegain(Date recordBegain) {
+        this.recordBegain = recordBegain;
+    }
+
+    public String getRecordName() {
+        return recordName;
+    }
+
+    public void setRecordName(String recordName) {
+        this.recordName = recordName;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public BigDecimal getRecordPrice() {
+        return recordPrice;
+    }
+
+    public void setRecordPrice(BigDecimal recordPrice) {
+        this.recordPrice = recordPrice;
+    }
+
+    public Date getRecordTime() {
+        return recordTime;
+    }
+
+    public void setRecordTime(Date recordTime) {
+        this.recordTime = recordTime;
+    }
+
+    public String getRecordWay() {
+        return recordWay;
+    }
+
+    public void setRecordWay(String recordWay) {
+        this.recordWay = recordWay;
+    }
+
+    public String getRecordNote() {
+        return recordNote;
+    }
+
+    public void setRecordNote(String recordNote) {
+        this.recordNote = recordNote;
+    }
+
+    //汽车品牌
+    private GgBrand ggBrand;
+
+    public GgBrand getGgBrand() {
+        return ggBrand;
+    }
+
+    public void setGgBrand(GgBrand ggBrand) {
+        this.ggBrand = ggBrand;
+    }
+
+    //汽车款式
+    private GgDesign ggDesign;
+
+    public GgDesign getGgDesign() {
+        return ggDesign;
+    }
+
+    public void setGgDesign(GgDesign ggDesign) {
+        this.ggDesign = ggDesign;
+    }
+
+    //汽车颜色
+    private GgColor ggColor;
+
+    public GgColor getGgColor() {
+        return ggColor;
+    }
+
+    public void setGgColor(GgColor ggColor) {
+        this.ggColor = ggColor;
+    }
 }

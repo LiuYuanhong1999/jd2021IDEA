@@ -8,6 +8,18 @@
   <sql id="Base_Column_List">
     color_id, color_name
   </sql>
+
+
+<!--  收车登记颜色查询-->
+    <select id="findColor" resultMap="BaseResultMap">
+
+        select * from gg_color
+
+    </select>
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

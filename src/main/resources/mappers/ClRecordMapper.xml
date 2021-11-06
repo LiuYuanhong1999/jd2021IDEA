@@ -20,12 +20,35 @@
     <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
     <result column="record_way" jdbcType="VARCHAR" property="recordWay" />
     <result column="record_note" jdbcType="VARCHAR" property="recordNote" />
+
+<!--    汽车品牌-->
+    <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand">
+      <id column="brand_id" jdbcType="INTEGER" property="brandId" />
+      <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    </association>
+
+<!--    汽车款式-->
+  <association property="ggDesign" javaType="cn.gson.jd2021.model.pojos.GgDesign">
+    <id column="design_id" jdbcType="INTEGER" property="designId" />
+    <result column="design_name" jdbcType="VARCHAR" property="designName" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+  </association>
+
+<!--    汽车颜色-->
+    <association property="ggColor" javaType="cn.gson.jd2021.model.pojos.GgColor">
+      <id column="color_id" jdbcType="INTEGER" property="colorId" />
+      <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+    </association>
   </resultMap>
 
 
   <select id="findByClRecord" resultMap="BaseResultMap">
 
-        select * from cl_record order by record_time desc
+    select * from cl_record a
+                    left join gg_brand c on a.brand_id=c.brand_id
+                    left join gg_design d on a.design_id=d.design_id
+                    left join gg_color e on a.color_id=e.color_id
+    order by a.record_time desc
 
   </select>
 
