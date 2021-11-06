@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.tjq.GgSourceMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.GgSource">
+    <id column="source_id" jdbcType="INTEGER" property="sourceId" />
+    <result column="source_name" jdbcType="VARCHAR" property="sourceName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    source_id, source_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gg_source
+    where source_id = #{sourceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gg_source
+    where source_id = #{sourceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="source_id" keyProperty="sourceId" parameterType="cn.gson.jd2021.model.pojos.GgSource" useGeneratedKeys="true">
+    insert into gg_source (source_name)
+    values (#{sourceName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="source_id" keyProperty="sourceId" parameterType="cn.gson.jd2021.model.pojos.GgSource" useGeneratedKeys="true">
+    insert into gg_source
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sourceName != null">
+        source_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sourceName != null">
+        #{sourceName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.GgSource">
+    update gg_source
+    <set>
+      <if test="sourceName != null">
+        source_name = #{sourceName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where source_id = #{sourceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.GgSource">
+    update gg_source
+    set source_name = #{sourceName,jdbcType=VARCHAR}
+    where source_id = #{sourceId,jdbcType=INTEGER}
+  </update>
+</mapper>

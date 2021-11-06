@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.tjq.GgColorMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.GgColor">
+    <id column="color_id" jdbcType="INTEGER" property="colorId" />
+    <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    color_id, color_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gg_color
+    where color_id = #{colorId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gg_color
+    where color_id = #{colorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="color_id" keyProperty="colorId" parameterType="cn.gson.jd2021.model.pojos.GgColor" useGeneratedKeys="true">
+    insert into gg_color (color_name)
+    values (#{colorName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="color_id" keyProperty="colorId" parameterType="cn.gson.jd2021.model.pojos.GgColor" useGeneratedKeys="true">
+    insert into gg_color
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="colorName != null">
+        color_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="colorName != null">
+        #{colorName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.GgColor">
+    update gg_color
+    <set>
+      <if test="colorName != null">
+        color_name = #{colorName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where color_id = #{colorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.GgColor">
+    update gg_color
+    set color_name = #{colorName,jdbcType=VARCHAR}
+    where color_id = #{colorId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.tjq.SellCoustomerMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.SellCoustomer">
+    <id column="ac_id" jdbcType="INTEGER" property="acId" />
+    <result column="cus_no" jdbcType="VARCHAR" property="cusNo" />
+    <result column="cus_name" jdbcType="VARCHAR" property="cusName" />
+    <result column="cus_cellphone" jdbcType="CHAR" property="cusCellphone" />
+    <result column="cus_qq" jdbcType="VARCHAR" property="cusQq" />
+    <result column="cus_post" jdbcType="VARCHAR" property="cusPost" />
+    <result column="cus_time" jdbcType="TIMESTAMP" property="cusTime" />
+    <result column="cus_state" jdbcType="VARCHAR" property="cusState" />
+    <result column="cus_reamrk" jdbcType="VARCHAR" property="cusReamrk" />
+    <result column="list_num" jdbcType="INTEGER" property="listNum" />
+    <result column="ct_id" jdbcType="INTEGER" property="ctId" />
+    <result column="source_id" jdbcType="INTEGER" property="sourceId" />
+    <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="gg_color" jdbcType="INTEGER" property="ggColor" />
+    <result column="cus_factor" jdbcType="VARCHAR" property="cusFactor" />
+    <result column="cus_budget" jdbcType="DECIMAL" property="cusBudget" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ac_id, cus_no, cus_name, cus_cellphone, cus_qq, cus_post, cus_time, cus_state, cus_reamrk, 
+    list_num, ct_id, source_id, factory_id, brand_id, gg_color, cus_factor, cus_budget
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sell_coustomer
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sell_coustomer
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ac_id" keyProperty="acId" parameterType="cn.gson.jd2021.model.pojos.SellCoustomer" useGeneratedKeys="true">
+    insert into sell_coustomer (cus_no, cus_name, cus_cellphone, 
+      cus_qq, cus_post, cus_time, 
+      cus_state, cus_reamrk, list_num, 
+      ct_id, source_id, factory_id, 
+      brand_id, gg_color, cus_factor, 
+      cus_budget)
+    values (#{cusNo,jdbcType=VARCHAR}, #{cusName,jdbcType=VARCHAR}, #{cusCellphone,jdbcType=CHAR}, 
+      #{cusQq,jdbcType=VARCHAR}, #{cusPost,jdbcType=VARCHAR}, #{cusTime,jdbcType=TIMESTAMP}, 
+      #{cusState,jdbcType=VARCHAR}, #{cusReamrk,jdbcType=VARCHAR}, #{listNum,jdbcType=INTEGER}, 
+      #{ctId,jdbcType=INTEGER}, #{sourceId,jdbcType=INTEGER}, #{factoryId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{ggColor,jdbcType=INTEGER}, #{cusFactor,jdbcType=VARCHAR}, 
+      #{cusBudget,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="ac_id" keyProperty="acId" parameterType="cn.gson.jd2021.model.pojos.SellCoustomer" useGeneratedKeys="true">
+    insert into sell_coustomer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cusNo != null">
+        cus_no,
+      </if>
+      <if test="cusName != null">
+        cus_name,
+      </if>
+      <if test="cusCellphone != null">
+        cus_cellphone,
+      </if>
+      <if test="cusQq != null">
+        cus_qq,
+      </if>
+      <if test="cusPost != null">
+        cus_post,
+      </if>
+      <if test="cusTime != null">
+        cus_time,
+      </if>
+      <if test="cusState != null">
+        cus_state,
+      </if>
+      <if test="cusReamrk != null">
+        cus_reamrk,
+      </if>
+      <if test="listNum != null">
+        list_num,
+      </if>
+      <if test="ctId != null">
+        ct_id,
+      </if>
+      <if test="sourceId != null">
+        source_id,
+      </if>
+      <if test="factoryId != null">
+        factory_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="ggColor != null">
+        gg_color,
+      </if>
+      <if test="cusFactor != null">
+        cus_factor,
+      </if>
+      <if test="cusBudget != null">
+        cus_budget,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cusNo != null">
+        #{cusNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cusName != null">
+        #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusCellphone != null">
+        #{cusCellphone,jdbcType=CHAR},
+      </if>
+      <if test="cusQq != null">
+        #{cusQq,jdbcType=VARCHAR},
+      </if>
+      <if test="cusPost != null">
+        #{cusPost,jdbcType=VARCHAR},
+      </if>
+      <if test="cusTime != null">
+        #{cusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cusState != null">
+        #{cusState,jdbcType=VARCHAR},
+      </if>
+      <if test="cusReamrk != null">
+        #{cusReamrk,jdbcType=VARCHAR},
+      </if>
+      <if test="listNum != null">
+        #{listNum,jdbcType=INTEGER},
+      </if>
+      <if test="ctId != null">
+        #{ctId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="factoryId != null">
+        #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="ggColor != null">
+        #{ggColor,jdbcType=INTEGER},
+      </if>
+      <if test="cusFactor != null">
+        #{cusFactor,jdbcType=VARCHAR},
+      </if>
+      <if test="cusBudget != null">
+        #{cusBudget,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.SellCoustomer">
+    update sell_coustomer
+    <set>
+      <if test="cusNo != null">
+        cus_no = #{cusNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cusName != null">
+        cus_name = #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusCellphone != null">
+        cus_cellphone = #{cusCellphone,jdbcType=CHAR},
+      </if>
+      <if test="cusQq != null">
+        cus_qq = #{cusQq,jdbcType=VARCHAR},
+      </if>
+      <if test="cusPost != null">
+        cus_post = #{cusPost,jdbcType=VARCHAR},
+      </if>
+      <if test="cusTime != null">
+        cus_time = #{cusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cusState != null">
+        cus_state = #{cusState,jdbcType=VARCHAR},
+      </if>
+      <if test="cusReamrk != null">
+        cus_reamrk = #{cusReamrk,jdbcType=VARCHAR},
+      </if>
+      <if test="listNum != null">
+        list_num = #{listNum,jdbcType=INTEGER},
+      </if>
+      <if test="ctId != null">
+        ct_id = #{ctId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null">
+        source_id = #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="factoryId != null">
+        factory_id = #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="ggColor != null">
+        gg_color = #{ggColor,jdbcType=INTEGER},
+      </if>
+      <if test="cusFactor != null">
+        cus_factor = #{cusFactor,jdbcType=VARCHAR},
+      </if>
+      <if test="cusBudget != null">
+        cus_budget = #{cusBudget,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.SellCoustomer">
+    update sell_coustomer
+    set cus_no = #{cusNo,jdbcType=VARCHAR},
+      cus_name = #{cusName,jdbcType=VARCHAR},
+      cus_cellphone = #{cusCellphone,jdbcType=CHAR},
+      cus_qq = #{cusQq,jdbcType=VARCHAR},
+      cus_post = #{cusPost,jdbcType=VARCHAR},
+      cus_time = #{cusTime,jdbcType=TIMESTAMP},
+      cus_state = #{cusState,jdbcType=VARCHAR},
+      cus_reamrk = #{cusReamrk,jdbcType=VARCHAR},
+      list_num = #{listNum,jdbcType=INTEGER},
+      ct_id = #{ctId,jdbcType=INTEGER},
+      source_id = #{sourceId,jdbcType=INTEGER},
+      factory_id = #{factoryId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      gg_color = #{ggColor,jdbcType=INTEGER},
+      cus_factor = #{cusFactor,jdbcType=VARCHAR},
+      cus_budget = #{cusBudget,jdbcType=DECIMAL}
+    where ac_id = #{acId,jdbcType=INTEGER}
+  </update>
+</mapper>
