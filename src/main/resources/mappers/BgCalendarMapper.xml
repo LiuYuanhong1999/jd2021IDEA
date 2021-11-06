@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.jl.BgCalendarMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.BgCalendar">
+    <id column="bgcr_id" jdbcType="INTEGER" property="bgcrId" />
+    <result column="bgcr_theme" jdbcType="VARCHAR" property="bgcrTheme" />
+    <result column="bgcr_kstime" jdbcType="TIMESTAMP" property="bgcrKstime" />
+    <result column="bgcr_jstime" jdbcType="TIMESTAMP" property="bgcrJstime" />
+    <result column="bgcr_cause" jdbcType="VARCHAR" property="bgcrCause" />
+    <result column="bgcr_grade" jdbcType="INTEGER" property="bgcrGrade" />
+    <result column="bgcr_state" jdbcType="INTEGER" property="bgcrState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bgcr_id, bgcr_theme, bgcr_kstime, bgcr_jstime, bgcr_cause, bgcr_grade, bgcr_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_calendar
+    where bgcr_id = #{bgcrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bg_calendar
+    where bgcr_id = #{bgcrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="bgcr_id" keyProperty="bgcrId" parameterType="cn.gson.jd2021.model.pojos.BgCalendar" useGeneratedKeys="true">
+    insert into bg_calendar (bgcr_theme, bgcr_kstime, bgcr_jstime, 
+      bgcr_cause, bgcr_grade, bgcr_state
+      )
+    values (#{bgcrTheme,jdbcType=VARCHAR}, #{bgcrKstime,jdbcType=TIMESTAMP}, #{bgcrJstime,jdbcType=TIMESTAMP}, 
+      #{bgcrCause,jdbcType=VARCHAR}, #{bgcrGrade,jdbcType=INTEGER}, #{bgcrState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="bgcr_id" keyProperty="bgcrId" parameterType="cn.gson.jd2021.model.pojos.BgCalendar" useGeneratedKeys="true">
+    insert into bg_calendar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bgcrTheme != null">
+        bgcr_theme,
+      </if>
+      <if test="bgcrKstime != null">
+        bgcr_kstime,
+      </if>
+      <if test="bgcrJstime != null">
+        bgcr_jstime,
+      </if>
+      <if test="bgcrCause != null">
+        bgcr_cause,
+      </if>
+      <if test="bgcrGrade != null">
+        bgcr_grade,
+      </if>
+      <if test="bgcrState != null">
+        bgcr_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bgcrTheme != null">
+        #{bgcrTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="bgcrKstime != null">
+        #{bgcrKstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgcrJstime != null">
+        #{bgcrJstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgcrCause != null">
+        #{bgcrCause,jdbcType=VARCHAR},
+      </if>
+      <if test="bgcrGrade != null">
+        #{bgcrGrade,jdbcType=INTEGER},
+      </if>
+      <if test="bgcrState != null">
+        #{bgcrState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.BgCalendar">
+    update bg_calendar
+    <set>
+      <if test="bgcrTheme != null">
+        bgcr_theme = #{bgcrTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="bgcrKstime != null">
+        bgcr_kstime = #{bgcrKstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgcrJstime != null">
+        bgcr_jstime = #{bgcrJstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgcrCause != null">
+        bgcr_cause = #{bgcrCause,jdbcType=VARCHAR},
+      </if>
+      <if test="bgcrGrade != null">
+        bgcr_grade = #{bgcrGrade,jdbcType=INTEGER},
+      </if>
+      <if test="bgcrState != null">
+        bgcr_state = #{bgcrState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bgcr_id = #{bgcrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.BgCalendar">
+    update bg_calendar
+    set bgcr_theme = #{bgcrTheme,jdbcType=VARCHAR},
+      bgcr_kstime = #{bgcrKstime,jdbcType=TIMESTAMP},
+      bgcr_jstime = #{bgcrJstime,jdbcType=TIMESTAMP},
+      bgcr_cause = #{bgcrCause,jdbcType=VARCHAR},
+      bgcr_grade = #{bgcrGrade,jdbcType=INTEGER},
+      bgcr_state = #{bgcrState,jdbcType=INTEGER}
+    where bgcr_id = #{bgcrId,jdbcType=INTEGER}
+  </update>
+</mapper>

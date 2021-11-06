@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.jl.BgLeaveMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.BgLeave">
+    <id column="bgle_id" jdbcType="INTEGER" property="bgleId" />
+    <result column="bgle_proposer" jdbcType="INTEGER" property="bgleProposer" />
+    <result column="bgle_time" jdbcType="TIMESTAMP" property="bgleTime" />
+    <result column="bgle_cause" jdbcType="VARCHAR" property="bgleCause" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bgle_id, bgle_proposer, bgle_time, bgle_cause
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_leave
+    where bgle_id = #{bgleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bg_leave
+    where bgle_id = #{bgleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="bgle_id" keyProperty="bgleId" parameterType="cn.gson.jd2021.model.pojos.BgLeave" useGeneratedKeys="true">
+    insert into bg_leave (bgle_proposer, bgle_time, bgle_cause
+      )
+    values (#{bgleProposer,jdbcType=INTEGER}, #{bgleTime,jdbcType=TIMESTAMP}, #{bgleCause,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="bgle_id" keyProperty="bgleId" parameterType="cn.gson.jd2021.model.pojos.BgLeave" useGeneratedKeys="true">
+    insert into bg_leave
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bgleProposer != null">
+        bgle_proposer,
+      </if>
+      <if test="bgleTime != null">
+        bgle_time,
+      </if>
+      <if test="bgleCause != null">
+        bgle_cause,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bgleProposer != null">
+        #{bgleProposer,jdbcType=INTEGER},
+      </if>
+      <if test="bgleTime != null">
+        #{bgleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgleCause != null">
+        #{bgleCause,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.BgLeave">
+    update bg_leave
+    <set>
+      <if test="bgleProposer != null">
+        bgle_proposer = #{bgleProposer,jdbcType=INTEGER},
+      </if>
+      <if test="bgleTime != null">
+        bgle_time = #{bgleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bgleCause != null">
+        bgle_cause = #{bgleCause,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bgle_id = #{bgleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.BgLeave">
+    update bg_leave
+    set bgle_proposer = #{bgleProposer,jdbcType=INTEGER},
+      bgle_time = #{bgleTime,jdbcType=TIMESTAMP},
+      bgle_cause = #{bgleCause,jdbcType=VARCHAR}
+    where bgle_id = #{bgleId,jdbcType=INTEGER}
+  </update>
+</mapper>
