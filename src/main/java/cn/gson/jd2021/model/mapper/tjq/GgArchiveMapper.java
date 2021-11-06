@@ -7,9 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface GgArchiveMapper {
-    //多条件查询 根据归档原因、归档类型 进行查询
-    //归档原因表
-    public List<GgArchive> selectall(GgArchive ggArchive);
+    //多条件 查询所有
+    List<GgArchive> selectall(GgArchive ggArchive);
+
     int deleteByPrimaryKey(Integer acId);
 
     int insert(GgArchive record);

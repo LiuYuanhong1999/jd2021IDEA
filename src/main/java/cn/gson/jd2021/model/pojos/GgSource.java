@@ -15,18 +15,24 @@ public class GgSource implements Serializable {
     private Integer sourceId;
 
     /**
-     * 来源
+     * 来源sourceName
      */
     private String sourceName;
+
+    //信息来源状态 是否使用过了
+    private Integer sourceUse;
+
+    public Integer getSourceUse() {
+        return sourceUse;
+    }
+
+    public void setSourceUse(Integer sourceUse) {
+        this.sourceUse = sourceUse;
+    }
 
     private static final long serialVersionUID = 1L;
 
     public GgSource() {
-    }
-
-    public GgSource(Integer sourceId, String sourceName) {
-        this.sourceId = sourceId;
-        this.sourceName = sourceName;
     }
 
     public Integer getSourceId() {

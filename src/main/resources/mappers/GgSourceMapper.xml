@@ -6,17 +6,40 @@
     <result column="source_name" jdbcType="VARCHAR" property="sourceName" />
   </resultMap>
   <sql id="Base_Column_List">
-    source_id, source_name
+    source_id, source_name,source_use
   </sql>
+  <!--//查询所有 信息来源表
+    List<GgSource> selectall(GgSource ggSource);-->
+  <select id="selectall" resultType="cn.gson.jd2021.model.pojos.GgSource">
+    select <include refid="Base_Column_List"></include> from gg_source
+        <where>
+          <if test="sourceId!=null and sourceId!=''">
+            and source_id= #{sourceId}
+          </if>
+            <if test="sourceName!=null and sourceName!=''">
+              and source_name like concat('%',#{sourceName},'%')
+            </if>
+            <if test="sourceUse!=null and sourceUse!=''">
+              and source_use = #{sourceUse}
+            </if>
+        </where>
+    order by source_id desc
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from gg_source
     where source_id = #{sourceId,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from gg_source
     where source_id = #{sourceId,jdbcType=INTEGER}
+  </delete>
+  <!--  //删除信息来源表 根据主键进行删除
+    Integer doDelete(Integer id);-->
+  <delete id="doDelete">
+    delete from gg_source where source_id = #{id}
   </delete>
   <insert id="insert" keyColumn="source_id" keyProperty="sourceId" parameterType="cn.gson.jd2021.model.pojos.GgSource" useGeneratedKeys="true">
     insert into gg_source (source_name)
@@ -41,12 +64,16 @@
       <if test="sourceName != null">
         source_name = #{sourceName,jdbcType=VARCHAR},
       </if>
+        <if test="sourceUse!=null">
+          source_use= #{sourceUse},
+        </if>
     </set>
     where source_id = #{sourceId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.GgSource">
     update gg_source
-    set source_name = #{sourceName,jdbcType=VARCHAR}
+    set source_name = #{sourceName,jdbcType=VARCHAR},
+        source_use=#{sourceUse},
     where source_id = #{sourceId,jdbcType=INTEGER}
   </update>
 </mapper>

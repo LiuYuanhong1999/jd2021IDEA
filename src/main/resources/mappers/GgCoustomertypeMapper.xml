@@ -8,13 +8,26 @@
   <sql id="Base_Column_List">
     ct_id, ct_name
   </sql>
+  <select id="selectall" resultType="cn.gson.jd2021.model.pojos.GgCoustomertype">
+    select <include refid="Base_Column_List"></include> from gg_coustomertype
+    <where>
+        <if test="ctId!=null and ctId!=''">
+            and ct_id = #{ct_id}
+        </if>
+        <if test="ctName!=null and ctName!=''">
+          and ct_name like concat('%',#{ctName},'%')
+        </if>
+    </where>
+    order by ct_id desc
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from gg_coustomertype
     where ct_id = #{ctId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from gg_coustomertype
     where ct_id = #{ctId,jdbcType=INTEGER}
   </delete>
