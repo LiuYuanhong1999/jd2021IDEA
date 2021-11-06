@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.hlj.OtherBopDao">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.OtherBop">
+    <id column="other_id" jdbcType="INTEGER" property="otherId" />
+    <result column="other_paydate" jdbcType="TIMESTAMP" property="otherPaydate" />
+    <result column="other_type" jdbcType="VARCHAR" property="otherType" />
+    <result column="other_subject" jdbcType="VARCHAR" property="otherSubject" />
+    <result column="other_money" jdbcType="DOUBLE" property="otherMoney" />
+    <result column="other_pepo" jdbcType="VARCHAR" property="otherPepo" />
+    <result column="other_remak" jdbcType="VARCHAR" property="otherRemak" />
+    <result column="other_static" jdbcType="INTEGER" property="otherStatic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    other_id, other_paydate, other_type, other_subject, other_money, other_pepo, other_remak, 
+    other_static
+  </sql>
+
+  <select id="selectAllOtherBop"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from other_bop
+    <where>
+      <if test="value=='收支类别' and input!=null">
+        other_type like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='事由' and input!=null">
+        other_subject like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='金额' and input!=null">
+        other_money like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='经办人' and input!=null">
+        other_pepo like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='备注' and input!=null">
+        other_remak like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+<!--      <if test="value=='已打印' and input!=null">-->
+<!--        other_static like CONCAT(CONCAT('%',#{input},'%'))-->
+<!--      </if>-->
+<!--      <if test="value=='未打印' and input!=null">-->
+<!--        other_static like CONCAT(CONCAT('%',#{input},'%'))-->
+<!--      </if>-->
+    </where>
+  </select>
+
+  <!--  多条件查询-->
+<!--  <select id="selectEmps" resultMap="BaseResultMap">-->
+<!--    select-->
+<!--    <include refid="Base_Column_List1" />,-->
+<!--    <include refid="Base_department_List" />,-->
+<!--    <include refid="Base_dept_List" />-->
+<!--    from emp e-->
+<!--    left join dept d on e.Dept_Id=d.Dept_Id-->
+<!--    left join department de on e.Department_Id=de.Department_Id-->
+<!--    <where>-->
+<!--      <if test="value=='科室名称' and input!=null">-->
+<!--        de.Department_Name like CONCAT(CONCAT('%',#{input},'%'))-->
+<!--      </if>-->
+<!--      <if test="value=='部门名称' and input!=null">-->
+<!--        d.Dept_Name like CONCAT(CONCAT('%',#{input},'%'))-->
+<!--      </if>-->
+<!--      <if test="value=='姓名' and input!=null">-->
+<!--        e.Emp_Name like CONCAT(CONCAT('%',#{input},'%'))-->
+<!--      </if>-->
+<!--      <if test="value=='工号' and input!=null">-->
+<!--        e.JobNumber like CONCAT(CONCAT('%',#{input},'%'))-->
+<!--      </if>-->
+<!--      <if test="value=='性别' and input!=null">-->
+<!--        e.Emp_Sex like CONCAT(CONCAT('%',#{input},'%'))-->
+<!--      </if>-->
+<!--    </where>-->
+
+<!--  </select>-->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from other_bop
+    where other_id = #{otherId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from other_bop
+    where other_id = #{otherId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="other_id" keyProperty="otherId" parameterType="cn.gson.jd2021.model.pojos.OtherBop" useGeneratedKeys="true">
+    insert into other_bop (other_paydate, other_type, other_subject, 
+      other_money, other_pepo, other_remak, 
+      other_static)
+    values (#{otherPaydate,jdbcType=TIMESTAMP}, #{otherType,jdbcType=VARCHAR}, #{otherSubject,jdbcType=VARCHAR}, 
+      #{otherMoney,jdbcType=DOUBLE}, #{otherPepo,jdbcType=VARCHAR}, #{otherRemak,jdbcType=VARCHAR}, 
+      #{otherStatic,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="other_id" keyProperty="otherId" parameterType="cn.gson.jd2021.model.pojos.OtherBop" useGeneratedKeys="true">
+    insert into other_bop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="otherPaydate != null">
+        other_paydate,
+      </if>
+      <if test="otherType != null">
+        other_type,
+      </if>
+      <if test="otherSubject != null">
+        other_subject,
+      </if>
+      <if test="otherMoney != null">
+        other_money,
+      </if>
+      <if test="otherPepo != null">
+        other_pepo,
+      </if>
+      <if test="otherRemak != null">
+        other_remak,
+      </if>
+      <if test="otherStatic != null">
+        other_static,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="otherPaydate != null">
+        #{otherPaydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherType != null">
+        #{otherType,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSubject != null">
+        #{otherSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMoney != null">
+        #{otherMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="otherPepo != null">
+        #{otherPepo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRemak != null">
+        #{otherRemak,jdbcType=VARCHAR},
+      </if>
+      <if test="otherStatic != null">
+        #{otherStatic,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.OtherBop">
+    update other_bop
+    <set>
+      <if test="otherPaydate != null">
+        other_paydate = #{otherPaydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherType != null">
+        other_type = #{otherType,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSubject != null">
+        other_subject = #{otherSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMoney != null">
+        other_money = #{otherMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="otherPepo != null">
+        other_pepo = #{otherPepo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRemak != null">
+        other_remak = #{otherRemak,jdbcType=VARCHAR},
+      </if>
+      <if test="otherStatic != null">
+        other_static = #{otherStatic,jdbcType=INTEGER},
+      </if>
+    </set>
+    where other_id = #{otherId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.OtherBop">
+    update other_bop
+    set other_paydate = #{otherPaydate,jdbcType=TIMESTAMP},
+      other_type = #{otherType,jdbcType=VARCHAR},
+      other_subject = #{otherSubject,jdbcType=VARCHAR},
+      other_money = #{otherMoney,jdbcType=DOUBLE},
+      other_pepo = #{otherPepo,jdbcType=VARCHAR},
+      other_remak = #{otherRemak,jdbcType=VARCHAR},
+      other_static = #{otherStatic,jdbcType=INTEGER}
+    where other_id = #{otherId,jdbcType=INTEGER}
+  </update>
+</mapper>
