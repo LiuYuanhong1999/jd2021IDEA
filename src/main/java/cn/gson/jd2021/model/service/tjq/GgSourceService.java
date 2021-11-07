@@ -4,11 +4,13 @@ import cn.gson.jd2021.model.mapper.tjq.GgSourceMapper;
 import cn.gson.jd2021.model.pojos.GgSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 //信息来源
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class GgSourceService {
     @Autowired
     private GgSourceMapper ggSourceMapper;

@@ -4,10 +4,12 @@ import cn.gson.jd2021.model.mapper.tjq.GgFactoryMapper;
 import cn.gson.jd2021.model.pojos.GgFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class GgFactoryService {
     @Autowired
     GgFactoryMapper ggFactoryMapper;
@@ -26,5 +28,10 @@ public class GgFactoryService {
     //删除
     public Integer doDelete(Integer id){
         return ggFactoryMapper.doDelete(id);
+    }
+
+    // 查询所有 汽车厂商表 ——》汽车品牌表——》汽车设计表
+    public List<GgFactory> selectAll(){
+        return ggFactoryMapper.selectAll();
     }
 }

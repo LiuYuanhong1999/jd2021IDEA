@@ -10,6 +10,34 @@ import lombok.Data;
  */
 @Data
 public class SellVisitorlogs implements Serializable {
+    private GgArchive ggArchive;//归档
+    private SellCoustomer sellCoustomer;//客户外键
+    private UserList userList;//员工
+
+    public GgArchive getGgArchive() {
+        return ggArchive;
+    }
+
+    public void setGgArchive(GgArchive ggArchive) {
+        this.ggArchive = ggArchive;
+    }
+
+    public SellCoustomer getSellCoustomer() {
+        return sellCoustomer;
+    }
+
+    public void setSellCoustomer(SellCoustomer sellCoustomer) {
+        this.sellCoustomer = sellCoustomer;
+    }
+
+    public UserList getUserList() {
+        return userList;
+    }
+
+    public void setUserList(UserList userList) {
+        this.userList = userList;
+    }
+
     /**
      * 访问记录
      */

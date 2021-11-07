@@ -1,78 +1,9 @@
-package cn.gson.jd2021.model.pojos;
+package cn.gson.jd2021.model.pojos.vo;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import lombok.Data;
 
-/**
- * sell_coustomer
- * @author 
- */
-@Data
-public class SellCoustomer implements Serializable {
-    //客户类别
-     private GgCoustomertype ggCoustomertype;
-     //信息来源
-    private GgSource ggSource;
-
-    //意向厂商
-    private GgFactory ggFactory;
-    //意向品牌
-    private GgBrand ggBrand;
-    //意向颜色
-    private GgColor ggColors;
-    //销售顾问
-    private UserList userList;
-
-    public GgCoustomertype getGgCoustomertype() {
-        return ggCoustomertype;
-    }
-
-    public void setGgCoustomertype(GgCoustomertype ggCoustomertype) {
-        this.ggCoustomertype = ggCoustomertype;
-    }
-
-    public GgSource getGgSource() {
-        return ggSource;
-    }
-
-    public void setGgSource(GgSource ggSource) {
-        this.ggSource = ggSource;
-    }
-
-    public GgFactory getGgFactory() {
-        return ggFactory;
-    }
-
-    public void setGgFactory(GgFactory ggFactory) {
-        this.ggFactory = ggFactory;
-    }
-
-    public GgBrand getGgBrand() {
-        return ggBrand;
-    }
-
-    public void setGgBrand(GgBrand ggBrand) {
-        this.ggBrand = ggBrand;
-    }
-
-    public GgColor getGgColors() {
-        return ggColors;
-    }
-
-    public void setGgColors(GgColor ggColors) {
-        this.ggColors = ggColors;
-    }
-
-    public UserList getUserList() {
-        return userList;
-    }
-
-    public void setUserList(UserList userList) {
-        this.userList = userList;
-    }
-
+public class SellCoustomerVo {
     /**
      * 客户主键
      */
@@ -104,9 +35,12 @@ public class SellCoustomer implements Serializable {
     private String cusPost;
 
     /**
-     * 时间
+     * 开始时间
      */
-    private Date cusTime;
+    private Date startcusTime;
+
+    //结束时间
+    private Date endcusTime;
 
     /**
      * 客户状态
@@ -158,31 +92,6 @@ public class SellCoustomer implements Serializable {
      */
     private BigDecimal cusBudget;
 
-    private static final long serialVersionUID = 1L;
-
-    public SellCoustomer(Integer acId, String cusNo, String cusName, String cusCellphone, String cusQq, String cusPost, Date cusTime, String cusState, String cusReamrk, Integer listNum, Integer ctId, Integer sourceId, Integer factoryId, Integer brandId, Integer ggColor, String cusFactor, BigDecimal cusBudget) {
-        this.acId = acId;
-        this.cusNo = cusNo;
-        this.cusName = cusName;
-        this.cusCellphone = cusCellphone;
-        this.cusQq = cusQq;
-        this.cusPost = cusPost;
-        this.cusTime = cusTime;
-        this.cusState = cusState;
-        this.cusReamrk = cusReamrk;
-        this.listNum = listNum;
-        this.ctId = ctId;
-        this.sourceId = sourceId;
-        this.factoryId = factoryId;
-        this.brandId = brandId;
-        this.ggColor = ggColor;
-        this.cusFactor = cusFactor;
-        this.cusBudget = cusBudget;
-    }
-
-    public SellCoustomer() {
-    }
-
     public Integer getAcId() {
         return acId;
     }
@@ -231,12 +140,20 @@ public class SellCoustomer implements Serializable {
         this.cusPost = cusPost;
     }
 
-    public Date getCusTime() {
-        return cusTime;
+    public Date getStartcusTime() {
+        return startcusTime;
     }
 
-    public void setCusTime(Date cusTime) {
-        this.cusTime = cusTime;
+    public void setStartcusTime(Date startcusTime) {
+        this.startcusTime = startcusTime;
+    }
+
+    public Date getEndcusTime() {
+        return endcusTime;
+    }
+
+    public void setEndcusTime(Date endcusTime) {
+        this.endcusTime = endcusTime;
     }
 
     public String getCusState() {
@@ -317,9 +234,5 @@ public class SellCoustomer implements Serializable {
 
     public void setCusBudget(BigDecimal cusBudget) {
         this.cusBudget = cusBudget;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 }

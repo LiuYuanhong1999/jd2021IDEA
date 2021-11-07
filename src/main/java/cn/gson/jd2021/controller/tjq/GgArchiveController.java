@@ -18,7 +18,7 @@ public class GgArchiveController {
     //查询归档 归档原因表
    @PostMapping("show")
     public List<GgArchive> post(@RequestBody GgArchive ggArchive){
-        return ggArchiveService.selectall(ggArchive);
+       return ggArchiveService.selectall(ggArchive);
     }
     //新增归档
     @PostMapping

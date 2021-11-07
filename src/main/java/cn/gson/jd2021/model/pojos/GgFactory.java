@@ -1,6 +1,8 @@
 package cn.gson.jd2021.model.pojos;
 
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -18,6 +20,17 @@ public class GgFactory implements Serializable {
      * 厂商名称
      */
     private String factoryName;
+
+    //汽车品牌表
+    private List<GgBrand> ggBrands;
+
+    public List<GgBrand> getGgBrands() {
+        return ggBrands;
+    }
+
+    public void setGgBrands(List<GgBrand> ggBrands) {
+        this.ggBrands = ggBrands;
+    }
 
     private static final long serialVersionUID = 1L;
 

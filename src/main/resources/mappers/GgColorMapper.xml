@@ -14,7 +14,24 @@
     from gg_color
     where color_id = #{colorId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <!--    //多条件查询 查询所有
+    List<GgColor> select(GgColor ggColor);-->
+    <select id="select" resultType="cn.gson.jd2021.model.pojos.GgColor">
+      select <include refid="Base_Column_List"></include> from gg_color
+        <where>
+          <if test="colorId!=null and colorId!=''">
+            and color_id= #{colorId}
+          </if>
+            <if test="colorName!=null and colorName!=''">
+              and color_name like concat('%',#{colorName},'%')
+            </if>
+            <if test="colorUse!=null and colorUse!=''">
+              and color_use = #{colorUse}
+            </if>
+        </where>
+        order by color_id desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from gg_color
     where color_id = #{colorId,jdbcType=INTEGER}
   </delete>
@@ -41,12 +58,16 @@
       <if test="colorName != null">
         color_name = #{colorName,jdbcType=VARCHAR},
       </if>
+        <if test="colorUse!=null">
+          color_use= #{colorUse}
+        </if>
     </set>
     where color_id = #{colorId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.GgColor">
     update gg_color
-    set color_name = #{colorName,jdbcType=VARCHAR}
+    set color_name = #{colorName,jdbcType=VARCHAR},
+        color_use=#{colorUse}
     where color_id = #{colorId,jdbcType=INTEGER}
   </update>
 </mapper>

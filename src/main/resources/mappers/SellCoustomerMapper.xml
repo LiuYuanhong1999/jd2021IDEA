@@ -20,17 +20,100 @@
     <result column="cus_factor" jdbcType="VARCHAR" property="cusFactor" />
     <result column="cus_budget" jdbcType="DECIMAL" property="cusBudget" />
   </resultMap>
+  <resultMap id="select" type="cn.gson.jd2021.model.pojos.SellCoustomer" extends="BaseResultMap">
+    <!--ctId客户类别表-->
+    <association property="ggCoustomertype" javaType="cn.gson.jd2021.model.pojos.GgCoustomertype"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgCoustomertypeMapper.selectByPrimaryKey"
+                 column="ct_id"/>
+    <!--sourceId 信息来源-->
+    <association property="ggSource" javaType="cn.gson.jd2021.model.pojos.GgSource"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgSourceMapper.selectByPrimaryKey"
+                 column="source_id"/>
+    <!--factoryId意向厂商-->
+    <association property="ggFactory" javaType="cn.gson.jd2021.model.pojos.GgFactory"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgFactoryMapper.selectByPrimaryKey"
+                 column="factory_id"/>
+    <!--brandId意向品牌-->
+    <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgBrandMapper.selectByPrimaryKey"
+                 column="brand_id"/>
+    <!--ggColor映射颜色 -->
+    <association property="ggColors" javaType="cn.gson.jd2021.model.pojos.GgColor"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgColorMapper.selectByPrimaryKey"
+                 column="gg_color"/>
+    <!--listNum销售顾问-->
+  <!--  <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList"
+                 select="cn.gson.jd2021.model.mapper."-->
+  </resultMap>
   <sql id="Base_Column_List">
     ac_id, cus_no, cus_name, cus_cellphone, cus_qq, cus_post, cus_time, cus_state, cus_reamrk, 
     list_num, ct_id, source_id, factory_id, brand_id, gg_color, cus_factor, cus_budget
   </sql>
+  <!-- //查询所有 多条件查询
+    List<SellCoustomer> selectall();
+    resultType="cn.gson.jd2021.model.pojos.SellCoustomer"-->
+  <select id="selectall" resultMap="select" parameterType="cn.gson.jd2021.model.pojos.vo.SellCoustomerVo">
+    select <include refid="Base_Column_List"></include> from sell_coustomer
+    <where>
+      <if test="acId!=null and acId!=''">
+        and ac_id = #{acId}
+      </if>
+        <if test="cusNo!=null and cusNo!=''">
+          and cus_no like concat('%',#{cusNo},'%')
+        </if>
+        <if test="cusName!=null and cusName!=''">
+          and cus_name like concat('%',#{cusName},'%')
+        </if>
+        <if test="cusCellphone!=null and cusCellphone!=''">
+          and cus_cellphone like concat('%',#{cusCellphone},'%')
+        </if>
+        <if test="cusQq!=null and cusQq!=''">
+          and cusQq like concat('%',#{cusQq},'%')
+        </if>
+        <if test="cusPost!=null and cusPost!=''">
+          and cus_post like concat('%',#{cusPost},'%')
+        </if>
+        <if test="startcusTime!=null and endcusTime!=null">
+          and (cus_time between #{startcusTime} and #{endcusTime})
+        </if>
+        <if test="cusState!=null and cusState!=''">
+          and cus_state = #{cusState}
+        </if>
+        <if test="cusReamrk!=null and cusReamrk!=''">
+          and cus_reamrk like concat('%',#{cusReamrk},'%')
+        </if>
+        <if test="listNum!=null and listNum!=''">
+          and list_num= #{listNum}
+        </if>
+        <if test="ctId!=null and ctId!=''">
+          and ct_id = #{ctId}
+        </if>
+        <if test="sourceId!=null and sourceId!=''">
+          and source_id= #{sourceId}
+        </if>
+        <if test="factoryId!=null and factoryId!=''">
+          and factory_id = #{factoryId}
+        </if>
+        <if test="brandId!=null and brandId!=''">
+          and brand_id = #{brandId}
+        </if>
+        <if test="ggColor!=null and ggColor!=''">
+          and gg_color = #{ggColor}
+        </if>
+        <if test="cusFactor!=null and cusFactor!=''">
+          and cus_factor like concat('%',#{cusFactor},'%')
+        </if>
+    </where>
+    order by ac_id desc
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sell_coustomer
     where ac_id = #{acId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sell_coustomer
     where ac_id = #{acId,jdbcType=INTEGER}
   </delete>

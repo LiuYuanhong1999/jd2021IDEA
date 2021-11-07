@@ -19,6 +19,17 @@ public class GgColor implements Serializable {
      */
     private String colorName;
 
+    //是否使用
+    private Integer colorUse;
+
+    public Integer getColorUse() {
+        return colorUse;
+    }
+
+    public void setColorUse(Integer colorUse) {
+        this.colorUse = colorUse;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getColorId() {

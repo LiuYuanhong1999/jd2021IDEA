@@ -14,6 +14,51 @@
   <sql id="Base_Column_List">
     log_id, log_time, log_state, log_context, log_type, list_num, ac_id, cus_id
   </sql>
+  <resultMap id="select" type="cn.gson.jd2021.model.pojos.SellVisitorlogs" extends="BaseResultMap">
+    <!--归档-->
+    <association property="ggArchive" javaType="cn.gson.jd2021.model.pojos.GgArchive"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgArchiveMapper.selectByPrimaryKey"
+                 column="ac_id"/>
+<!--    客户外键-->
+    <association property="sellCoustomer" javaType="cn.gson.jd2021.model.pojos.SellCoustomer"
+                 select="cn.gson.jd2021.model.mapper.tjq.SellCoustomerMapper.selectByPrimaryKey"
+                 column="cus_id"/>
+<!--    员工-->
+   <!-- <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList"-->
+  </resultMap>
+  <!--//根据客户主键进行查询 访问记录表
+    List<SellVisitorlogs> select(SellVisitorlogsVo vo);
+     resultType="cn.gson.jd2021.model.pojos.SellVisitorlogs"-->
+  <select id="select" resultMap="select">
+    select <include refid="Base_Column_List"></include> from sell_visitorlogs
+        <where>
+          <if test="logId!=null and logId!=null">
+            and log_id = #{logId}
+          </if>
+            <if test="startlogTime!=null and endlogTime!=null">
+              and (log_time between #{startlogTime} and #{endlogTime})
+            </if>
+            <if test="logState!=null and logState!=''">
+              and log_state = #{logState}
+            </if>
+            <if test="logContext!=null and logContext!=''">
+              and log_context like concat('%',#{logContext},'%')
+            </if>
+            <if test="logType!=null and logType!=''">
+              and log_type = #{logType}
+            </if>
+            <if test="listNum!=null and listNum!=''">
+              and list_num = #{listNum}
+            </if>
+            <if test="acId!=null and acId!=''">
+              and ac_id = #{acId}
+            </if>
+            <if test="cusId!=null and cusId!=''">
+              and cus_id = #{cusId}
+            </if>
+        </where>
+        order by log_id desc
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

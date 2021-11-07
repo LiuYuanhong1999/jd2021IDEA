@@ -3,10 +3,7 @@ package cn.gson.jd2021.controller.tjq;
 import cn.gson.jd2021.model.pojos.GgCoustomertype;
 import cn.gson.jd2021.model.service.tjq.GgCoustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,10 @@ public class GgCoustomerTypeController {
     @PostMapping("show")
     public List<GgCoustomertype> show(@RequestBody GgCoustomertype ggCoustomertype){
         return ggCoustomerTypeService.selectall(ggCoustomertype);
+    }
+    //没有多条件 查询所有 客户类别表
+    @GetMapping
+    public List<GgCoustomertype> get(){
+        return ggCoustomerTypeService.selectall(null);
     }
 }

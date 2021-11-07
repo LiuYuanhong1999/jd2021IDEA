@@ -4,10 +4,12 @@ import cn.gson.jd2021.model.mapper.tjq.GgArchiveMapper;
 import cn.gson.jd2021.model.pojos.GgArchive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class GgArchiveService {
     @Autowired
     private GgArchiveMapper ggArchiveMapper;

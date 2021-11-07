@@ -31,4 +31,40 @@ public class GgArchive implements Serializable {
     private Integer acUse;
 
     private static final long serialVersionUID = 1L;
+
+    public Integer getAcId() {
+        return acId;
+    }
+
+    public void setAcId(Integer acId) {
+        this.acId = acId;
+    }
+
+    public String getAcCause() {
+        return acCause;
+    }
+
+    public void setAcCause(String acCause) {
+        this.acCause = acCause;
+    }
+
+    public Integer getAcType() {
+        return acType;
+    }
+
+    public void setAcType(Integer acType) {
+        this.acType = acType;
+    }
+
+    public Integer getAcUse() {
+        return acUse;
+    }
+
+    public void setAcUse(Integer acUse) {
+        this.acUse = acUse;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 }

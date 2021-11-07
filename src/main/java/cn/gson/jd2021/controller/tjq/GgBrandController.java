@@ -3,10 +3,7 @@ package cn.gson.jd2021.controller.tjq;
 import cn.gson.jd2021.model.pojos.GgBrand;
 import cn.gson.jd2021.model.service.tjq.GgBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,10 @@ public class GgBrandController {
     @PostMapping("show")
     public List<GgBrand> show(@RequestBody GgBrand ggBrand){
         return ggBrandService.selectall(ggBrand);
+    }
+    //查询所有车辆品牌
+    @GetMapping
+    public List<GgBrand> get(){
+        return ggBrandService.selectall(null);
     }
 }
