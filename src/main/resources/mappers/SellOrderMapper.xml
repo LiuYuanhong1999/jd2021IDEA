@@ -27,6 +27,28 @@
     order_total, order_paylater, order_debt, order_pricing, order_state, order_fordate, 
     order_procedure, order_forcar, order_getcar, cus_id, list_num, storage_id
   </sql>
+
+  <select id="slelctDebt" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sell_order
+    <where>
+      <if test="value=='欠款金额' and input!=null">
+        order_debt like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='销售单号' and input!=null">
+        order_id like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='交车人' and input!=null">
+        order_forcar like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='领车人' and input!=null">
+        order_getcar like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      order_debt &gt; 0
+    </where>
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
