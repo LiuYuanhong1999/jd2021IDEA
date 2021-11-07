@@ -18,10 +18,22 @@ public class GgCoustomertype implements Serializable {
      * 客户类别
      */
     private String ctName;
+    /**
+     * 是否使用过
+     */
+    private Integer acUse;
 
     private static final long serialVersionUID = 1L;
 
     public GgCoustomertype() {
+    }
+
+    public Integer getAcUse() {
+        return acUse;
+    }
+
+    public void setAcUse(Integer acUse) {
+        this.acUse = acUse;
     }
 
     public Integer getCtId() {

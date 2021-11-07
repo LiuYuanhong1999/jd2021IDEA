@@ -1,26 +1,31 @@
-package cn.gson.jd2021.model.service;
+package cn.gson.jd2021.model.service.tjq;
 
 import cn.gson.jd2021.model.mapper.tjq.GgArchiveMapper;
 import cn.gson.jd2021.model.pojos.GgArchive;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * 归档
- */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class GgArchiveService {
-    @Autowired private GgArchiveMapper ggArchiveMapper;
-    //新增 归档原因表
+    @Autowired
+    private GgArchiveMapper ggArchiveMapper;
+    //新增 归档
     public Integer doInsert(GgArchive ggArchive){
         return ggArchiveMapper.insert(ggArchive);
     }
-    //查询所有 归档原因表
+    //修改归档
+    public Integer doUpdate(GgArchive ggArchive){
+        return ggArchiveMapper.updateByPrimaryKeySelective(ggArchive);
+    }
+    //查询
     public List<GgArchive> selectall(GgArchive ggArchive){
         return ggArchiveMapper.selectall(ggArchive);
     }
+
+
+
 }

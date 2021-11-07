@@ -23,6 +23,18 @@ public class GgDesign implements Serializable {
      * 汽车品牌
      */
     private Integer brandId;
+    //实体类
+    private GgBrand ggBrand;
+
+    public GgBrand getGgBrand() {
+        return ggBrand;
+    }
+
+    public void setGgBrand(GgBrand ggBrand) {
+        this.ggBrand = ggBrand;
+    }
+
+
 
     private static final long serialVersionUID = 1L;
 

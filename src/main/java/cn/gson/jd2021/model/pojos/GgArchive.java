@@ -24,15 +24,13 @@ public class GgArchive implements Serializable {
      */
     private Integer acType;
 
+    /**
+     * 是否使用过 1：使用过 0 未使用过
+
+     */
+    private Integer acUse;
+
     private static final long serialVersionUID = 1L;
-
-
-
-    public GgArchive(Integer acId, String acCause, Integer acType) {
-        this.acId = acId;
-        this.acCause = acCause;
-        this.acType = acType;
-    }
 
     public Integer getAcId() {
         return acId;
@@ -58,10 +56,15 @@ public class GgArchive implements Serializable {
         this.acType = acType;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public Integer getAcUse() {
+        return acUse;
     }
 
-    public GgArchive() {
+    public void setAcUse(Integer acUse) {
+        this.acUse = acUse;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 }

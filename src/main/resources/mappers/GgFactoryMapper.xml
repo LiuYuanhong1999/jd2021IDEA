@@ -8,15 +8,53 @@
   <sql id="Base_Column_List">
     factory_id, factory_name
   </sql>
+  <resultMap id="selectAll" type="cn.gson.jd2021.model.pojos.GgFactory" extends="BaseResultMap">
+    <collection property="ggBrands" ofType="cn.gson.jd2021.model.pojos.GgBrand"
+                select="cn.gson.jd2021.model.mapper.tjq.GgBrandMapper.selectByFactoryId"
+                column="factory_id"/>
+  </resultMap>
+  <!--//查询所有 汽车厂商、品牌 一个汽车厂商有多个品牌
+  resultType="cn.gson.jd2021.model.pojos.GgFactory"-->
+  <select id="selectAll" resultMap="selectAll">
+    select <include refid="Base_Column_List"></include> from gg_factory
+    <where>
+      <if test="factoryId!=null and factoryId!=''">
+        factory_id = #{factortyId}
+      </if>
+      <if test="factoryName!=null and factoryName!=''">
+        factoryName like concat('%',#{factoryName},'%')
+      </if>
+    </where>
+    order by factory_id desc
+  </select>
+  <!--//查询 生产厂商
+    List<GgFactory> selectall(GgFactory ggFactory);-->
+  <select id="selectall" resultType="cn.gson.jd2021.model.pojos.GgFactory">
+    select <include refid="Base_Column_List"></include> from gg_factory
+        <where>
+          <if test="factoryId!=null and factoryId!=''">
+            factory_id = #{factortyId}
+          </if>
+            <if test="factoryName!=null and factoryName!=''">
+              factoryName like concat('%',#{factoryName},'%')
+            </if>
+        </where>
+        order by factory_id desc
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from gg_factory
     where factory_id = #{factoryId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from gg_factory
     where factory_id = #{factoryId,jdbcType=INTEGER}
+  </delete>
+  <!--//删除 生产厂商
+    Integer doDelete(Integer id);-->
+  <delete id="doDelete">
+    delete from gg_factory where factory_id= #{id}
   </delete>
   <insert id="insert" keyColumn="factory_id" keyProperty="factoryId" parameterType="cn.gson.jd2021.model.pojos.GgFactory" useGeneratedKeys="true">
     insert into gg_factory (factory_name)
