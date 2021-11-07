@@ -94,10 +94,27 @@
             left join gg_brand d on d.brand_id=a.brand_id
             left join gg_design e on a.design_id=e.design_id
             left join gg_color f on a.color_id=f.color_id
-
             order by b.orders_time
 
   </select>
+
+  <select id="findClReturnVist" resultMap="BaseResultMap">
+
+    select * from cl_assess a
+                    left join  cl_orders b on a.orders_id=b.orders_id
+                    left join  cl_record c on b.record_id=c.record_id
+                    left join gg_brand d on d.brand_id=a.brand_id
+                    left join gg_design e on a.design_id=e.design_id
+                    left join gg_color f on a.color_id=f.color_id
+
+    where a.assess_id=#{assessId}
+
+    order by b.orders_time
+
+  </select>
+
+
+
 
 
 

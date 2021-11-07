@@ -19,6 +19,10 @@ public interface ClAssessMapper {
     //新增评估记录
     int insert(ClAssess record);
 
+    //根据评估编号获取评估信息
+    List<ClAssess> findClReturnVist(String assessId);
+
+
     int insertSelective(ClAssess record);
 
     ClAssess selectByPrimaryKey(String assessId);

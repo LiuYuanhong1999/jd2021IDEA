@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.lyh.ClStorageMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.ClStorage">
+    <id column="storage_id" jdbcType="VARCHAR" property="storageId" />
+    <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="design_id" jdbcType="INTEGER" property="designId" />
+    <result column="color_id" jdbcType="INTEGER" property="colorId" />
+    <result column="storage_leave_time" jdbcType="TIMESTAMP" property="storageLeaveTime" />
+    <result column="storage_variator" jdbcType="VARCHAR" property="storageVariator" />
+    <result column="storage_displacement" jdbcType="VARCHAR" property="storageDisplacement" />
+    <result column="storage_mileage" jdbcType="INTEGER" property="storageMileage" />
+    <result column="storage_begain" jdbcType="TIMESTAMP" property="storageBegain" />
+    <result column="storage_card" jdbcType="VARCHAR" property="storageCard" />
+    <result column="storage_type" jdbcType="VARCHAR" property="storageType" />
+    <result column="storage_drive" jdbcType="VARCHAR" property="storageDrive" />
+    <result column="storage_engine" jdbcType="VARCHAR" property="storageEngine" />
+    <result column="storage_tap" jdbcType="VARCHAR" property="storageTap" />
+    <result column="storage_transfer_times" jdbcType="INTEGER" property="storageTransferTimes" />
+    <result column="storage_license" jdbcType="VARCHAR" property="storageLicense" />
+    <result column="storage_prcie" jdbcType="DECIMAL" property="storagePrcie" />
+    <result column="storage_user" jdbcType="VARCHAR" property="storageUser" />
+    <result column="storage_time" jdbcType="TIMESTAMP" property="storageTime" />
+
+
+
+
+    <association property="clReturnVist" javaType="cn.gson.jd2021.model.pojos.ClReturnVist">
+      <id column="vist_id" jdbcType="VARCHAR" property="vistId" />
+      <result column="assess_id" jdbcType="VARCHAR" property="assessId" />
+      <result column="vist_state" jdbcType="INTEGER" property="vistState" />
+      <result column="vist_price" jdbcType="DECIMAL" property="vistPrice" />
+      <result column="vist_time" jdbcType="TIMESTAMP" property="vistTime" />
+      <result column="vist_note" jdbcType="VARCHAR" property="vistNote" />
+      <result column="ac_id" jdbcType="INTEGER" property="acId"></result>
+      <association property="clAssess" javaType="cn.gson.jd2021.model.pojos.ClAssess">
+        <id column="assess_id" jdbcType="VARCHAR" property="assessId" />
+        <result column="orders_id" jdbcType="VARCHAR" property="ordersId" />
+        <result column="assess_card" jdbcType="VARCHAR" property="assessCard" />
+        <result column="assess_type" jdbcType="VARCHAR" property="assessType" />
+        <result column="assess_drive" jdbcType="VARCHAR" property="assessDrive" />
+        <result column="assess_engine" jdbcType="VARCHAR" property="assessEngine" />
+        <result column="assess_tap" jdbcType="VARCHAR" property="assessTap" />
+        <result column="assess_transfer_times" jdbcType="INTEGER" property="assessTransferTimes" />
+        <result column="assess_license" jdbcType="VARCHAR" property="assessLicense" />
+        <result column="assess_appraise" jdbcType="VARCHAR" property="assessAppraise" />
+        <result column="assess_newcar_price" jdbcType="DECIMAL" property="assessNewcarPrice" />
+        <result column="assess_office" jdbcType="DECIMAL" property="assessOffice" />
+        <result column="assess_user" jdbcType="VARCHAR" property="assessUser" />
+        <result column="assess_review" jdbcType="VARCHAR" property="assessReview" />
+        <result column="assess_note" jdbcType="VARCHAR" property="assessNote" />
+        <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
+        <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+        <result column="design_id" jdbcType="INTEGER" property="designId" />
+        <result column="assess_variator" jdbcType="VARCHAR" property="assessVariator" />
+        <result column="color_id" jdbcType="INTEGER" property="colorId" />
+        <result column="assess_displacement" jdbcType="VARCHAR" property="assessDisplacement" />
+        <result column="assess_mileage" jdbcType="INTEGER" property="assessMileage" />
+        <result column="assess_begain" jdbcType="TIMESTAMP" property="assessBegain" />
+        <result column="assess_leave_time" jdbcType="TIMESTAMP" property="assessLeaveTime" />
+        <result column="assess_price" javaType="DECIMAL" property="assessPrice"></result>
+        <result column="assess_final_price" jdbcType="DECIMAL" property="assessFinalPrice"></result>
+        <association property="clOrders" javaType="cn.gson.jd2021.model.pojos.ClOrders">
+
+          <id column="orders_id" jdbcType="VARCHAR" property="ordersId" />
+          <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+          <result column="orders_time" jdbcType="TIMESTAMP" property="ordersTime" />
+          <result column="orders_user" jdbcType="VARCHAR" property="ordersUser" />
+          <result column="orders_state" jdbcType="INTEGER" property="ordersState" />
+          <result column="ac_id" jdbcType="INTEGER" property="acId" />
+          <result column="orders_note" jdbcType="VARCHAR" property="ordersNote" />
+          <result column="orders_type" jdbcType="VARCHAR" property="ordersType" />
+          <result column="orders_methdo" jdbcType="VARCHAR" property="ordersMethdo" />
+
+          <association property="clRecord" javaType="cn.gson.jd2021.model.pojos.ClRecord">
+
+            <id column="record_id" jdbcType="VARCHAR" property="recordId" />
+            <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
+            <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+            <result column="design_id" jdbcType="INTEGER" property="designId" />
+            <result column="color_id" jdbcType="INTEGER" property="colorId" />
+            <result column="record_leave_time" jdbcType="TIMESTAMP" property="recordLeaveTime" />
+            <result column="record_variator" jdbcType="VARCHAR" property="recordVariator" />
+            <result column="record_displacement" jdbcType="VARCHAR" property="recordDisplacement" />
+            <result column="record_mileage" jdbcType="INTEGER" property="recordMileage" />
+            <result column="record_begain" jdbcType="TIMESTAMP" property="recordBegain" />
+            <result column="record_name" jdbcType="VARCHAR" property="recordName" />
+            <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+            <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+            <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
+            <result column="record_price" jdbcType="DECIMAL" property="recordPrice" />
+            <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+            <result column="record_way" jdbcType="VARCHAR" property="recordWay" />
+            <result column="record_note" jdbcType="VARCHAR" property="recordNote" />
+
+
+
+          </association>
+        </association>
+        <!--    汽车品牌-->
+        <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand">
+          <id column="brand_id" jdbcType="INTEGER" property="brandId" />
+          <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+        </association>
+
+        <!--    汽车款式-->
+        <association property="ggDesign" javaType="cn.gson.jd2021.model.pojos.GgDesign">
+          <id column="design_id" jdbcType="INTEGER" property="designId" />
+          <result column="design_name" jdbcType="VARCHAR" property="designName" />
+          <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+        </association>
+
+        <!--    汽车颜色-->
+        <association property="ggColor" javaType="cn.gson.jd2021.model.pojos.GgColor">
+          <id column="color_id" jdbcType="INTEGER" property="colorId" />
+          <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+        </association>
+
+
+
+
+      </association>
+
+
+    </association>
+
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    storage_id, factory_id, brand_id, design_id, color_id, storage_leave_time, storage_variator, 
+    storage_displacement, storage_mileage, storage_begain, storage_card, storage_type, 
+    storage_drive, storage_engine, storage_tap, storage_transfer_times, storage_license, 
+    storage_prcie, storage_user, storage_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_storage
+    where storage_id = #{storageId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cl_storage
+    where storage_id = #{storageId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="storage_id" keyProperty="storageId" parameterType="cn.gson.jd2021.model.pojos.ClStorage" useGeneratedKeys="true">
+    insert into cl_storage (storage_id,factory_id, brand_id, design_id,
+      color_id, storage_leave_time, storage_variator, 
+      storage_displacement, storage_mileage, storage_begain, 
+      storage_card, storage_type, storage_drive, 
+      storage_engine, storage_tap, storage_transfer_times, 
+      storage_license, storage_prcie, storage_user, 
+      storage_time)
+    values (#{storageId,jdbcType=VARCHAR},#{factoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{designId,jdbcType=INTEGER},
+      #{colorId,jdbcType=INTEGER}, #{storageLeaveTime,jdbcType=TIMESTAMP}, #{storageVariator,jdbcType=VARCHAR}, 
+      #{storageDisplacement,jdbcType=VARCHAR}, #{storageMileage,jdbcType=INTEGER}, #{storageBegain,jdbcType=TIMESTAMP}, 
+      #{storageCard,jdbcType=VARCHAR}, #{storageType,jdbcType=VARCHAR}, #{storageDrive,jdbcType=VARCHAR}, 
+      #{storageEngine,jdbcType=VARCHAR}, #{storageTap,jdbcType=VARCHAR}, #{storageTransferTimes,jdbcType=INTEGER}, 
+      #{storageLicense,jdbcType=VARCHAR}, #{storagePrcie,jdbcType=DECIMAL}, #{storageUser,jdbcType=VARCHAR}, 
+      #{storageTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="storage_id" keyProperty="storageId" parameterType="cn.gson.jd2021.model.pojos.ClStorage" useGeneratedKeys="true">
+    insert into cl_storage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="factoryId != null">
+        factory_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="designId != null">
+        design_id,
+      </if>
+      <if test="colorId != null">
+        color_id,
+      </if>
+      <if test="storageLeaveTime != null">
+        storage_leave_time,
+      </if>
+      <if test="storageVariator != null">
+        storage_variator,
+      </if>
+      <if test="storageDisplacement != null">
+        storage_displacement,
+      </if>
+      <if test="storageMileage != null">
+        storage_mileage,
+      </if>
+      <if test="storageBegain != null">
+        storage_begain,
+      </if>
+      <if test="storageCard != null">
+        storage_card,
+      </if>
+      <if test="storageType != null">
+        storage_type,
+      </if>
+      <if test="storageDrive != null">
+        storage_drive,
+      </if>
+      <if test="storageEngine != null">
+        storage_engine,
+      </if>
+      <if test="storageTap != null">
+        storage_tap,
+      </if>
+      <if test="storageTransferTimes != null">
+        storage_transfer_times,
+      </if>
+      <if test="storageLicense != null">
+        storage_license,
+      </if>
+      <if test="storagePrcie != null">
+        storage_prcie,
+      </if>
+      <if test="storageUser != null">
+        storage_user,
+      </if>
+      <if test="storageTime != null">
+        storage_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="factoryId != null">
+        #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="designId != null">
+        #{designId,jdbcType=INTEGER},
+      </if>
+      <if test="colorId != null">
+        #{colorId,jdbcType=INTEGER},
+      </if>
+      <if test="storageLeaveTime != null">
+        #{storageLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storageVariator != null">
+        #{storageVariator,jdbcType=VARCHAR},
+      </if>
+      <if test="storageDisplacement != null">
+        #{storageDisplacement,jdbcType=VARCHAR},
+      </if>
+      <if test="storageMileage != null">
+        #{storageMileage,jdbcType=INTEGER},
+      </if>
+      <if test="storageBegain != null">
+        #{storageBegain,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storageCard != null">
+        #{storageCard,jdbcType=VARCHAR},
+      </if>
+      <if test="storageType != null">
+        #{storageType,jdbcType=VARCHAR},
+      </if>
+      <if test="storageDrive != null">
+        #{storageDrive,jdbcType=VARCHAR},
+      </if>
+      <if test="storageEngine != null">
+        #{storageEngine,jdbcType=VARCHAR},
+      </if>
+      <if test="storageTap != null">
+        #{storageTap,jdbcType=VARCHAR},
+      </if>
+      <if test="storageTransferTimes != null">
+        #{storageTransferTimes,jdbcType=INTEGER},
+      </if>
+      <if test="storageLicense != null">
+        #{storageLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="storagePrcie != null">
+        #{storagePrcie,jdbcType=DECIMAL},
+      </if>
+      <if test="storageUser != null">
+        #{storageUser,jdbcType=VARCHAR},
+      </if>
+      <if test="storageTime != null">
+        #{storageTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.ClStorage">
+    update cl_storage
+    <set>
+      <if test="factoryId != null">
+        factory_id = #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="designId != null">
+        design_id = #{designId,jdbcType=INTEGER},
+      </if>
+      <if test="colorId != null">
+        color_id = #{colorId,jdbcType=INTEGER},
+      </if>
+      <if test="storageLeaveTime != null">
+        storage_leave_time = #{storageLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storageVariator != null">
+        storage_variator = #{storageVariator,jdbcType=VARCHAR},
+      </if>
+      <if test="storageDisplacement != null">
+        storage_displacement = #{storageDisplacement,jdbcType=VARCHAR},
+      </if>
+      <if test="storageMileage != null">
+        storage_mileage = #{storageMileage,jdbcType=INTEGER},
+      </if>
+      <if test="storageBegain != null">
+        storage_begain = #{storageBegain,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storageCard != null">
+        storage_card = #{storageCard,jdbcType=VARCHAR},
+      </if>
+      <if test="storageType != null">
+        storage_type = #{storageType,jdbcType=VARCHAR},
+      </if>
+      <if test="storageDrive != null">
+        storage_drive = #{storageDrive,jdbcType=VARCHAR},
+      </if>
+      <if test="storageEngine != null">
+        storage_engine = #{storageEngine,jdbcType=VARCHAR},
+      </if>
+      <if test="storageTap != null">
+        storage_tap = #{storageTap,jdbcType=VARCHAR},
+      </if>
+      <if test="storageTransferTimes != null">
+        storage_transfer_times = #{storageTransferTimes,jdbcType=INTEGER},
+      </if>
+      <if test="storageLicense != null">
+        storage_license = #{storageLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="storagePrcie != null">
+        storage_prcie = #{storagePrcie,jdbcType=DECIMAL},
+      </if>
+      <if test="storageUser != null">
+        storage_user = #{storageUser,jdbcType=VARCHAR},
+      </if>
+      <if test="storageTime != null">
+        storage_time = #{storageTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where storage_id = #{storageId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.ClStorage">
+    update cl_storage
+    set factory_id = #{factoryId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      design_id = #{designId,jdbcType=INTEGER},
+      color_id = #{colorId,jdbcType=INTEGER},
+      storage_leave_time = #{storageLeaveTime,jdbcType=TIMESTAMP},
+      storage_variator = #{storageVariator,jdbcType=VARCHAR},
+      storage_displacement = #{storageDisplacement,jdbcType=VARCHAR},
+      storage_mileage = #{storageMileage,jdbcType=INTEGER},
+      storage_begain = #{storageBegain,jdbcType=TIMESTAMP},
+      storage_card = #{storageCard,jdbcType=VARCHAR},
+      storage_type = #{storageType,jdbcType=VARCHAR},
+      storage_drive = #{storageDrive,jdbcType=VARCHAR},
+      storage_engine = #{storageEngine,jdbcType=VARCHAR},
+      storage_tap = #{storageTap,jdbcType=VARCHAR},
+      storage_transfer_times = #{storageTransferTimes,jdbcType=INTEGER},
+      storage_license = #{storageLicense,jdbcType=VARCHAR},
+      storage_prcie = #{storagePrcie,jdbcType=DECIMAL},
+      storage_user = #{storageUser,jdbcType=VARCHAR},
+      storage_time = #{storageTime,jdbcType=TIMESTAMP}
+    where storage_id = #{storageId,jdbcType=VARCHAR}
+  </update>
+</mapper>

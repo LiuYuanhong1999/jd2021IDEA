@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.lyh.ClReturnVistMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.ClReturnVist">
+    <id column="vist_id" jdbcType="VARCHAR" property="vistId" />
+    <result column="assess_id" jdbcType="VARCHAR" property="assessId" />
+    <result column="vist_state" jdbcType="INTEGER" property="vistState" />
+    <result column="vist_price" jdbcType="DECIMAL" property="vistPrice" />
+    <result column="vist_time" jdbcType="TIMESTAMP" property="vistTime" />
+    <result column="vist_note" jdbcType="VARCHAR" property="vistNote" />
+    <result column="ac_id" jdbcType="INTEGER" property="acId"></result>
+
+
+    <association property="clAssess" javaType="cn.gson.jd2021.model.pojos.ClAssess">
+      <id column="assess_id" jdbcType="VARCHAR" property="assessId" />
+      <result column="orders_id" jdbcType="VARCHAR" property="ordersId" />
+      <result column="assess_card" jdbcType="VARCHAR" property="assessCard" />
+      <result column="assess_type" jdbcType="VARCHAR" property="assessType" />
+      <result column="assess_drive" jdbcType="VARCHAR" property="assessDrive" />
+      <result column="assess_engine" jdbcType="VARCHAR" property="assessEngine" />
+      <result column="assess_tap" jdbcType="VARCHAR" property="assessTap" />
+      <result column="assess_transfer_times" jdbcType="INTEGER" property="assessTransferTimes" />
+      <result column="assess_license" jdbcType="VARCHAR" property="assessLicense" />
+      <result column="assess_appraise" jdbcType="VARCHAR" property="assessAppraise" />
+      <result column="assess_newcar_price" jdbcType="DECIMAL" property="assessNewcarPrice" />
+      <result column="assess_office" jdbcType="DECIMAL" property="assessOffice" />
+      <result column="assess_user" jdbcType="VARCHAR" property="assessUser" />
+      <result column="assess_review" jdbcType="VARCHAR" property="assessReview" />
+      <result column="assess_note" jdbcType="VARCHAR" property="assessNote" />
+      <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
+      <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+      <result column="design_id" jdbcType="INTEGER" property="designId" />
+      <result column="assess_variator" jdbcType="VARCHAR" property="assessVariator" />
+      <result column="color_id" jdbcType="INTEGER" property="colorId" />
+      <result column="assess_displacement" jdbcType="VARCHAR" property="assessDisplacement" />
+      <result column="assess_mileage" jdbcType="INTEGER" property="assessMileage" />
+      <result column="assess_begain" jdbcType="TIMESTAMP" property="assessBegain" />
+      <result column="assess_leave_time" jdbcType="TIMESTAMP" property="assessLeaveTime" />
+      <result column="assess_price" javaType="DECIMAL" property="assessPrice"></result>
+      <result column="assess_final_price" jdbcType="DECIMAL" property="assessFinalPrice"></result>
+      <association property="clOrders" javaType="cn.gson.jd2021.model.pojos.ClOrders">
+
+        <id column="orders_id" jdbcType="VARCHAR" property="ordersId" />
+        <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+        <result column="orders_time" jdbcType="TIMESTAMP" property="ordersTime" />
+        <result column="orders_user" jdbcType="VARCHAR" property="ordersUser" />
+        <result column="orders_state" jdbcType="INTEGER" property="ordersState" />
+        <result column="ac_id" jdbcType="INTEGER" property="acId" />
+        <result column="orders_note" jdbcType="VARCHAR" property="ordersNote" />
+        <result column="orders_type" jdbcType="VARCHAR" property="ordersType" />
+        <result column="orders_methdo" jdbcType="VARCHAR" property="ordersMethdo" />
+
+        <association property="clRecord" javaType="cn.gson.jd2021.model.pojos.ClRecord">
+
+          <id column="record_id" jdbcType="VARCHAR" property="recordId" />
+          <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
+          <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+          <result column="design_id" jdbcType="INTEGER" property="designId" />
+          <result column="color_id" jdbcType="INTEGER" property="colorId" />
+          <result column="record_leave_time" jdbcType="TIMESTAMP" property="recordLeaveTime" />
+          <result column="record_variator" jdbcType="VARCHAR" property="recordVariator" />
+          <result column="record_displacement" jdbcType="VARCHAR" property="recordDisplacement" />
+          <result column="record_mileage" jdbcType="INTEGER" property="recordMileage" />
+          <result column="record_begain" jdbcType="TIMESTAMP" property="recordBegain" />
+          <result column="record_name" jdbcType="VARCHAR" property="recordName" />
+          <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+          <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+          <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
+          <result column="record_price" jdbcType="DECIMAL" property="recordPrice" />
+          <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+          <result column="record_way" jdbcType="VARCHAR" property="recordWay" />
+          <result column="record_note" jdbcType="VARCHAR" property="recordNote" />
+
+
+
+        </association>
+      </association>
+      <!--    汽车品牌-->
+      <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand">
+        <id column="brand_id" jdbcType="INTEGER" property="brandId" />
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+      </association>
+
+      <!--    汽车款式-->
+      <association property="ggDesign" javaType="cn.gson.jd2021.model.pojos.GgDesign">
+        <id column="design_id" jdbcType="INTEGER" property="designId" />
+        <result column="design_name" jdbcType="VARCHAR" property="designName" />
+        <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+      </association>
+
+      <!--    汽车颜色-->
+      <association property="ggColor" javaType="cn.gson.jd2021.model.pojos.GgColor">
+        <id column="color_id" jdbcType="INTEGER" property="colorId" />
+        <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+      </association>
+
+
+
+
+    </association>
+
+  </resultMap>
+
+
+<!--  查询回访记录-->
+    <select id="findClReturnVist" resultMap="BaseResultMap">
+      select * from cl_return_vist a
+                      left join cl_assess b on a.assess_id=b.assess_id
+                      left join cl_orders c on b.orders_id=c.orders_id
+                      left join cl_record d on d.record_id=c.record_id
+                      left join gg_brand e on b.brand_id=e.brand_id
+                      left join gg_design f on b.design_id=f.design_id
+                      left join gg_color g on b.color_id=g.color_id
+                <where>
+
+            <if test="vistState !=null and vistState !=''">
+              and a.vist_state =#{vistState}
+            </if>
+
+                </where>
+            order by a.vist_time desc
+
+    </select>
+
+
+
+
+
+<!--查询状态成功的回访单-->
+    <select id="findByClStorage" resultMap="BaseResultMap">
+
+        select * from cl_return_vist a
+                        left join cl_assess b on a.assess_id=b.assess_id
+                        left join cl_orders c on b.orders_id=c.orders_id
+                        left join cl_record d on d.record_id=c.record_id
+                        left join gg_brand e on b.brand_id=e.brand_id
+                        left join gg_design f on b.design_id=f.design_id
+                        left join gg_color g on b.color_id=g.color_id
+        where a.vist_state=1
+    </select>
+
+<!--  根据回访单拿到数据-->
+  <select id="findByClStorage2" resultMap="BaseResultMap">
+
+    select * from cl_return_vist a
+                    left join cl_assess b on a.assess_id=b.assess_id
+                    left join cl_orders c on b.orders_id=c.orders_id
+                    left join cl_record d on d.record_id=c.record_id
+                    left join gg_brand e on b.brand_id=e.brand_id
+                    left join gg_design f on b.design_id=f.design_id
+                    left join gg_color g on b.color_id=g.color_id
+    where a.vist_id=#{vistId}
+  </select>
+
+
+  <sql id="Base_Column_List">
+    vist_id, assess_id, vist_state, vist_price, vist_time, vist_note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_return_vist
+    where vist_id = #{vistId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cl_return_vist
+    where vist_id = #{vistId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="vist_id" keyProperty="vistId" parameterType="cn.gson.jd2021.model.pojos.ClReturnVist" useGeneratedKeys="true">
+    insert into cl_return_vist (vist_id,assess_id, vist_state, vist_price,
+      vist_time, vist_note,ac_id)
+    values (#{vistId,jdbcType=VARCHAR},#{assessId,jdbcType=VARCHAR}, #{vistState,jdbcType=INTEGER}, #{vistPrice,jdbcType=DECIMAL},
+      #{vistTime,jdbcType=TIMESTAMP}, #{vistNote,jdbcType=VARCHAR},#{acId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="vist_id" keyProperty="vistId" parameterType="cn.gson.jd2021.model.pojos.ClReturnVist" useGeneratedKeys="true">
+    insert into cl_return_vist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="assessId != null">
+        assess_id,
+      </if>
+      <if test="vistState != null">
+        vist_state,
+      </if>
+      <if test="vistPrice != null">
+        vist_price,
+      </if>
+      <if test="vistTime != null">
+        vist_time,
+      </if>
+      <if test="vistNote != null">
+        vist_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="assessId != null">
+        #{assessId,jdbcType=VARCHAR},
+      </if>
+      <if test="vistState != null">
+        #{vistState,jdbcType=INTEGER},
+      </if>
+      <if test="vistPrice != null">
+        #{vistPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="vistTime != null">
+        #{vistTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vistNote != null">
+        #{vistNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.ClReturnVist">
+    update cl_return_vist
+    <set>
+      <if test="assessId != null">
+        assess_id = #{assessId,jdbcType=VARCHAR},
+      </if>
+      <if test="vistState != null">
+        vist_state = #{vistState,jdbcType=INTEGER},
+      </if>
+      <if test="vistPrice != null">
+        vist_price = #{vistPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="vistTime != null">
+        vist_time = #{vistTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vistNote != null">
+        vist_note = #{vistNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vist_id = #{vistId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.ClReturnVist">
+    update cl_return_vist
+    set assess_id = #{assessId,jdbcType=VARCHAR},
+      vist_state = #{vistState,jdbcType=INTEGER},
+      vist_price = #{vistPrice,jdbcType=DECIMAL},
+      vist_time = #{vistTime,jdbcType=TIMESTAMP},
+      vist_note = #{vistNote,jdbcType=VARCHAR}
+    where vist_id = #{vistId,jdbcType=VARCHAR}
+  </update>
+</mapper>
