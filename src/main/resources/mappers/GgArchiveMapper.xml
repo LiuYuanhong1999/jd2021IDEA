@@ -26,6 +26,16 @@
     </where>
   </select>
 
+
+<!--  客户预约查询归档原因-->
+    <select id="findClOrders" resultMap="BaseResultMap">
+
+        select * from gg_archive where ac_type=1
+
+    </select>
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

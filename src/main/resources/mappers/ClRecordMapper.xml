@@ -41,7 +41,7 @@
     </association>
   </resultMap>
 
-
+<!--查询所以登记信息-->
   <select id="findByClRecord" resultMap="BaseResultMap">
 
     select * from cl_record a
@@ -51,6 +51,26 @@
     order by a.record_time desc
 
   </select>
+
+
+<!--  根据登记编号查询信息-->
+
+  <select id="findClRecordId" resultMap="BaseResultMap">
+    select * from cl_record a
+                    left join gg_brand c on a.brand_id=c.brand_id
+                    left join gg_design d on a.design_id=d.design_id
+                    left join gg_color e on a.color_id=e.color_id
+
+    where a.record_id=#{recordId}
+
+
+    order by a.record_time desc
+
+
+
+
+  </select>
+
 
 
 
@@ -70,13 +90,13 @@
     where record_id = #{recordId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="record_id" keyProperty="recordId" parameterType="cn.gson.jd2021.model.pojos.ClRecord" useGeneratedKeys="true">
-    insert into cl_record (factory_id, brand_id, design_id, 
+    insert into cl_record (record_id,factory_id, brand_id, design_id,
       color_id, record_leave_time, record_variator, 
       record_displacement, record_mileage, record_begain, 
       record_name, contact_name, contact_phone, 
       contact_email, record_price, record_time, 
       record_way, record_note)
-    values (#{factoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{designId,jdbcType=INTEGER}, 
+    values (#{recordId,jdbcType=VARCHAR},#{factoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{designId,jdbcType=INTEGER},
       #{colorId,jdbcType=INTEGER}, #{recordLeaveTime,jdbcType=TIMESTAMP}, #{recordVariator,jdbcType=VARCHAR}, 
       #{recordDisplacement,jdbcType=VARCHAR}, #{recordMileage,jdbcType=INTEGER}, #{recordBegain,jdbcType=TIMESTAMP}, 
       #{recordName,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 

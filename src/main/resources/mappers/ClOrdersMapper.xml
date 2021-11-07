@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.lyh.ClOrdersMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.ClOrders">
+    <id column="orders_id" jdbcType="VARCHAR" property="ordersId" />
+    <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="orders_time" jdbcType="TIMESTAMP" property="ordersTime" />
+    <result column="orders_user" jdbcType="VARCHAR" property="ordersUser" />
+    <result column="orders_state" jdbcType="INTEGER" property="ordersState" />
+    <result column="ac_id" jdbcType="INTEGER" property="acId" />
+    <result column="orders_note" jdbcType="VARCHAR" property="ordersNote" />
+    <result column="orders_type" jdbcType="VARCHAR" property="ordersType" />
+    <result column="orders_methdo" jdbcType="VARCHAR" property="ordersMethdo" />
+
+
+
+    <association property="clRecord" javaType="cn.gson.jd2021.model.pojos.ClRecord">
+
+      <id column="record_id" jdbcType="VARCHAR" property="recordId" />
+      <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
+      <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+      <result column="design_id" jdbcType="INTEGER" property="designId" />
+      <result column="color_id" jdbcType="INTEGER" property="colorId" />
+      <result column="record_leave_time" jdbcType="TIMESTAMP" property="recordLeaveTime" />
+      <result column="record_variator" jdbcType="VARCHAR" property="recordVariator" />
+      <result column="record_displacement" jdbcType="VARCHAR" property="recordDisplacement" />
+      <result column="record_mileage" jdbcType="INTEGER" property="recordMileage" />
+      <result column="record_begain" jdbcType="TIMESTAMP" property="recordBegain" />
+      <result column="record_name" jdbcType="VARCHAR" property="recordName" />
+      <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+      <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+      <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
+      <result column="record_price" jdbcType="DECIMAL" property="recordPrice" />
+      <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+      <result column="record_way" jdbcType="VARCHAR" property="recordWay" />
+      <result column="record_note" jdbcType="VARCHAR" property="recordNote" />
+
+      <!--    汽车品牌-->
+      <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand">
+        <id column="brand_id" jdbcType="INTEGER" property="brandId" />
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+      </association>
+
+      <!--    汽车款式-->
+      <association property="ggDesign" javaType="cn.gson.jd2021.model.pojos.GgDesign">
+        <id column="design_id" jdbcType="INTEGER" property="designId" />
+        <result column="design_name" jdbcType="VARCHAR" property="designName" />
+        <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+      </association>
+
+      <!--    汽车颜色-->
+      <association property="ggColor" javaType="cn.gson.jd2021.model.pojos.GgColor">
+        <id column="color_id" jdbcType="INTEGER" property="colorId" />
+        <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+      </association>
+
+
+    </association>
+
+
+  </resultMap>
+
+<!--  查询已预约和正在预约客户-->
+  <select id="findClOrders" resultMap="BaseResultMap">
+    select * from  cl_orders a
+                     left join  cl_record b on a.record_id=b.record_id
+                     left join gg_brand c on b.brand_id=c.brand_id
+                     left join gg_design d on b.design_id=d.design_id
+                     left join gg_color e on b.color_id=e.color_id
+             where a.orders_state=1 or a.orders_state=0
+    order by a.orders_time desc
+  </select>
+
+<!--车辆评估查询已预约客户-->
+  <select id="findClOrdersState" resultMap="BaseResultMap">
+
+    select * from  cl_orders a
+                     left join  cl_record b on a.record_id=b.record_id
+                     left join gg_brand c on b.brand_id=c.brand_id
+                     left join gg_design d on b.design_id=d.design_id
+                     left join gg_color e on b.color_id=e.color_id
+
+    <where>
+      <if test="ordersId !=null and ordersId !=''">
+        a.orders_id=#{ordersId}
+      </if>
+        and a.orders_state=1
+    </where>
+    order by a.orders_time desc
+  </select>
+
+
+  <select id="findClOrdersState2" resultMap="BaseResultMap">
+    select * from  cl_orders a
+    left join  cl_record b on a.record_id=b.record_id
+    left join gg_brand c on b.brand_id=c.brand_id
+    left join gg_design d on b.design_id=d.design_id
+    left join gg_color e on b.color_id=e.color_id
+
+    where a.record_id=#{recordId}
+
+    order by a.orders_time desc
+
+
+  </select>
+
+
+
+
+  <sql id="Base_Column_List">
+    orders_id, record_id, orders_time, orders_user, orders_state, ac_id, orders_note, 
+    orders_type, orders_methdo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_orders
+    where orders_id = #{ordersId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cl_orders
+    where orders_id = #{ordersId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="orders_id" keyProperty="ordersId" parameterType="cn.gson.jd2021.model.pojos.ClOrders" useGeneratedKeys="true">
+    insert into cl_orders (orders_id,record_id, orders_time, orders_user,
+      orders_state, ac_id, orders_note, 
+      orders_type, orders_methdo)
+    values (#{ordersId,jdbcType=VARCHAR},#{recordId,jdbcType=VARCHAR}, #{ordersTime,jdbcType=TIMESTAMP}, #{ordersUser,jdbcType=VARCHAR},
+      #{ordersState,jdbcType=INTEGER}, #{acId,jdbcType=INTEGER}, #{ordersNote,jdbcType=VARCHAR}, 
+      #{ordersType,jdbcType=VARCHAR}, #{ordersMethdo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="orders_id" keyProperty="ordersId" parameterType="cn.gson.jd2021.model.pojos.ClOrders" useGeneratedKeys="true">
+    insert into cl_orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="ordersTime != null">
+        orders_time,
+      </if>
+      <if test="ordersUser != null">
+        orders_user,
+      </if>
+      <if test="ordersState != null">
+        orders_state,
+      </if>
+      <if test="acId != null">
+        ac_id,
+      </if>
+      <if test="ordersNote != null">
+        orders_note,
+      </if>
+      <if test="ordersType != null">
+        orders_type,
+      </if>
+      <if test="ordersMethdo != null">
+        orders_methdo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersTime != null">
+        #{ordersTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordersUser != null">
+        #{ordersUser,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersState != null">
+        #{ordersState,jdbcType=INTEGER},
+      </if>
+      <if test="acId != null">
+        #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="ordersNote != null">
+        #{ordersNote,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersType != null">
+        #{ordersType,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersMethdo != null">
+        #{ordersMethdo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.ClOrders">
+    update cl_orders
+    <set>
+      <if test="recordId != null">
+        record_id = #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersTime != null">
+        orders_time = #{ordersTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordersUser != null">
+        orders_user = #{ordersUser,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersState != null">
+        orders_state = #{ordersState,jdbcType=INTEGER},
+      </if>
+      <if test="acId != null">
+        ac_id = #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="ordersNote != null">
+        orders_note = #{ordersNote,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersType != null">
+        orders_type = #{ordersType,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersMethdo != null">
+        orders_methdo = #{ordersMethdo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orders_id = #{ordersId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.ClOrders">
+    update cl_orders
+    set record_id = #{recordId,jdbcType=VARCHAR},
+      orders_time = #{ordersTime,jdbcType=TIMESTAMP},
+      orders_user = #{ordersUser,jdbcType=VARCHAR},
+      orders_state = #{ordersState,jdbcType=INTEGER},
+      ac_id = #{acId,jdbcType=INTEGER},
+      orders_note = #{ordersNote,jdbcType=VARCHAR},
+      orders_type = #{ordersType,jdbcType=VARCHAR},
+      orders_methdo = #{ordersMethdo,jdbcType=VARCHAR}
+    where orders_id = #{ordersId,jdbcType=VARCHAR}
+  </update>
+</mapper>

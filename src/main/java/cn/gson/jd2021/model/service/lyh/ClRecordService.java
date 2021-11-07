@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class ClRecordService {
     @Autowired
-    ClRecordMapper clRecordMapper;
+    ClRecordMapper clRecordMapper;//收车登记
 
     @Autowired
     GgBrandMapper ggBrandMapper;//品牌
@@ -31,6 +31,29 @@ public class ClRecordService {
     public List<ClRecord> findByClRecord(){
         return clRecordMapper.findByClRecord();
     }
+
+    //增加登记
+    public void insertRecord(ClRecord clRecord){
+
+        if (clRecord.getRecordId()==null || clRecord.getRecordId()==""){
+
+            //增加登记记录
+            clRecordMapper.insert(clRecord);
+
+        }else {
+
+
+            //修改登记记录
+            clRecordMapper.updateByPrimaryKeySelective(clRecord);
+        }
+    }
+
+    //根据编号查询所有信息
+    public List<ClRecord> findClRecordId(String recordId){
+        return clRecordMapper.findClRecordId(recordId);
+    }
+
+
 
     //品牌显示
     public List<GgBrand> findByBrand(){

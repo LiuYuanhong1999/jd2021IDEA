@@ -21,6 +21,10 @@ public interface ClRecordMapper {
     int updateByPrimaryKey(ClRecord record);
 
 
-
+    //查询所有信息
     List<ClRecord> findByClRecord();
+
+    //根据编号查询登记信息
+    List<ClRecord> findClRecordId(String recordId);
+
 }

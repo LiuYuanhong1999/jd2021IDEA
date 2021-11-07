@@ -21,4 +21,9 @@ public interface GgArchiveMapper {
     int updateByPrimaryKeySelective(GgArchive record);
 
     int updateByPrimaryKey(GgArchive record);
+
+
+    //查询类型为收车归档原因的信息
+    List<GgArchive> findClOrders();
+
 }

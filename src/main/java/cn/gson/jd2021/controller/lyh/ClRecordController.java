@@ -6,6 +6,8 @@ import cn.gson.jd2021.model.pojos.GgColor;
 import cn.gson.jd2021.model.pojos.GgDesign;
 import cn.gson.jd2021.model.service.lyh.ClRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +20,27 @@ public class ClRecordController {
     @Autowired
     ClRecordService clRecordService;
 
-
+    //查询收车登记记录
     @RequestMapping("/find-clRecord")
     public List<ClRecord> findByClRecord(){
         return clRecordService.findByClRecord();
     }
+
+
+    //增加收车登记
+    @PostMapping("add-clRecord")
+    public void addClRecord(@RequestBody ClRecord clRecord){
+        clRecordService.insertRecord(clRecord);
+
+    }
+
+
+    //根据编号查询所有登记信息
+    @RequestMapping("find-clRecordId")
+    public List<ClRecord> findClRecordId(String recordId){
+        return clRecordService.findClRecordId(recordId);
+    }
+
 
     //查询品牌
     @RequestMapping("find-clGgBrand")
