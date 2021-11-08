@@ -19,8 +19,6 @@
     <result column="gg_color" jdbcType="INTEGER" property="ggColor" />
     <result column="cus_factor" jdbcType="VARCHAR" property="cusFactor" />
     <result column="cus_budget" jdbcType="DECIMAL" property="cusBudget" />
-  </resultMap>
-  <resultMap id="select" type="cn.gson.jd2021.model.pojos.SellCoustomer" extends="BaseResultMap">
     <!--ctId客户类别表-->
     <association property="ggCoustomertype" javaType="cn.gson.jd2021.model.pojos.GgCoustomertype"
                  select="cn.gson.jd2021.model.mapper.tjq.GgCoustomertypeMapper.selectByPrimaryKey"
@@ -42,8 +40,11 @@
                  select="cn.gson.jd2021.model.mapper.tjq.GgColorMapper.selectByPrimaryKey"
                  column="gg_color"/>
     <!--listNum销售顾问-->
-  <!--  <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList"
-                 select="cn.gson.jd2021.model.mapper."-->
+    <!--  <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList"
+                   select="cn.gson.jd2021.model.mapper."-->
+    <collection property="sellVisitorlogs" ofType="cn.gson.jd2021.model.pojos.SellVisitorlogs">
+
+    </collection>
   </resultMap>
   <sql id="Base_Column_List">
     ac_id, cus_no, cus_name, cus_cellphone, cus_qq, cus_post, cus_time, cus_state, cus_reamrk, 
@@ -52,7 +53,7 @@
   <!-- //查询所有 多条件查询
     List<SellCoustomer> selectall();
     resultType="cn.gson.jd2021.model.pojos.SellCoustomer"-->
-  <select id="selectall" resultMap="select" parameterType="cn.gson.jd2021.model.pojos.vo.SellCoustomerVo">
+  <select id="selectall" resultMap="BaseResultMap" parameterType="cn.gson.jd2021.model.pojos.vo.SellCoustomerVo">
     select <include refid="Base_Column_List"></include> from sell_coustomer
     <where>
       <if test="acId!=null and acId!=''">

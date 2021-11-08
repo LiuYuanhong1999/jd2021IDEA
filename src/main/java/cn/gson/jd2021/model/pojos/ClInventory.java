@@ -14,6 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Data
 public class ClInventory implements Serializable {
+
     /**
      * 入库编号
      */
@@ -113,6 +114,10 @@ public class ClInventory implements Serializable {
      * 入库时间
      */
     private Date storageTime;
+    //是否卖出去了 0未卖出 1 卖出去了
+
+    private Integer storageOp;
+
 
     /**
      * 库存类型
