@@ -3,6 +3,8 @@ package cn.gson.jd2021.model.pojos;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -24,6 +26,8 @@ public class SellCoustomer implements Serializable {
     private GgColor ggColors;
     //销售顾问
     private UserList userList;
+    //客户跟踪 数据
+    private List<SellVisitorlogs> sellVisitorlogs;
 
     public GgCoustomertype getGgCoustomertype() {
         return ggCoustomertype;

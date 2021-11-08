@@ -1,253 +1,300 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.gson.jd2021.model.mapper.tjq.SellOrderMapper">
-  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.SellOrder">
-    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
-    <result column="order_buytype" jdbcType="INTEGER" property="orderBuytype" />
-    <result column="order_bill" jdbcType="INTEGER" property="orderBill" />
-    <result column="order_billno" jdbcType="VARCHAR" property="orderBillno" />
-    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
-    <result column="order_price" jdbcType="DECIMAL" property="orderPrice" />
-    <result column="order_let" jdbcType="DECIMAL" property="orderLet" />
-    <result column="order_total" jdbcType="DECIMAL" property="orderTotal" />
-    <result column="order_paylater" jdbcType="DECIMAL" property="orderPaylater" />
-    <result column="order_debt" jdbcType="DECIMAL" property="orderDebt" />
-    <result column="order_pricing" jdbcType="DECIMAL" property="orderPricing" />
-    <result column="order_state" jdbcType="INTEGER" property="orderState" />
-    <result column="order_fordate" jdbcType="TIMESTAMP" property="orderFordate" />
-    <result column="order_procedure" jdbcType="INTEGER" property="orderProcedure" />
-    <result column="order_forcar" jdbcType="VARCHAR" property="orderForcar" />
-    <result column="order_getcar" jdbcType="VARCHAR" property="orderGetcar" />
-    <result column="cus_id" jdbcType="INTEGER" property="cusId" />
-    <result column="list_num" jdbcType="INTEGER" property="listNum" />
-    <result column="storage_id" jdbcType="VARCHAR" property="storageId" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    order_id, order_buytype, order_bill, order_billno, order_time, order_price, order_let, 
+    <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.SellOrder">
+        <id column="order_id" jdbcType="VARCHAR" property="orderId"/>
+        <result column="order_buytype" jdbcType="INTEGER" property="orderBuytype"/>
+        <result column="order_bill" jdbcType="INTEGER" property="orderBill"/>
+        <result column="order_billno" jdbcType="VARCHAR" property="orderBillno"/>
+        <result column="order_time" jdbcType="TIMESTAMP" property="orderTime"/>
+        <result column="order_price" jdbcType="DECIMAL" property="orderPrice"/>
+        <result column="order_let" jdbcType="DECIMAL" property="orderLet"/>
+        <result column="order_total" jdbcType="DECIMAL" property="orderTotal"/>
+        <result column="order_paylater" jdbcType="DECIMAL" property="orderPaylater"/>
+        <result column="order_debt" jdbcType="DECIMAL" property="orderDebt"/>
+        <result column="order_pricing" jdbcType="DECIMAL" property="orderPricing"/>
+        <result column="order_state" jdbcType="INTEGER" property="orderState"/>
+        <result column="order_fordate" jdbcType="TIMESTAMP" property="orderFordate"/>
+        <result column="order_procedure" jdbcType="INTEGER" property="orderProcedure"/>
+        <result column="order_forcar" jdbcType="VARCHAR" property="orderForcar"/>
+        <result column="order_getcar" jdbcType="VARCHAR" property="orderGetcar"/>
+        <result column="cus_id" jdbcType="INTEGER" property="cusId"/>
+        <result column="list_num" jdbcType="INTEGER" property="listNum"/>
+        <result column="storage_id" jdbcType="VARCHAR" property="storageId"/>
+        <result column="order_post" property="orderPost"/>
+        <!--库存选择车辆-->
+        <association property="clInventory" javaType="cn.gson.jd2021.model.pojos.ClInventory"
+                     select="cn.gson.jd2021.model.mapper.lyh.ClInventoryMapper.selectByPrimaryKey"
+                     column="storage_id"/>
+<!--        员工-->
+<!--        <association property="userList" javaType=""-->
+        <!--选择客户-->
+        <association property="sellCoustomer" javaType="cn.gson.jd2021.model.pojos.SellCoustomer"
+                     select="cn.gson.jd2021.model.mapper.tjq.SellCoustomerMapper.selectByPrimaryKey"
+                     column="cus_id"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        order_id
+        , order_buytype, order_bill, order_billno, order_time, order_price, order_let,
     order_total, order_paylater, order_debt, order_pricing, order_state, order_fordate, 
-    order_procedure, order_forcar, order_getcar, cus_id, list_num, storage_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sell_order
-    where order_id = #{orderId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sell_order
-    where order_id = #{orderId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" keyColumn="order_id" keyProperty="orderId" parameterType="cn.gson.jd2021.model.pojos.SellOrder" useGeneratedKeys="true">
-    insert into sell_order (order_buytype, order_bill, order_billno, 
-      order_time, order_price, order_let, 
-      order_total, order_paylater, order_debt, 
-      order_pricing, order_state, order_fordate, 
-      order_procedure, order_forcar, order_getcar, 
-      cus_id, list_num, storage_id
-      )
-    values (#{orderBuytype,jdbcType=INTEGER}, #{orderBill,jdbcType=INTEGER}, #{orderBillno,jdbcType=VARCHAR}, 
-      #{orderTime,jdbcType=TIMESTAMP}, #{orderPrice,jdbcType=DECIMAL}, #{orderLet,jdbcType=DECIMAL}, 
-      #{orderTotal,jdbcType=DECIMAL}, #{orderPaylater,jdbcType=DECIMAL}, #{orderDebt,jdbcType=DECIMAL}, 
-      #{orderPricing,jdbcType=DECIMAL}, #{orderState,jdbcType=INTEGER}, #{orderFordate,jdbcType=TIMESTAMP}, 
-      #{orderProcedure,jdbcType=INTEGER}, #{orderForcar,jdbcType=VARCHAR}, #{orderGetcar,jdbcType=VARCHAR}, 
-      #{cusId,jdbcType=INTEGER}, #{listNum,jdbcType=INTEGER}, #{storageId,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="order_id" keyProperty="orderId" parameterType="cn.gson.jd2021.model.pojos.SellOrder" useGeneratedKeys="true">
-    insert into sell_order
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="orderBuytype != null">
-        order_buytype,
-      </if>
-      <if test="orderBill != null">
-        order_bill,
-      </if>
-      <if test="orderBillno != null">
-        order_billno,
-      </if>
-      <if test="orderTime != null">
-        order_time,
-      </if>
-      <if test="orderPrice != null">
-        order_price,
-      </if>
-      <if test="orderLet != null">
-        order_let,
-      </if>
-      <if test="orderTotal != null">
-        order_total,
-      </if>
-      <if test="orderPaylater != null">
-        order_paylater,
-      </if>
-      <if test="orderDebt != null">
-        order_debt,
-      </if>
-      <if test="orderPricing != null">
-        order_pricing,
-      </if>
-      <if test="orderState != null">
-        order_state,
-      </if>
-      <if test="orderFordate != null">
-        order_fordate,
-      </if>
-      <if test="orderProcedure != null">
-        order_procedure,
-      </if>
-      <if test="orderForcar != null">
-        order_forcar,
-      </if>
-      <if test="orderGetcar != null">
-        order_getcar,
-      </if>
-      <if test="cusId != null">
-        cus_id,
-      </if>
-      <if test="listNum != null">
-        list_num,
-      </if>
-      <if test="storageId != null">
-        storage_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="orderBuytype != null">
-        #{orderBuytype,jdbcType=INTEGER},
-      </if>
-      <if test="orderBill != null">
-        #{orderBill,jdbcType=INTEGER},
-      </if>
-      <if test="orderBillno != null">
-        #{orderBillno,jdbcType=VARCHAR},
-      </if>
-      <if test="orderTime != null">
-        #{orderTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="orderPrice != null">
-        #{orderPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="orderLet != null">
-        #{orderLet,jdbcType=DECIMAL},
-      </if>
-      <if test="orderTotal != null">
-        #{orderTotal,jdbcType=DECIMAL},
-      </if>
-      <if test="orderPaylater != null">
-        #{orderPaylater,jdbcType=DECIMAL},
-      </if>
-      <if test="orderDebt != null">
-        #{orderDebt,jdbcType=DECIMAL},
-      </if>
-      <if test="orderPricing != null">
-        #{orderPricing,jdbcType=DECIMAL},
-      </if>
-      <if test="orderState != null">
-        #{orderState,jdbcType=INTEGER},
-      </if>
-      <if test="orderFordate != null">
-        #{orderFordate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="orderProcedure != null">
-        #{orderProcedure,jdbcType=INTEGER},
-      </if>
-      <if test="orderForcar != null">
-        #{orderForcar,jdbcType=VARCHAR},
-      </if>
-      <if test="orderGetcar != null">
-        #{orderGetcar,jdbcType=VARCHAR},
-      </if>
-      <if test="cusId != null">
-        #{cusId,jdbcType=INTEGER},
-      </if>
-      <if test="listNum != null">
-        #{listNum,jdbcType=INTEGER},
-      </if>
-      <if test="storageId != null">
-        #{storageId,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.SellOrder">
-    update sell_order
-    <set>
-      <if test="orderBuytype != null">
-        order_buytype = #{orderBuytype,jdbcType=INTEGER},
-      </if>
-      <if test="orderBill != null">
-        order_bill = #{orderBill,jdbcType=INTEGER},
-      </if>
-      <if test="orderBillno != null">
-        order_billno = #{orderBillno,jdbcType=VARCHAR},
-      </if>
-      <if test="orderTime != null">
-        order_time = #{orderTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="orderPrice != null">
-        order_price = #{orderPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="orderLet != null">
-        order_let = #{orderLet,jdbcType=DECIMAL},
-      </if>
-      <if test="orderTotal != null">
-        order_total = #{orderTotal,jdbcType=DECIMAL},
-      </if>
-      <if test="orderPaylater != null">
-        order_paylater = #{orderPaylater,jdbcType=DECIMAL},
-      </if>
-      <if test="orderDebt != null">
-        order_debt = #{orderDebt,jdbcType=DECIMAL},
-      </if>
-      <if test="orderPricing != null">
-        order_pricing = #{orderPricing,jdbcType=DECIMAL},
-      </if>
-      <if test="orderState != null">
-        order_state = #{orderState,jdbcType=INTEGER},
-      </if>
-      <if test="orderFordate != null">
-        order_fordate = #{orderFordate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="orderProcedure != null">
-        order_procedure = #{orderProcedure,jdbcType=INTEGER},
-      </if>
-      <if test="orderForcar != null">
-        order_forcar = #{orderForcar,jdbcType=VARCHAR},
-      </if>
-      <if test="orderGetcar != null">
-        order_getcar = #{orderGetcar,jdbcType=VARCHAR},
-      </if>
-      <if test="cusId != null">
-        cus_id = #{cusId,jdbcType=INTEGER},
-      </if>
-      <if test="listNum != null">
-        list_num = #{listNum,jdbcType=INTEGER},
-      </if>
-      <if test="storageId != null">
-        storage_id = #{storageId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where order_id = #{orderId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.SellOrder">
-    update sell_order
-    set order_buytype = #{orderBuytype,jdbcType=INTEGER},
-      order_bill = #{orderBill,jdbcType=INTEGER},
-      order_billno = #{orderBillno,jdbcType=VARCHAR},
-      order_time = #{orderTime,jdbcType=TIMESTAMP},
-      order_price = #{orderPrice,jdbcType=DECIMAL},
-      order_let = #{orderLet,jdbcType=DECIMAL},
-      order_total = #{orderTotal,jdbcType=DECIMAL},
-      order_paylater = #{orderPaylater,jdbcType=DECIMAL},
-      order_debt = #{orderDebt,jdbcType=DECIMAL},
-      order_pricing = #{orderPricing,jdbcType=DECIMAL},
-      order_state = #{orderState,jdbcType=INTEGER},
-      order_fordate = #{orderFordate,jdbcType=TIMESTAMP},
-      order_procedure = #{orderProcedure,jdbcType=INTEGER},
-      order_forcar = #{orderForcar,jdbcType=VARCHAR},
-      order_getcar = #{orderGetcar,jdbcType=VARCHAR},
-      cus_id = #{cusId,jdbcType=INTEGER},
-      list_num = #{listNum,jdbcType=INTEGER},
-      storage_id = #{storageId,jdbcType=VARCHAR}
-    where order_id = #{orderId,jdbcType=VARCHAR}
-  </update>
+    order_procedure, order_forcar, order_getcar, cus_id, list_num, storage_id,order_post
+    </sql>
+    <select id="select" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include> from sell_order
+        <where>
+            <if test="orderId!=null and orderId!=''">
+                and order_id like concat('%',#{orderId},'%')
+            </if>
+            <if test="orderBuytype!=null and orderBuytype!=''">
+                and order_buytype =#{orderBuytype}
+            </if>
+            <if test="orderBill!=null and orderBill!=''">
+                and order_bill = #{orderBill}
+            </if>
+            <if test="orderBillno!=null and orderBillno!=''">
+                and order_billno like concat('%',#{orderBillno},'%')
+            </if>
+            <if test="orderState!=null and orderState!=''">
+                and order_state = #{orderState}
+            </if>
+            <if test="coustomerName!=null and coustomerName!=''">
+                and cus_id in
+                (select sell_coustomer.ac_id from sell_coustomer where cus_name like concat('%',#{coustomerName},'%'))
+            </if>
+        </where>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sell_order
+        where order_id = #{orderId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from sell_order
+        where order_id = #{orderId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" keyColumn="order_id" keyProperty="orderId" parameterType="cn.gson.jd2021.model.pojos.SellOrder"
+            useGeneratedKeys="true">
+        insert into sell_order (order_id,order_buytype, order_bill, order_billno,
+                                order_time, order_price, order_let,
+                                order_total, order_paylater, order_debt,
+                                order_pricing, order_state, order_fordate,
+                                order_procedure, order_forcar, order_getcar,
+                                cus_id, list_num, storage_id, order_post)
+        values (#{orderId},#{orderBuytype,jdbcType=INTEGER}, #{orderBill,jdbcType=INTEGER}, #{orderBillno,jdbcType=VARCHAR},
+                #{orderTime,jdbcType=TIMESTAMP}, #{orderPrice,jdbcType=DECIMAL}, #{orderLet,jdbcType=DECIMAL},
+                #{orderTotal,jdbcType=DECIMAL}, #{orderPaylater,jdbcType=DECIMAL}, #{orderDebt,jdbcType=DECIMAL},
+                #{orderPricing,jdbcType=DECIMAL}, #{orderState,jdbcType=INTEGER}, #{orderFordate,jdbcType=TIMESTAMP},
+                #{orderProcedure,jdbcType=INTEGER}, #{orderForcar,jdbcType=VARCHAR}, #{orderGetcar,jdbcType=VARCHAR},
+                #{cusId,jdbcType=INTEGER}, #{listNum,jdbcType=INTEGER}, #{storageId,jdbcType=VARCHAR}, #{orderPost})
+    </insert>
+    <insert id="insertSelective" keyColumn="order_id" keyProperty="orderId"
+            parameterType="cn.gson.jd2021.model.pojos.SellOrder" useGeneratedKeys="true">
+        insert into sell_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderBuytype != null">
+                order_buytype,
+            </if>
+            <if test="orderBill != null">
+                order_bill,
+            </if>
+            <if test="orderBillno != null">
+                order_billno,
+            </if>
+            <if test="orderTime != null">
+                order_time,
+            </if>
+            <if test="orderPrice != null">
+                order_price,
+            </if>
+            <if test="orderLet != null">
+                order_let,
+            </if>
+            <if test="orderTotal != null">
+                order_total,
+            </if>
+            <if test="orderPaylater != null">
+                order_paylater,
+            </if>
+            <if test="orderDebt != null">
+                order_debt,
+            </if>
+            <if test="orderPricing != null">
+                order_pricing,
+            </if>
+            <if test="orderState != null">
+                order_state,
+            </if>
+            <if test="orderFordate != null">
+                order_fordate,
+            </if>
+            <if test="orderProcedure != null">
+                order_procedure,
+            </if>
+            <if test="orderForcar != null">
+                order_forcar,
+            </if>
+            <if test="orderGetcar != null">
+                order_getcar,
+            </if>
+            <if test="cusId != null">
+                cus_id,
+            </if>
+            <if test="listNum != null">
+                list_num,
+            </if>
+            <if test="storageId != null">
+                storage_id,
+            </if>
+            <if test="orderPost!=null">
+                order_post,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderBuytype != null">
+                #{orderBuytype,jdbcType=INTEGER},
+            </if>
+            <if test="orderBill != null">
+                #{orderBill,jdbcType=INTEGER},
+            </if>
+            <if test="orderBillno != null">
+                #{orderBillno,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderPrice != null">
+                #{orderPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="orderLet != null">
+                #{orderLet,jdbcType=DECIMAL},
+            </if>
+            <if test="orderTotal != null">
+                #{orderTotal,jdbcType=DECIMAL},
+            </if>
+            <if test="orderPaylater != null">
+                #{orderPaylater,jdbcType=DECIMAL},
+            </if>
+            <if test="orderDebt != null">
+                #{orderDebt,jdbcType=DECIMAL},
+            </if>
+            <if test="orderPricing != null">
+                #{orderPricing,jdbcType=DECIMAL},
+            </if>
+            <if test="orderState != null">
+                #{orderState,jdbcType=INTEGER},
+            </if>
+            <if test="orderFordate != null">
+                #{orderFordate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderProcedure != null">
+                #{orderProcedure,jdbcType=INTEGER},
+            </if>
+            <if test="orderForcar != null">
+                #{orderForcar,jdbcType=VARCHAR},
+            </if>
+            <if test="orderGetcar != null">
+                #{orderGetcar,jdbcType=VARCHAR},
+            </if>
+            <if test="cusId != null">
+                #{cusId,jdbcType=INTEGER},
+            </if>
+            <if test="listNum != null">
+                #{listNum,jdbcType=INTEGER},
+            </if>
+            <if test="storageId != null">
+                #{storageId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderPost!=null">
+                #{orderPost},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.SellOrder">
+        update sell_order
+        <set>
+            <if test="orderBuytype != null">
+                order_buytype = #{orderBuytype,jdbcType=INTEGER},
+            </if>
+            <if test="orderBill != null">
+                order_bill = #{orderBill,jdbcType=INTEGER},
+            </if>
+            <if test="orderBillno != null">
+                order_billno = #{orderBillno,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderPrice != null">
+                order_price = #{orderPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="orderLet != null">
+                order_let = #{orderLet,jdbcType=DECIMAL},
+            </if>
+            <if test="orderTotal != null">
+                order_total = #{orderTotal,jdbcType=DECIMAL},
+            </if>
+            <if test="orderPaylater != null">
+                order_paylater = #{orderPaylater,jdbcType=DECIMAL},
+            </if>
+            <if test="orderDebt != null">
+                order_debt = #{orderDebt,jdbcType=DECIMAL},
+            </if>
+            <if test="orderPricing != null">
+                order_pricing = #{orderPricing,jdbcType=DECIMAL},
+            </if>
+            <if test="orderState != null">
+                order_state = #{orderState,jdbcType=INTEGER},
+            </if>
+            <if test="orderFordate != null">
+                order_fordate = #{orderFordate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderProcedure != null">
+                order_procedure = #{orderProcedure,jdbcType=INTEGER},
+            </if>
+            <if test="orderForcar != null">
+                order_forcar = #{orderForcar,jdbcType=VARCHAR},
+            </if>
+            <if test="orderGetcar != null">
+                order_getcar = #{orderGetcar,jdbcType=VARCHAR},
+            </if>
+            <if test="cusId != null">
+                cus_id = #{cusId,jdbcType=INTEGER},
+            </if>
+            <if test="listNum != null">
+                list_num = #{listNum,jdbcType=INTEGER},
+            </if>
+            <if test="storageId != null">
+                storage_id = #{storageId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderPost!=null">
+                order_post = #{orderPost},
+            </if>
+        </set>
+        where order_id = #{orderId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.SellOrder">
+        update sell_order
+        set order_buytype   = #{orderBuytype,jdbcType=INTEGER},
+            order_bill      = #{orderBill,jdbcType=INTEGER},
+            order_billno    = #{orderBillno,jdbcType=VARCHAR},
+            order_time      = #{orderTime,jdbcType=TIMESTAMP},
+            order_price     = #{orderPrice,jdbcType=DECIMAL},
+            order_let       = #{orderLet,jdbcType=DECIMAL},
+            order_total     = #{orderTotal,jdbcType=DECIMAL},
+            order_paylater  = #{orderPaylater,jdbcType=DECIMAL},
+            order_debt      = #{orderDebt,jdbcType=DECIMAL},
+            order_pricing   = #{orderPricing,jdbcType=DECIMAL},
+            order_state     = #{orderState,jdbcType=INTEGER},
+            order_fordate   = #{orderFordate,jdbcType=TIMESTAMP},
+            order_procedure = #{orderProcedure,jdbcType=INTEGER},
+            order_forcar    = #{orderForcar,jdbcType=VARCHAR},
+            order_getcar    = #{orderGetcar,jdbcType=VARCHAR},
+            cus_id          = #{cusId,jdbcType=INTEGER},
+            list_num        = #{listNum,jdbcType=INTEGER},
+            storage_id      = #{storageId,jdbcType=VARCHAR},
+            order_post      =#{orderPost}
+        where order_id = #{orderId,jdbcType=VARCHAR}
+    </update>
 </mapper>

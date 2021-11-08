@@ -11,6 +11,10 @@ import lombok.Data;
  */
 @Data
 public class ClInventory implements Serializable {
+    private GgFactory ggFactory;//厂商
+    private GgBrand ggBrand;//品牌
+    private GgDesign ggDesign;//款式
+    private GgColor ggColor;//颜色
     /**
      * 入库编号
      */
@@ -110,6 +114,52 @@ public class ClInventory implements Serializable {
      * 入库时间
      */
     private Date storageTime;
+    //是否卖出去了 0未卖出 1 卖出去了
+
+    private Integer storageOp;
+
 
     private static final long serialVersionUID = 1L;
+
+    private ClReturnVist clReturnVist;//回访
+
+    public ClReturnVist getClReturnVist() {
+        return clReturnVist;
+    }
+
+    public void setClReturnVist(ClReturnVist clReturnVist) {
+        this.clReturnVist = clReturnVist;
+    }
+
+    public GgFactory getGgFactory() {
+        return ggFactory;
+    }
+
+    public void setGgFactory(GgFactory ggFactory) {
+        this.ggFactory = ggFactory;
+    }
+
+    public GgBrand getGgBrand() {
+        return ggBrand;
+    }
+
+    public void setGgBrand(GgBrand ggBrand) {
+        this.ggBrand = ggBrand;
+    }
+
+    public GgDesign getGgDesign() {
+        return ggDesign;
+    }
+
+    public void setGgDesign(GgDesign ggDesign) {
+        this.ggDesign = ggDesign;
+    }
+
+    public GgColor getGgColor() {
+        return ggColor;
+    }
+
+    public void setGgColor(GgColor ggColor) {
+        this.ggColor = ggColor;
+    }
 }

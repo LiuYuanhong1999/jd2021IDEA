@@ -22,19 +22,43 @@
     <result column="storage_prcie" jdbcType="DECIMAL" property="storagePrcie" />
     <result column="storage_user" jdbcType="VARCHAR" property="storageUser" />
     <result column="storage_time" jdbcType="TIMESTAMP" property="storageTime" />
+    <result column="storage_op" property="storageOp"/>
+    <!--factoryId意向厂商-->
+    <association property="ggFactory" javaType="cn.gson.jd2021.model.pojos.GgFactory"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgFactoryMapper.selectByPrimaryKey"
+                 column="factory_id"/>
+    <!--brandId意向品牌-->
+    <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgBrandMapper.selectByPrimaryKey"
+                 column="brand_id"/>
+    <association property="ggDesign" javaType="cn.gson.jd2021.model.pojos.GgDesign"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgDesignMapper.selectByPrimaryKey"
+                 column="design_id"/>
+    <!--ggColor映射颜色 -->
+    <association property="ggColor" javaType="cn.gson.jd2021.model.pojos.GgColor"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgColorMapper.selectByPrimaryKey"
+                 column="color_id"/>
   </resultMap>
   <sql id="Base_Column_List">
     storage_id, factory_id, brand_id, design_id, color_id, storage_leave_time, storage_variator, 
     storage_displacement, storage_mileage, storage_begain, storage_card, storage_type, 
     storage_drive, storage_engine, storage_tap, storage_transfer_times, storage_license, 
-    storage_prcie, storage_user, storage_time
+    storage_prcie, storage_user, storage_time,storage_op
   </sql>
+  <!--//根据状态进行查询 0未卖出 1已卖出
+    List<ClInventory> selectByOP(Integer storageOp);
+    resultType="cn.gson.jd2021.model.pojos.ClInventory"-->
+  <select id="selectByOP" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include> from cl_inventory
+        where storage_op = #{storageOp}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from cl_inventory
     where storage_id = #{storageId,jdbcType=VARCHAR}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from cl_inventory
     where storage_id = #{storageId,jdbcType=VARCHAR}
@@ -261,5 +285,11 @@
       storage_user = #{storageUser,jdbcType=VARCHAR},
       storage_time = #{storageTime,jdbcType=TIMESTAMP}
     where storage_id = #{storageId,jdbcType=VARCHAR}
+  </update>
+<!--  //根据主键 修改状态
+    Integer doUpdateByOp(Integer id,Integer op);-->
+  <update id="doUpdateByOp">
+    update  cl_inventory set storage_op= #{op}
+        where storage_id= #{id}
   </update>
 </mapper>

@@ -11,6 +11,14 @@ import lombok.Data;
  */
 @Data
 public class SellOrder implements Serializable {
+    //库存外键 storageId
+    private ClInventory clInventory;
+    //员工外键 listNum
+    private UserList userList;
+    //客户外键 cusId
+    private SellCoustomer sellCoustomer;
+
+
     /**
      * 订单表主键 yyyymmdd6位随机数
      */
@@ -85,7 +93,8 @@ public class SellOrder implements Serializable {
      * 交车人
      */
     private String orderForcar;
-
+    //交车地点
+    private String orderPost;
     /**
      * 领车人
      */
