@@ -97,4 +97,11 @@ public class UserListService {
             }
             return null;
     }
+
+    public UserList findUserId(String listNum) {
+        UserList userId = userListMapper.findUserId(listNum);
+        System.out.println("========================================================================");
+        System.out.println(userId);
+        return userId;
+    }
 }

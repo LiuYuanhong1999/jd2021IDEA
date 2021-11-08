@@ -7,7 +7,7 @@
     <result column="log_state" jdbcType="INTEGER" property="logState" />
     <result column="log_context" jdbcType="VARCHAR" property="logContext" />
     <result column="log_type" jdbcType="VARCHAR" property="logType" />
-    <result column="list_num" jdbcType="INTEGER" property="listNum" />
+    <result column="list_num" jdbcType="VARCHAR" property="listNum" />
     <result column="ac_id" jdbcType="INTEGER" property="acId" />
     <result column="cus_id" jdbcType="INTEGER" property="cusId" />
   </resultMap>
@@ -74,7 +74,7 @@
       log_type, list_num, ac_id, 
       cus_id)
     values (#{logTime,jdbcType=TIMESTAMP}, #{logState,jdbcType=INTEGER}, #{logContext,jdbcType=VARCHAR}, 
-      #{logType,jdbcType=VARCHAR}, #{listNum,jdbcType=INTEGER}, #{acId,jdbcType=INTEGER}, 
+      #{logType,jdbcType=VARCHAR}, #{listNum,jdbcType=VARCHAR}, #{acId,jdbcType=INTEGER},
       #{cusId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="log_id" keyProperty="logId" parameterType="cn.gson.jd2021.model.pojos.SellVisitorlogs" useGeneratedKeys="true">
@@ -116,7 +116,7 @@
         #{logType,jdbcType=VARCHAR},
       </if>
       <if test="listNum != null">
-        #{listNum,jdbcType=INTEGER},
+        #{listNum,jdbcType=VARCHAR},
       </if>
       <if test="acId != null">
         #{acId,jdbcType=INTEGER},
@@ -142,7 +142,7 @@
         log_type = #{logType,jdbcType=VARCHAR},
       </if>
       <if test="listNum != null">
-        list_num = #{listNum,jdbcType=INTEGER},
+        list_num = #{listNum,jdbcType=VARCHAR},
       </if>
       <if test="acId != null">
         ac_id = #{acId,jdbcType=INTEGER},
@@ -159,7 +159,7 @@
       log_state = #{logState,jdbcType=INTEGER},
       log_context = #{logContext,jdbcType=VARCHAR},
       log_type = #{logType,jdbcType=VARCHAR},
-      list_num = #{listNum,jdbcType=INTEGER},
+      list_num = #{listNum,jdbcType=VARCHAR},
       ac_id = #{acId,jdbcType=INTEGER},
       cus_id = #{cusId,jdbcType=INTEGER}
     where log_id = #{logId,jdbcType=INTEGER}

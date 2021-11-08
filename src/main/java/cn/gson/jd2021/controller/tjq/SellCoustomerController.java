@@ -22,7 +22,7 @@ public class SellCoustomerController {
         sellCoustomer.setCusTime(new Date());//建档日期
         sellCoustomer.setCusNo(getno());
         //本应该前端传送过来
-        sellCoustomer.setListNum(1);//销售顾问
+        //sellCoustomer.setListNum(1);//销售顾问
         return sellCoustomerService.doInsert(sellCoustomer);
     }
     //修改

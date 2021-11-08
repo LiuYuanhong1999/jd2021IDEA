@@ -66,7 +66,7 @@ public class SellVisitorlogs implements Serializable {
     /**
      * 接待人外键员工表
      */
-    private Integer listNum;
+    private String listNum;
 
     /**
      * 分类归档 外键
@@ -123,11 +123,11 @@ public class SellVisitorlogs implements Serializable {
         this.logType = logType;
     }
 
-    public Integer getListNum() {
+    public String getListNum() {
         return listNum;
     }
 
-    public void setListNum(Integer listNum) {
+    public void setListNum(String listNum) {
         this.listNum = listNum;
     }
 
@@ -151,7 +151,7 @@ public class SellVisitorlogs implements Serializable {
         return serialVersionUID;
     }
 
-    public SellVisitorlogs(Integer logId, Date logTime, Integer logState, String logContext, String logType, Integer listNum, Integer acId, Integer cusId) {
+    public SellVisitorlogs(Integer logId, Date logTime, Integer logState, String logContext, String logType, String listNum, Integer acId, Integer cusId) {
         this.logId = logId;
         this.logTime = logTime;
         this.logState = logState;

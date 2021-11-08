@@ -24,4 +24,6 @@ public interface UserListMapper extends BaseMapper<UserList> {
             " (list_num, user_name, user_paw, list_name, list_sex, list_old, list_card, list_salary, list_ipone, list_zt, org_id ) " +
             "VALUES (#{listNum},#{userName},#{userPaw},#{listName},#{listSex},#{listOld},#{listCard},#{listSalary},#{listIpone},#{listZt},#{orgId} )")
     void addUsers(UserList userList);
+
+    UserList findUserId(String listNum);
 }

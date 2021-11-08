@@ -64,4 +64,9 @@ public class UserListController {
     public UserList Login(@RequestBody Login login){
         return userListService.Login(login);
     }
+
+    @RequestMapping("/find-userId")
+    public UserList findUserId(String listNum){
+        return userListService.findUserId(listNum);
+    }
 }

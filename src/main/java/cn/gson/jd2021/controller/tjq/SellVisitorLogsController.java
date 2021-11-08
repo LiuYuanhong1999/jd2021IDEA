@@ -20,7 +20,6 @@ public class SellVisitorLogsController {
     @PostMapping
     public Integer put(@RequestBody SellVisitorlogs sellVisitorlogs){
         sellVisitorlogs.setLogTime(new Date());
-        sellVisitorlogs.setListNum(1);
         return sellVisitorlogsService.add(sellVisitorlogs);
     }
     //修改

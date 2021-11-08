@@ -78,4 +78,8 @@
     <select id="Login" resultMap="listUser">
         select * from user_list where user_name=#{userName} and user_paw=#{passWord} and list_zt=1
     </select>
+
+    <select id="findUserId" resultMap="listUser">
+        select * from user_list where list_num=#{listNum}
+    </select>
 </mapper>

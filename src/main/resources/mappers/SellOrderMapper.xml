@@ -19,15 +19,17 @@
         <result column="order_forcar" jdbcType="VARCHAR" property="orderForcar"/>
         <result column="order_getcar" jdbcType="VARCHAR" property="orderGetcar"/>
         <result column="cus_id" jdbcType="INTEGER" property="cusId"/>
-        <result column="list_num" jdbcType="INTEGER" property="listNum"/>
+        <result column="list_num" jdbcType="VARCHAR" property="listNum"/>
         <result column="storage_id" jdbcType="VARCHAR" property="storageId"/>
         <result column="order_post" property="orderPost"/>
         <!--库存选择车辆-->
         <association property="clInventory" javaType="cn.gson.jd2021.model.pojos.ClInventory"
                      select="cn.gson.jd2021.model.mapper.lyh.ClInventoryMapper.selectByPrimaryKey"
                      column="storage_id"/>
-<!--        员工-->
-<!--        <association property="userList" javaType=""-->
+        <!--listNum销售顾问-->
+        <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList"
+                     select="cn.gson.jd2021.model.mapper.sys.UserListMapper.findUserId"
+                     column="list_num"/>
         <!--选择客户-->
         <association property="sellCoustomer" javaType="cn.gson.jd2021.model.pojos.SellCoustomer"
                      select="cn.gson.jd2021.model.mapper.tjq.SellCoustomerMapper.selectByPrimaryKey"
@@ -87,7 +89,7 @@
                 #{orderTotal,jdbcType=DECIMAL}, #{orderPaylater,jdbcType=DECIMAL}, #{orderDebt,jdbcType=DECIMAL},
                 #{orderPricing,jdbcType=DECIMAL}, #{orderState,jdbcType=INTEGER}, #{orderFordate,jdbcType=TIMESTAMP},
                 #{orderProcedure,jdbcType=INTEGER}, #{orderForcar,jdbcType=VARCHAR}, #{orderGetcar,jdbcType=VARCHAR},
-                #{cusId,jdbcType=INTEGER}, #{listNum,jdbcType=INTEGER}, #{storageId,jdbcType=VARCHAR}, #{orderPost})
+                #{cusId,jdbcType=INTEGER}, #{listNum,jdbcType=VARCHAR}, #{storageId,jdbcType=VARCHAR}, #{orderPost})
     </insert>
     <insert id="insertSelective" keyColumn="order_id" keyProperty="orderId"
             parameterType="cn.gson.jd2021.model.pojos.SellOrder" useGeneratedKeys="true">
@@ -201,7 +203,7 @@
                 #{cusId,jdbcType=INTEGER},
             </if>
             <if test="listNum != null">
-                #{listNum,jdbcType=INTEGER},
+                #{listNum,jdbcType=VARCHAR},
             </if>
             <if test="storageId != null">
                 #{storageId,jdbcType=VARCHAR},
@@ -263,7 +265,7 @@
                 cus_id = #{cusId,jdbcType=INTEGER},
             </if>
             <if test="listNum != null">
-                list_num = #{listNum,jdbcType=INTEGER},
+                list_num = #{listNum,jdbcType=VARCHAR},
             </if>
             <if test="storageId != null">
                 storage_id = #{storageId,jdbcType=VARCHAR},
@@ -292,7 +294,7 @@
             order_forcar    = #{orderForcar,jdbcType=VARCHAR},
             order_getcar    = #{orderGetcar,jdbcType=VARCHAR},
             cus_id          = #{cusId,jdbcType=INTEGER},
-            list_num        = #{listNum,jdbcType=INTEGER},
+            list_num        = #{listNum,jdbcType=VARCHAR},
             storage_id      = #{storageId,jdbcType=VARCHAR},
             order_post      =#{orderPost}
         where order_id = #{orderId,jdbcType=VARCHAR}

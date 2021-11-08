@@ -125,7 +125,7 @@ public class SellCoustomer implements Serializable {
     /**
      * 销售顾问 外键 用户
      */
-    private Integer listNum;
+    private String listNum;
 
     /**
      * 客户类别 外键 客户类别表
@@ -164,7 +164,7 @@ public class SellCoustomer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SellCoustomer(Integer acId, String cusNo, String cusName, String cusCellphone, String cusQq, String cusPost, Date cusTime, String cusState, String cusReamrk, Integer listNum, Integer ctId, Integer sourceId, Integer factoryId, Integer brandId, Integer ggColor, String cusFactor, BigDecimal cusBudget) {
+    public SellCoustomer(Integer acId, String cusNo, String cusName, String cusCellphone, String cusQq, String cusPost, Date cusTime, String cusState, String cusReamrk, String listNum, Integer ctId, Integer sourceId, Integer factoryId, Integer brandId, Integer ggColor, String cusFactor, BigDecimal cusBudget) {
         this.acId = acId;
         this.cusNo = cusNo;
         this.cusName = cusName;
@@ -259,11 +259,11 @@ public class SellCoustomer implements Serializable {
         this.cusReamrk = cusReamrk;
     }
 
-    public Integer getListNum() {
+    public String getListNum() {
         return listNum;
     }
 
-    public void setListNum(Integer listNum) {
+    public void setListNum(String listNum) {
         this.listNum = listNum;
     }
 

@@ -108,7 +108,7 @@ public class SellOrder implements Serializable {
     /**
      * 外键 员工表
      */
-    private Integer listNum;
+    private String listNum;
 
     /**
      * 外键 库存表
@@ -117,7 +117,7 @@ public class SellOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SellOrder(String orderId, Integer orderBuytype, Integer orderBill, String orderBillno, Date orderTime, BigDecimal orderPrice, BigDecimal orderLet, BigDecimal orderTotal, BigDecimal orderPaylater, BigDecimal orderDebt, BigDecimal orderPricing, Integer orderState, Date orderFordate, Integer orderProcedure, String orderForcar, String orderGetcar, Integer cusId, Integer listNum, String storageId) {
+    public SellOrder(String orderId, Integer orderBuytype, Integer orderBill, String orderBillno, Date orderTime, BigDecimal orderPrice, BigDecimal orderLet, BigDecimal orderTotal, BigDecimal orderPaylater, BigDecimal orderDebt, BigDecimal orderPricing, Integer orderState, Date orderFordate, Integer orderProcedure, String orderForcar, String orderGetcar, Integer cusId, String listNum, String storageId) {
         this.orderId = orderId;
         this.orderBuytype = orderBuytype;
         this.orderBill = orderBill;
@@ -278,11 +278,11 @@ public class SellOrder implements Serializable {
         this.cusId = cusId;
     }
 
-    public Integer getListNum() {
+    public String getListNum() {
         return listNum;
     }
 
-    public void setListNum(Integer listNum) {
+    public void setListNum(String listNum) {
         this.listNum = listNum;
     }
 
