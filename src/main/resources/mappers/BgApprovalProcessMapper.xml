@@ -6,10 +6,35 @@
     <result column="bgap_name" jdbcType="INTEGER" property="bgapName" />
     <result column="bgap_node" jdbcType="INTEGER" property="bgapNode" />
     <result column="bgap_result" jdbcType="INTEGER" property="bgapResult" />
+
+      <association property="bgFlow" javaType="cn.gson.jd2021.model.pojos.BgFlow">
+        <id column="bgfw_id" jdbcType="INTEGER" property="bgfwId" />
+        <result column="bgfw_name" jdbcType="VARCHAR" property="bgfwName" />
+      </association>
+
+      <association property="bgFlowEdition" javaType="cn.gson.jd2021.model.pojos.BgFlowEdition">
+        <id column="bgfn_id" jdbcType="INTEGER" property="bgfnId" />
+        <result column="bgfn_serial" jdbcType="VARCHAR" property="bgfnSerial" />
+        <result column="bgfn_designation" jdbcType="VARCHAR" property="bgfnDesignation" />
+        <result column="bgfn_approver" jdbcType="INTEGER" property="bgfnApprover" />
+        <result column="bgfn_bgflowid" jdbcType="INTEGER" property="bgfnBgflowid" />
+      </association>
   </resultMap>
   <sql id="Base_Column_List">
     bgap_id, bgap_name, bgap_node, bgap_result
   </sql>
+  <select id="selectbgapr" resultMap="BaseResultMap">
+    select * from bg_approval_process bgappr
+        left join bg_flow bgfl on bgappr.bgap_name = bgfl.bgfw_id
+        left join bg_flow_edition bgfled on bgappr.bgap_node = bgfled.bgfn_id
+        where bgappr.bgap_result = 0
+  </select>
+  <select id="selectbgapr1" resultMap="BaseResultMap">
+    select * from bg_approval_process bgappr
+                    left join bg_flow bgfl on bgappr.bgap_name = bgfl.bgfw_id
+                    left join bg_flow_edition bgfled on bgappr.bgap_node = bgfled.bgfn_id
+    where bgappr.bgap_result = 1
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
