@@ -7,8 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-import java.util.List;
-
 @Mapper
 public interface SellOrderMapper {
     //查询所有 +外键
@@ -25,6 +23,10 @@ public interface SellOrderMapper {
     int updateByPrimaryKeySelective(SellOrder record);
 
     int updateByPrimaryKey(SellOrder record);
+
+    int updateOrderDebtByPrimaryKey(SellOrder sellOrder);
+
+    int updateOrderStateByPrimaryKey(SellOrder sellOrder);
 
     //分页多条件查询欠款用户
     List<SellOrder> slelctDebt(@Param("value")String value, @Param("input") String input);

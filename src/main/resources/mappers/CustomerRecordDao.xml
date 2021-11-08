@@ -21,37 +21,25 @@
   <select id="selectAllCustomer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from finance_payment
+    from customer_record
     <where>
       <if test="value=='销售单号' and input!=null">
         customer_outnumber like CONCAT(CONCAT('%',#{input},'%'))
       </if>
-      <if test="value=='汽车款式' and input!=null">
-        customer_type like CONCAT(CONCAT('%',#{input},'%'))
-      </if>
-      <if test="value=='汽车品牌' and input!=null">
-        customer_brand like CONCAT(CONCAT('%',#{input},'%'))
-      </if>
-      <if test="value=='收款人' and input!=null">
+      <if test="value=='还款人' and input!=null">
         customer_man like CONCAT(CONCAT('%',#{input},'%'))
       </if>
-      <if test="value=='金额' and input!=null">
+      <if test="value=='还款金额' and input!=null">
         customer_money like CONCAT(CONCAT('%',#{input},'%'))
       </if>
-      <if test="value=='制表人' and input!=null">
+      <if test="value=='收款人' and input!=null">
         customer_pepo like CONCAT(CONCAT('%',#{input},'%'))
       </if>
-      <if test="value=='备注' and input!=null">
-        customer_remak like CONCAT(CONCAT('%',#{input},'%'))
-      </if>
-      <!--      <if test="value=='未打印' and input!=null">-->
-      <!--        other_static like CONCAT(CONCAT('%',#{input},'%'))-->
-      <!--      </if>-->
     </where>
 
   </select>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey"  resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from customer_record

@@ -54,4 +54,9 @@ public class CustomerRecordServiceImpl implements CustomerRecordService {
         customerRecordDao.deleteByPrimaryKey(customerRecord.getCustomerId());
         return customerRecord;
     }
+
+    @Override
+    public List<CustomerRecord> selectByKey(Integer customerId) {
+        return customerRecordDao.selectByPrimaryKey(customerId);
+    }
 }

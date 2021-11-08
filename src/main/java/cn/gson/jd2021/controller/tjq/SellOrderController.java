@@ -4,6 +4,7 @@ import cn.gson.jd2021.model.pojos.ClInventory;
 import cn.gson.jd2021.model.pojos.SellOrder;
 import cn.gson.jd2021.model.pojos.vo.SellOrderVo;
 import cn.gson.jd2021.model.service.tjq.SellOrderService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,5 +47,18 @@ public class SellOrderController {
         String s=sdf.format(date);
         int rnd=(int)(Math.random()*(999999-100000+1))+100000;
         return s+rnd;
+
+    }
+    //查询
+    @GetMapping("/slelctDebt")
+    public PageInfo<SellOrder> slelctDebt(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize, @RequestParam(value = "value",required = false) String value, @RequestParam(value = "input",required = false) String input) {
+        return sellOrderService.selectSellOrderByQk(currentPage,pagesize,value,input);
+    }
+
+    //修改欠款金额
+    @PutMapping("/updDebt")
+    public int updDebt(@RequestBody SellOrder sellOrder) {
+        return sellOrderService.updSellOrderByQk(sellOrder);
     }
 }
+

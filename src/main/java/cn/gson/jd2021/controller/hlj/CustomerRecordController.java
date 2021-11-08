@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author 贺罗金
@@ -22,7 +23,7 @@ public class CustomerRecordController {
         return customerRecordService.selectAllCustomerRecord(currentPage,pagesize,value,input);
     }
 
-    @PostMapping("/addFinancePayment")
+    @PostMapping("/addCustomerRecord")
     public CustomerRecord addCustomerRecord(@RequestBody CustomerRecord customerRecord){
         customerRecordService.addCustomerRecord(customerRecord);
         return customerRecord;
@@ -38,5 +39,11 @@ public class CustomerRecordController {
     public CustomerRecord delCustomerRecord(@RequestBody CustomerRecord customerRecord){
         customerRecordService.delCustomerRecord(customerRecord);
         return customerRecord;
+    }
+
+    @GetMapping("/selectByKey")
+    public List<CustomerRecord> selectByKey(@RequestParam("customerId") Integer customerId){
+        List<CustomerRecord> entityPage =customerRecordService.selectByKey(customerId);
+        return entityPage;
     }
 }

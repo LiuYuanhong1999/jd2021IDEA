@@ -4,6 +4,8 @@ import cn.gson.jd2021.model.pojos.CustomerRecord;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * @author 贺罗金
  * @version 1.0
@@ -21,4 +23,6 @@ public interface CustomerRecordService {
 
     //删除其他收支记录
     CustomerRecord delCustomerRecord(CustomerRecord customerRecord);
+
+    List<CustomerRecord> selectByKey(Integer customerId);
 }

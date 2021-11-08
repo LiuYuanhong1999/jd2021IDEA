@@ -14,7 +14,7 @@ public interface CustomerRecordDao {
 
     int insertSelective(CustomerRecord record);
 
-    CustomerRecord selectByPrimaryKey(Integer customerId);
+    List<CustomerRecord> selectByPrimaryKey(Integer customerId);
 
     int updateByPrimaryKeySelective(CustomerRecord record);
 
