@@ -3,7 +3,10 @@ package cn.gson.jd2021.model.pojos;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * cl_record
@@ -143,6 +146,8 @@ public class ClRecord implements Serializable {
         this.colorId = colorId;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getRecordLeaveTime() {
         return recordLeaveTime;
     }
@@ -175,6 +180,8 @@ public class ClRecord implements Serializable {
         this.recordMileage = recordMileage;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getRecordBegain() {
         return recordBegain;
     }
@@ -227,6 +234,8 @@ public class ClRecord implements Serializable {
         return recordTime;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public void setRecordTime(Date recordTime) {
         this.recordTime = recordTime;
     }

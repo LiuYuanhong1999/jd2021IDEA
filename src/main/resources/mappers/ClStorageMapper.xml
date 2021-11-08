@@ -134,7 +134,7 @@
                     left join gg_brand f on f.brand_id=e.brand_id
                     left join gg_design g on c.design_id=g.design_id
                     left join gg_color h on c.color_id=h.color_id
-
+                where a.storage_state=0
         order by a.storage_time desc
 
   </select>

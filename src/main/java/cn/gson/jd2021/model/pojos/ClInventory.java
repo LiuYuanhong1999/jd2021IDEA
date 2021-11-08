@@ -3,7 +3,10 @@ package cn.gson.jd2021.model.pojos;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * cl_inventory
@@ -111,6 +114,8 @@ public class ClInventory implements Serializable {
      */
     private Date storageTime;
 
+
+
     public String getStorageId() {
         return storageId;
     }
@@ -151,6 +156,9 @@ public class ClInventory implements Serializable {
         this.colorId = colorId;
     }
 
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getStorageLeaveTime() {
         return storageLeaveTime;
     }
@@ -183,6 +191,8 @@ public class ClInventory implements Serializable {
         this.storageMileage = storageMileage;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getStorageBegain() {
         return storageBegain;
     }
@@ -263,6 +273,8 @@ public class ClInventory implements Serializable {
         this.storageUser = storageUser;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getStorageTime() {
         return storageTime;
     }

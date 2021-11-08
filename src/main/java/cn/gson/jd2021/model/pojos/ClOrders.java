@@ -2,7 +2,10 @@ package cn.gson.jd2021.model.pojos;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * cl_orders
@@ -74,6 +77,8 @@ public class ClOrders implements Serializable {
         this.recordId = recordId;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getOrdersTime() {
         return ordersTime;
     }

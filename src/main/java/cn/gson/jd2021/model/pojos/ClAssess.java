@@ -3,7 +3,10 @@ package cn.gson.jd2021.model.pojos;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * cl_assess
@@ -145,6 +148,8 @@ public class ClAssess implements Serializable {
     private Date assessLeaveTime;
 
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getAssessLeaveTime() {
         return assessLeaveTime;
     }
@@ -346,6 +351,8 @@ public class ClAssess implements Serializable {
         this.assessMileage = assessMileage;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     public Date getAssessBegain() {
         return assessBegain;
     }
