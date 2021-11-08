@@ -14,6 +14,9 @@
     from bg_flow
     where bgfw_id = #{bgfwId,jdbcType=INTEGER}
   </select>
+  <select id="selectbgflow" resultMap="BaseResultMap">
+    select * from bg_flow
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from bg_flow
     where bgfw_id = #{bgfwId,jdbcType=INTEGER}

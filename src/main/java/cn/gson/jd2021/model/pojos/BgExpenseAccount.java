@@ -2,7 +2,10 @@ package cn.gson.jd2021.model.pojos;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -16,7 +19,7 @@ public class BgExpenseAccount implements Serializable {
     /**
      * 申请人，连接员工表
      */
-    private Integer bgetProposer;
+    private String bgetProposer;
 
     /**
      * 报销金额
@@ -36,12 +39,14 @@ public class BgExpenseAccount implements Serializable {
     /**
      * 申请时间
      */
-    private Date bgetTime;
+    private Timestamp bgetTime;
 
     /**
      * 报销状态
      */
     private Integer bgetState;
+
+    private UserList userList;
 
     private static final long serialVersionUID = 1L;
 }

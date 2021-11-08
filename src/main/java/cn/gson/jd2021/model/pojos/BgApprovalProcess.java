@@ -26,5 +26,8 @@ public class BgApprovalProcess implements Serializable {
      */
     private Integer bgapResult;
 
+    private BgFlow bgFlow;
+    private BgFlowEdition bgFlowEdition;
+
     private static final long serialVersionUID = 1L;
 }

@@ -9,7 +9,25 @@
     <result column="bget_cause" jdbcType="VARCHAR" property="bgetCause" />
     <result column="bget_time" jdbcType="TIMESTAMP" property="bgetTime" />
     <result column="bget_state" jdbcType="INTEGER" property="bgetState" />
+    <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList">
+      <id column="list_num" property="listNum" />
+      <result column="user_name" property="userName" />
+      <result column="user_paw" property="userPaw" />
+      <result column="list_name" property="listName" />
+      <result column="list_sex" property="listSex" />
+      <result column="list_old" property="listOld" />
+      <result column="list_card" property="listCard" />
+      <result column="list_salary" property="listSalary" />
+      <result column="list_ipone" property="listIpone" />
+      <result column="list_zt" property="listZt" />
+      <result column="ord_id" property="orgId" />
+    </association>
   </resultMap>
+  <select id="selectBgExpen" resultMap="BaseResultMap">
+    select * from bg_expense_account bgexpen
+        left join user_list ulist on bgexpen.bget_proposer = ulist.list_num
+        where bget_id = #{bgetId}
+  </select>
   <sql id="Base_Column_List">
     bget_id, bget_proposer, bget_money, bget_invoice, bget_cause, bget_time, bget_state
   </sql>
@@ -25,11 +43,9 @@
   </delete>
   <insert id="insert" keyColumn="bget_id" keyProperty="bgetId" parameterType="cn.gson.jd2021.model.pojos.BgExpenseAccount" useGeneratedKeys="true">
     insert into bg_expense_account (bget_proposer, bget_money, bget_invoice, 
-      bget_cause, bget_time, bget_state
-      )
+      bget_cause, bget_time)
     values (#{bgetProposer,jdbcType=INTEGER}, #{bgetMoney,jdbcType=DECIMAL}, #{bgetInvoice,jdbcType=VARCHAR}, 
-      #{bgetCause,jdbcType=VARCHAR}, #{bgetTime,jdbcType=TIMESTAMP}, #{bgetState,jdbcType=INTEGER}
-      )
+      #{bgetCause,jdbcType=VARCHAR}, #{bgetTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="bget_id" keyProperty="bgetId" parameterType="cn.gson.jd2021.model.pojos.BgExpenseAccount" useGeneratedKeys="true">
     insert into bg_expense_account
