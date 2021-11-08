@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.hlj.FinancePaymentDao">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.FinancePayment">
+    <id column="finance_id" jdbcType="INTEGER" property="financeId" />
+    <result column="finance_paydate" jdbcType="TIMESTAMP" property="financePaydate" />
+    <result column="finance_carnumber" jdbcType="VARCHAR" property="financeCarnumber" />
+    <result column="finance_manname" jdbcType="VARCHAR" property="financeManname" />
+    <result column="finance_brand" jdbcType="VARCHAR" property="financeBrand" />
+    <result column="finance_phone" jdbcType="VARCHAR" property="financePhone" />
+    <result column="finance_pepo" jdbcType="VARCHAR" property="financePepo" />
+    <result column="finance_money" jdbcType="DOUBLE" property="financeMoney" />
+    <result column="finance_static" jdbcType="INTEGER" property="financeStatic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    finance_id, finance_paydate, finance_carnumber, finance_manname, finance_brand, finance_phone, 
+    finance_pepo, finance_money, finance_static
+  </sql>
+
+
+  <select id="selectAllFince" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from finance_payment
+    <where>
+      <if test="value=='收车编号' and input!=null">
+        finance_carnumber like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='车主姓名' and input!=null">
+        finance_manname like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='汽车品牌' and input!=null">
+        finance_brand like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='车架号' and input!=null">
+        finance_phone like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='付款人' and input!=null">
+        finance_pepo like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <if test="value=='付款金额' and input!=null">
+        finance_money like CONCAT(CONCAT('%',#{input},'%'))
+      </if>
+      <!--      <if test="value=='未打印' and input!=null">-->
+      <!--        other_static like CONCAT(CONCAT('%',#{input},'%'))-->
+      <!--      </if>-->
+    </where>
+
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from finance_payment
+    where finance_id = #{financeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from finance_payment
+    where finance_id = #{financeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="finance_id" keyProperty="financeId" parameterType="cn.gson.jd2021.model.pojos.FinancePayment" useGeneratedKeys="true">
+    insert into finance_payment (finance_paydate, finance_carnumber, 
+      finance_manname, finance_brand, finance_phone, 
+      finance_pepo, finance_money, finance_static
+      )
+    values (#{financePaydate,jdbcType=TIMESTAMP}, #{financeCarnumber,jdbcType=VARCHAR}, 
+      #{financeManname,jdbcType=VARCHAR}, #{financeBrand,jdbcType=VARCHAR}, #{financePhone,jdbcType=VARCHAR}, 
+      #{financePepo,jdbcType=VARCHAR}, #{financeMoney,jdbcType=DOUBLE}, #{financeStatic,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="finance_id" keyProperty="financeId" parameterType="cn.gson.jd2021.model.pojos.FinancePayment" useGeneratedKeys="true">
+    insert into finance_payment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="financePaydate != null">
+        finance_paydate,
+      </if>
+      <if test="financeCarnumber != null">
+        finance_carnumber,
+      </if>
+      <if test="financeManname != null">
+        finance_manname,
+      </if>
+      <if test="financeBrand != null">
+        finance_brand,
+      </if>
+      <if test="financePhone != null">
+        finance_phone,
+      </if>
+      <if test="financePepo != null">
+        finance_pepo,
+      </if>
+      <if test="financeMoney != null">
+        finance_money,
+      </if>
+      <if test="financeStatic != null">
+        finance_static,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="financePaydate != null">
+        #{financePaydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="financeCarnumber != null">
+        #{financeCarnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="financeManname != null">
+        #{financeManname,jdbcType=VARCHAR},
+      </if>
+      <if test="financeBrand != null">
+        #{financeBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="financePhone != null">
+        #{financePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="financePepo != null">
+        #{financePepo,jdbcType=VARCHAR},
+      </if>
+      <if test="financeMoney != null">
+        #{financeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="financeStatic != null">
+        #{financeStatic,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.FinancePayment">
+    update finance_payment
+    <set>
+      <if test="financePaydate != null">
+        finance_paydate = #{financePaydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="financeCarnumber != null">
+        finance_carnumber = #{financeCarnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="financeManname != null">
+        finance_manname = #{financeManname,jdbcType=VARCHAR},
+      </if>
+      <if test="financeBrand != null">
+        finance_brand = #{financeBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="financePhone != null">
+        finance_phone = #{financePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="financePepo != null">
+        finance_pepo = #{financePepo,jdbcType=VARCHAR},
+      </if>
+      <if test="financeMoney != null">
+        finance_money = #{financeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="financeStatic != null">
+        finance_static = #{financeStatic,jdbcType=INTEGER},
+      </if>
+    </set>
+    where finance_id = #{financeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.FinancePayment">
+    update finance_payment
+    set finance_paydate = #{financePaydate,jdbcType=TIMESTAMP},
+      finance_carnumber = #{financeCarnumber,jdbcType=VARCHAR},
+      finance_manname = #{financeManname,jdbcType=VARCHAR},
+      finance_brand = #{financeBrand,jdbcType=VARCHAR},
+      finance_phone = #{financePhone,jdbcType=VARCHAR},
+      finance_pepo = #{financePepo,jdbcType=VARCHAR},
+      finance_money = #{financeMoney,jdbcType=DOUBLE},
+      finance_static = #{financeStatic,jdbcType=INTEGER}
+    where finance_id = #{financeId,jdbcType=INTEGER}
+  </update>
+</mapper>
