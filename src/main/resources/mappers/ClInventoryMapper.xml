@@ -23,7 +23,7 @@
     <result column="storage_user" jdbcType="VARCHAR" property="storageUser" />
     <result column="storage_time" jdbcType="TIMESTAMP" property="storageTime" />
     <result column="storage_state" jdbcType="INTEGER" property="storageState"></result>
-
+    <result column="storage_op" jdbcType="INTEGER" property="storageOp"/>
 
     <association property="clReturnVist" javaType="cn.gson.jd2021.model.pojos.ClReturnVist">
       <id column="vist_id" jdbcType="VARCHAR" property="vistId" />
@@ -58,6 +58,7 @@
         <result column="assess_mileage" jdbcType="INTEGER" property="assessMileage" />
         <result column="assess_begain" jdbcType="TIMESTAMP" property="assessBegain" />
         <result column="assess_leave_time" jdbcType="TIMESTAMP" property="assessLeaveTime" />
+
         <result column="assess_price" javaType="DECIMAL" property="assessPrice"></result>
         <result column="assess_final_price" jdbcType="DECIMAL" property="assessFinalPrice"></result>
         <association property="clOrders" javaType="cn.gson.jd2021.model.pojos.ClOrders">
@@ -146,24 +147,12 @@
     </association>
 
 
-    <result column="storage_op" property="storageOp"/>
+
     <!--factoryId意向厂商-->
     <association property="ggFactory" javaType="cn.gson.jd2021.model.pojos.GgFactory"
                  select="cn.gson.jd2021.model.mapper.tjq.GgFactoryMapper.selectByPrimaryKey"
                  column="factory_id"/>
-    <!--brandId意向品牌-->
-    <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand"
-                 select="cn.gson.jd2021.model.mapper.tjq.GgBrandMapper.selectByPrimaryKey"
-                 column="brand_id"/>
-    <association property="ggDesign" javaType="cn.gson.jd2021.model.pojos.GgDesign"
-                 select="cn.gson.jd2021.model.mapper.tjq.GgDesignMapper.selectByPrimaryKey"
-                 column="design_id"/>
-    <!--ggColor映射颜色 -->
-    <association property="ggColor" javaType="cn.gson.jd2021.model.pojos.GgColor"
-                 select="cn.gson.jd2021.model.mapper.tjq.GgColorMapper.selectByPrimaryKey"
-                 column="color_id"/>
   </resultMap>
-
   <select id="findAll" resultMap="BaseResultMap">
 
 

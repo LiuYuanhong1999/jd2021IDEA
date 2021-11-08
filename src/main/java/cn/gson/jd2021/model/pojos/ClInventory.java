@@ -342,4 +342,23 @@ public class ClInventory implements Serializable {
     public void setGgColor(GgColor ggColor) {
         this.ggColor = ggColor;
     }
+
+
+    private GgFactory ggFactory;
+
+    public Integer getStorageOp() {
+        return storageOp;
+    }
+
+    public void setStorageOp(Integer storageOp) {
+        this.storageOp = storageOp;
+    }
+
+    public GgFactory getGgFactory() {
+        return ggFactory;
+    }
+
+    public void setGgFactory(GgFactory ggFactory) {
+        this.ggFactory = ggFactory;
+    }
 }
