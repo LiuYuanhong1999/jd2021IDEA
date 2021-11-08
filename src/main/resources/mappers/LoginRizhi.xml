@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.sys.LoginRizhiMapper">
+    <resultMap id="loginRizhi" type="cn.gson.jd2021.model.pojos.LoginRizhi">
+        <id column="rizhi_id" property="rizhiId" />
+        <result column="rizhi_ip" property="rizhiIp" />
+        <result column="rizhi_time" property="rizhiTime" />
+        <result column="list_num" property="listNum" />
+        <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList">
+            <id column="list_num" property="listNum" />
+            <result column="user_name" property="userName" />
+            <result column="user_paw" property="userPaw" />
+            <result column="list_name" property="listName" />
+            <result column="list_sex" property="listSex" />
+            <result column="list_old" property="listOld" />
+            <result column="list_card" property="listCard" />
+            <result column="list_salary" property="listSalary" />
+            <result column="list_ipone" property="listIpone" />
+            <result column="list_zt" property="listZt" />
+            <result column="ord_id" property="orgId" />
+        </association>
+    </resultMap>
+
+    <!--新增用户时查询部门-->
+    <select id="findLoginRizhi" resultMap="loginRizhi">
+        select * from login_rizhi lr
+        left join user_list ul on lr.list_num=ul.list_num
+        order by lr.rizhi_time desc
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.sys.SysOrgMapper">
+    <resultMap id="sysOrg" type="cn.gson.jd2021.model.pojos.SysOrg">
+        <id column="org_id" property="orgId" />
+        <result column="org_pid" property="orgPid" />
+        <result column="org_name" property="orgName" />
+    </resultMap>
+
+    <resultMap id="findSo" type="cn.gson.jd2021.model.pojos.SysOrg">
+        <id column="func_so" property="orgId" />
+        <result column="func_pid" property="orgPid" />
+        <result column="func_name" property="orgName" />
+        <collection property="children" ofType="cn.gson.jd2021.model.pojos.SysOrg" resultMap="sysOrg">
+        </collection>
+    </resultMap>
+
+    <!--新增用户时查询部门-->
+    <select id="findUo" resultMap="sysOrg">
+        select * from sys_org
+    </select>
+
+    <select id="findDept" resultMap="findSo">
+        select s.org_id func_so,s.org_pid func_pid,
+               s.org_name func_name,b.*
+            from sys_org s left join sys_org b on s.org_id=b.org_pid where b.org_pid is not null
+    </select>
+</mapper>

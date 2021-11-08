@@ -1,28 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.gson.jd2021.model.mapper.sys.UserMapper">
-    <resultMap id="userList" type="cn.gson.jd2021.model.pojos.UserList">
-        <id column="list_num" property="listNum" />
-        <result column="user_name" property="userName" />
-        <result column="user_paw" property="userPaw" />
-        <result column="list_name" property="listName" />
-        <result column="list_sex" property="listSex" />
-        <result column="list_old" property="listOld" />
-        <result column="list_card" property="listCard" />
-        <result column="list_salary" property="listSalary" />
-        <result column="list_ipone" property="listIpone" />
-        <result column="list_zt" property="listZt" />
-        <result column="ord_id" property="orgId" />
-        <association property="sysOrg" resultMap="cn.gson.jd2021.model.pojos.SysOrg">
-            <id column="org_id" property="orgId" />
-            <result column="org_pid" property="orgPid" />
-            <result column="org_pids" property="orgPids" />
-            <result column="org_name" property="orgName" />
-        </association>
+<mapper namespace="cn.gson.jd2021.model.mapper.sys.UserListMapper">
+    <resultMap id="userList" type="cn.gson.jd2021.model.pojos.SysRoleuser">
+        <id column="sru_id" property="sruId" />
+        <result column="rold_id" property="roldId" />
+        <result column="list_num" property="listNum" />
+
+        <collection property="userJuese" javaType="cn.gson.jd2021.model.pojos.UserJuese">
+            <id column="js_id" property="jsId" />
+            <result column="js_sj" property="jsSj" />
+            <result column="js_name" property="jsName" />
+            <result column="js_time" property="jsTime" />
+        </collection>
+
+        <collection property="userList" javaType="cn.gson.jd2021.model.pojos.UserList">
+            <id column="list_num" property="listNum" />
+            <result column="user_name" property="userName" />
+            <result column="user_paw" property="userPaw" />
+            <result column="list_name" property="listName" />
+            <result column="list_sex" property="listSex" />
+            <result column="list_old" property="listOld" />
+            <result column="list_card" property="listCard" />
+            <result column="list_salary" property="listSalary" />
+            <result column="list_ipone" property="listIpone" />
+            <result column="list_zt" property="listZt" />
+            <result column="ord_id" property="orgId" />
+
+            <association property="sysOrg" javaType="cn.gson.jd2021.model.pojos.SysOrg">
+                <id column="org_id" property="orgId" />
+                <result column="org_pid" property="orgPid" />
+                <result column="org_pids" property="orgPids" />
+                <result column="org_name" property="orgName" />
+            </association>
+        </collection>
     </resultMap>
 
+    <resultMap id="listUser" type="cn.gson.jd2021.model.pojos.UserList">
+            <id column="list_num" property="listNum" />
+            <result column="user_name" property="userName" />
+            <result column="user_paw" property="userPaw" />
+            <result column="list_name" property="listName" />
+            <result column="list_sex" property="listSex" />
+            <result column="list_old" property="listOld" />
+            <result column="list_card" property="listCard" />
+            <result column="list_salary" property="listSalary" />
+            <result column="list_ipone" property="listIpone" />
+            <result column="list_zt" property="listZt" />
+            <result column="ord_id" property="orgId" />
 
+            <association property="sysOrg" javaType="cn.gson.jd2021.model.pojos.SysOrg">
+                <id column="org_id" property="orgId" />
+                <result column="org_pid" property="orgPid" />
+                <result column="org_pids" property="orgPids" />
+                <result column="org_name" property="orgName" />
+            </association>
+    </resultMap>
+
+    <!--查询用户列表-->
     <select id="findUserList" resultMap="userList">
-        select * from user_list
+        select * from sys_roleuser sru
+        left join user_list ul on ul.list_num=sru.list_num
+        left join user_juese uj on sru.rold_id=uj.js_id
+        left join sys_org so on ul.org_id=so.org_id
+        where ul.list_zt=1
+    </select>
+
+    <!--新增用户权限-->
+    <insert id="addUser">
+        insert into sys_roleuser(rold_id,list_num) values (#{roldId},#{listNum})
+    </insert>
+
+    <!--注销用户-->
+    <update id="delUser">
+        update user_list set list_zt=3 where list_num=#{listNum}
+    </update>
+
+    <select id="Login" resultMap="listUser">
+        select * from user_list where user_name=#{userName} and user_paw=#{passWord} and list_zt=1
     </select>
 </mapper>
