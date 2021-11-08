@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.sys.SysRoleuserMapper">
+    <resultMap id="userList" type="cn.gson.jd2021.model.pojos.SysRoleuser">
+        <id column="sru_id" property="sruId" />
+        <result column="rold_id" property="roldId" />
+        <result column="list_num" property="listNum" />
+
+        <collection property="userJuese" javaType="cn.gson.jd2021.model.pojos.UserJuese">
+            <id column="js_id" property="jsId" />
+            <result column="js_sj" property="jsSj" />
+            <result column="js_name" property="jsName" />
+            <result column="js_time" property="jsTime" />
+        </collection>
+
+        <collection property="userList" javaType="cn.gson.jd2021.model.pojos.UserList">
+            <id column="list_num" property="listNum" />
+            <result column="user_name" property="userName" />
+            <result column="user_paw" property="userPaw" />
+            <result column="list_name" property="listName" />
+            <result column="list_sex" property="listSex" />
+            <result column="list_old" property="listOld" />
+            <result column="list_card" property="listCard" />
+            <result column="list_salary" property="listSalary" />
+            <result column="list_ipone" property="listIpone" />
+            <result column="list_zt" property="listZt" />
+            <result column="ord_id" property="orgId" />
+
+            <association property="sysOrg" javaType="cn.gson.jd2021.model.pojos.SysOrg">
+                <id column="org_id" property="orgId" />
+                <result column="org_pid" property="orgPid" />
+                <result column="org_pids" property="orgPids" />
+                <result column="org_name" property="orgName" />
+            </association>
+        </collection>
+    </resultMap>
+
+</mapper>

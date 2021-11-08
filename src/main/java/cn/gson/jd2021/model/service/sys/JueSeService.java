@@ -1,0 +1,27 @@
+package cn.gson.jd2021.model.service.sys;
+
+import cn.gson.jd2021.model.mapper.sys.UserJueseMapper;
+import cn.gson.jd2021.model.pojos.UserJuese;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
+@Service
+public class JueSeService {
+    @Resource
+    UserJueseMapper userJueseMapper;
+
+    public void delJueSe(Integer jsId) {
+        userJueseMapper.deleteById(jsId);
+    }
+
+    public Integer addJueSe(UserJuese userJuese) {
+        if (userJuese.getJsId()==0){
+            userJueseMapper.insert(userJuese);
+            return 1;
+        }else {
+            userJueseMapper.updateById(userJuese);
+            return 2;
+        }
+    }
+}

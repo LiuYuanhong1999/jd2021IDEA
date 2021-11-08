@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.sys.SysRoleMenuMapper">
+    <resultMap id="funRm" type="cn.gson.jd2021.model.pojos.SysRolemenu">
+        <id column="srl_id" property="srlId"></id>
+        <result column="rold_id" property="roldId" />
+        <result column="nemu_id" property="menuId" />
+        <collection property="userJuese" javaType="cn.gson.jd2021.model.pojos.UserJuese">
+            <id column="js_id" property="jsId" />
+            <result column="js_sj" property="jsSj" />
+            <result column="js_name" property="jsName" />
+            <result column="js_time" property="jsTime" />
+        </collection>
+        <collection property="sysMenu" javaType="cn.gson.jd2021.model.pojos.SysMenu">
+            <id column="menu_id" property="menuId" />
+            <result column="menu_name" property="menuName" />
+            <result column="menu_method" property="menuMethod" />
+            <result column="menu_url" property="menuUrl" />
+            <result column="compoent_name" property="compoentName" />
+            <result column="compoent_path" property="compoentPath" />
+        </collection>
+    </resultMap>
+
+    <delete id="delMenu">
+        delete from sys_rolemenu where rold_id=#{roldId}
+    </delete>
+
+    <select id="funListRm" resultType="_int">
+        select srm.menu_id from sys_rolemenu srm
+        left join sys_menu sm on srm.menu_id=sm.menu_id
+        left join user_juese uj on srm.rold_id=uj.js_id
+        where uj.js_id=#{jsId} and sm.menu_pid is not null
+    </select>
+</mapper>

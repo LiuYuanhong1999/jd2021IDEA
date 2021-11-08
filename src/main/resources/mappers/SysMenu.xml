@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.sys.SysMenuMapper">
+
+    <resultMap id="funMenu" type="cn.gson.jd2021.model.pojos.SysMenu">
+        <id column="menu_id" property="menuId" />
+        <result column="menu_pid" property="menuPid"/>
+        <result column="menu_name" property="menuName" />
+        <result column="menu_method" property="menuMethod" />
+        <result column="menu_url" property="menuUrl" />
+        <result column="compoent_name" property="compoentName" />
+        <result column="compoent_path" property="compoentPath" />
+        <result column="icon" property="icon"/>
+    </resultMap>
+
+    <resultMap id="funMenu1" type="cn.gson.jd2021.model.pojos.SysMenu">
+        <id column="parent_id" property="menuId" />
+        <result column="parent_pid" property="menuPid"/>
+        <result column="parent_name" property="menuName" />
+        <result column="parent_method" property="menuMethod" />
+        <result column="parent_url" property="menuUrl" />
+        <result column="parent_cname" property="compoentName" />
+        <result column="parent_path" property="compoentPath" />
+        <result column="icons" property="icon"/>
+        <collection property="children" ofType="cn.gson.jd2021.model.pojos.SysMenu" resultMap="funMenu">
+        </collection>
+    </resultMap>
+
+
+    <select id="findMenu" resultMap="funMenu1">
+        select s.menu_id parent_id,s.menu_pid menuPid,
+               s.menu_name parent_name,s.menu_method parent_method,
+               s.menu_url parent_url,s.compoent_name parent_cname,
+               s.compoent_path parent_path,s.icon icons,b.*
+         from sys_menu s
+        left join sys_menu b on s.menu_id = b.menu_pid
+				where b.menu_id is not null
+    </select>
+
+    <select id="homeMenu" resultMap="funMenu1">
+        select s.menu_id parent_id,s.menu_pid menuPid,
+               s.menu_name parent_name,s.menu_method parent_method,
+               s.menu_url parent_url,s.compoent_name parent_cname,
+               s.compoent_path parent_path,s.icon icons,b.*
+        from sys_menu s
+		left join sys_menu b on s.menu_id = b.menu_pid
+		left join sys_rolemenu sr on sr.menu_id=b.menu_id
+		left join sys_roleuser su on sr.rold_id=su.rold_id
+		where su.list_num=#{listNum}
+    </select>
+
+    <select id="findAllMenu" resultMap="funMenu">
+        select * from sys_menu where menu_pid=0
+    </select>
+</mapper>
