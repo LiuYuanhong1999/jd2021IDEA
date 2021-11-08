@@ -20,13 +20,22 @@ public interface ClOrdersMapper {
 
     int updateByPrimaryKey(ClOrders record);
 
-    //查询预约记录
+    //查询预约成功记录
     List<ClOrders> findClOrders();
 
+    //查询所有记录
+    List<ClOrders> findClOrders2();
+
+
     //车辆评估查询已预约客户
-    List<ClOrders> findClOrdersState(String ordersId);
+    List<ClOrders> findClOrdersState();
 
 
     //根据预约编号查询具体信息
     List<ClOrders> findClOrdersState2(String recordId);
+
+
+    //根据编号查询信息
+    List<ClOrders> findClOrdersState3(String ordersId);
+
 }

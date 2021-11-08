@@ -22,6 +22,8 @@
     <result column="storage_prcie" jdbcType="DECIMAL" property="storagePrcie" />
     <result column="storage_user" jdbcType="VARCHAR" property="storageUser" />
     <result column="storage_time" jdbcType="TIMESTAMP" property="storageTime" />
+    <result column="storage_state" jdbcType="INTEGER" property="storageState"></result>
+
 
     <association property="clReturnVist" javaType="cn.gson.jd2021.model.pojos.ClReturnVist">
       <id column="vist_id" jdbcType="VARCHAR" property="vistId" />
@@ -124,10 +126,48 @@
 
 
 
+    <!--    汽车品牌-->
+    <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand">
+      <id column="brand_id" jdbcType="INTEGER" property="brandId" />
+      <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    </association>
 
+    <!--    汽车款式-->
+    <association property="ggDesign" javaType="cn.gson.jd2021.model.pojos.GgDesign">
+      <id column="design_id" jdbcType="INTEGER" property="designId" />
+      <result column="design_name" jdbcType="VARCHAR" property="designName" />
+      <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    </association>
+
+    <!--    汽车颜色-->
+    <association property="ggColor" javaType="cn.gson.jd2021.model.pojos.GgColor">
+      <id column="color_id" jdbcType="INTEGER" property="colorId" />
+      <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+    </association>
 
 
   </resultMap>
+
+  <select id="findAll" resultMap="BaseResultMap">
+
+
+    select * from cl_inventory a
+                    left join gg_brand b on a.brand_id=b.brand_id
+                    left join gg_design c on a.design_id=c.design_id
+                    left join gg_color d on a.color_id=d.color_id
+            <where>
+                    <if test="storageState !=null and storageState !=''">
+
+                    and a.storage_state=#{storageState}
+                    </if>
+            </where>
+    order by a.storage_time desc
+
+
+  </select>
+
+
+
   <sql id="Base_Column_List">
     storage_id, factory_id, brand_id, design_id, color_id, storage_leave_time, storage_variator, 
     storage_displacement, storage_mileage, storage_begain, storage_card, storage_type, 

@@ -12,8 +12,6 @@
     <result column="orders_type" jdbcType="VARCHAR" property="ordersType" />
     <result column="orders_methdo" jdbcType="VARCHAR" property="ordersMethdo" />
 
-
-
     <association property="clRecord" javaType="cn.gson.jd2021.model.pojos.ClRecord">
 
       <id column="record_id" jdbcType="VARCHAR" property="recordId" />
@@ -57,6 +55,13 @@
 
     </association>
 
+    <association property="ggArchive" javaType="cn.gson.jd2021.model.pojos.GgArchive">
+      <id column="ac_id" jdbcType="INTEGER" property="acId" />
+      <result column="ac_cause" jdbcType="VARCHAR" property="acCause" />
+      <result column="ac_type" jdbcType="INTEGER" property="acType" />
+      <result column="ac_use" jdbcType="INTEGER" property="acUse" />
+
+    </association>
 
   </resultMap>
 
@@ -67,9 +72,23 @@
                      left join gg_brand c on b.brand_id=c.brand_id
                      left join gg_design d on b.design_id=d.design_id
                      left join gg_color e on b.color_id=e.color_id
-             where a.orders_state=1 or a.orders_state=0
+                     left join gg_archive f on a.ac_id=f.ac_id
+             where a.orders_state=1
     order by a.orders_time desc
   </select>
+
+<!--  查询所有记录-->
+  <select id="findClOrders2" resultMap="BaseResultMap">
+    select * from  cl_orders a
+                     left join  cl_record b on a.record_id=b.record_id
+                     left join gg_brand c on b.brand_id=c.brand_id
+                     left join gg_design d on b.design_id=d.design_id
+                     left join gg_color e on b.color_id=e.color_id
+                     left join gg_archive f on a.ac_id=f.ac_id
+    order by a.orders_time desc
+  </select>
+
+
 
 <!--车辆评估查询已预约客户-->
   <select id="findClOrdersState" resultMap="BaseResultMap">
@@ -80,15 +99,24 @@
                      left join gg_design d on b.design_id=d.design_id
                      left join gg_color e on b.color_id=e.color_id
 
-    <where>
-      <if test="ordersId !=null and ordersId !=''">
-        a.orders_id=#{ordersId}
-      </if>
-        and a.orders_state=1
-    </where>
-    order by a.orders_time desc
+                     where a.orders_state=1
+                        order by a.orders_time desc
   </select>
 
+
+
+  <!--车辆评估查询根据编号查询信息-->
+  <select id="findClOrdersState3" resultMap="BaseResultMap">
+
+    select * from  cl_orders a
+                     left join  cl_record b on a.record_id=b.record_id
+                     left join gg_brand c on b.brand_id=c.brand_id
+                     left join gg_design d on b.design_id=d.design_id
+                     left join gg_color e on b.color_id=e.color_id
+
+    where a.orders_id=#{ordersId}
+    order by a.orders_time desc
+  </select>
 
   <select id="findClOrdersState2" resultMap="BaseResultMap">
     select * from  cl_orders a

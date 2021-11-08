@@ -146,4 +146,15 @@ public class ClOrders implements Serializable {
     public void setClRecord(ClRecord clRecord) {
         this.clRecord = clRecord;
     }
+
+    //归档原因
+    private GgArchive ggArchive;
+
+    public GgArchive getGgArchive() {
+        return ggArchive;
+    }
+
+    public void setGgArchive(GgArchive ggArchive) {
+        this.ggArchive = ggArchive;
+    }
 }

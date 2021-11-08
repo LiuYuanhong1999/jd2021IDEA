@@ -114,7 +114,19 @@ public class ClInventory implements Serializable {
      */
     private Date storageTime;
 
+    /**
+     * 库存类型
+     */
+    private Integer storageState;
 
+
+    public Integer getStorageState() {
+        return storageState;
+    }
+
+    public void setStorageState(Integer storageState) {
+        this.storageState = storageState;
+    }
 
     public String getStorageId() {
         return storageId;
@@ -285,7 +297,7 @@ public class ClInventory implements Serializable {
 
 
     //回访记录
-    ClReturnVist clReturnVist;
+    private ClReturnVist clReturnVist;
 
     public ClReturnVist getClReturnVist() {
         return clReturnVist;
@@ -293,5 +305,36 @@ public class ClInventory implements Serializable {
 
     public void setClReturnVist(ClReturnVist clReturnVist) {
         this.clReturnVist = clReturnVist;
+    }
+
+
+    private GgBrand ggBrand;
+
+    public GgBrand getGgBrand() {
+        return ggBrand;
+    }
+
+    public void setGgBrand(GgBrand ggBrand) {
+        this.ggBrand = ggBrand;
+    }
+
+    private GgDesign ggDesign;
+
+    public GgDesign getGgDesign() {
+        return ggDesign;
+    }
+
+    public void setGgDesign(GgDesign ggDesign) {
+        this.ggDesign = ggDesign;
+    }
+
+    private GgColor ggColor;
+
+    public GgColor getGgColor() {
+        return ggColor;
+    }
+
+    public void setGgColor(GgColor ggColor) {
+        this.ggColor = ggColor;
     }
 }

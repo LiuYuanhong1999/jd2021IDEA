@@ -23,11 +23,14 @@ public class ClOrdersService {
     GgArchiveMapper ggArchiveMapper;//归档类型
 
 
-    //客户预约的记录
+    //客户预约成功的记录
 
     public List<ClOrders> findClOrders(){
         return clOrdersMapper.findClOrders();
     }
+
+    //所有预约记录
+    public List<ClOrders> findClOrders2(){return clOrdersMapper.findClOrders2();}
 
 
     //增加预约记录

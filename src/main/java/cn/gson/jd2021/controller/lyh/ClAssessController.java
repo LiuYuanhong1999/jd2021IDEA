@@ -33,8 +33,13 @@ public class ClAssessController {
 
 
     //查询客户预约已预约客户的信息
-    @RequestMapping("find-clOrdersState")
-    public List<ClOrders> findClOrdersState(String ordersId){
-        return clAssessService.findClOrdersState(ordersId);
+    @RequestMapping("find-clOrdersStates")
+    public List<ClOrders> findClOrdersState(){
+        return clAssessService.findClOrdersState();
+    }
+
+    @RequestMapping("find-clOrdersState1")
+    public List<ClOrders> findClOrdersState2(String ordersId){
+        return clAssessService.findClOrdersState3(ordersId);
     }
 }

@@ -3,10 +3,14 @@ package cn.gson.jd2021.model.mapper.lyh;
 import cn.gson.jd2021.model.pojos.ClInventory;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface ClInventoryMapper {
     int deleteByPrimaryKey(String storageId);
 
+    //库存查询
+    List<ClInventory> findAll();
 
     //增加库存数量
     int insert(ClInventory record);

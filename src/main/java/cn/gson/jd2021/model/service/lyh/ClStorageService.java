@@ -26,6 +26,8 @@ public class ClStorageService {
 
 
 
+
+
     //查询库存记录
     public List<ClStorage> selectClStorageAll(){
         return clStorageMapper.selectClStorageAll();

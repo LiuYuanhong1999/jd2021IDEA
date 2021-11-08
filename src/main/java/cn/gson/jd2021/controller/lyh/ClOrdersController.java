@@ -20,12 +20,18 @@ public class ClOrdersController {
 
 
 
-    //客户预约记录
+    //客户预约成功记录
     @RequestMapping("find-clOrders")
     public List<ClOrders> findClOrders(){
         return clOrdersService.findClOrders();
     }
 
+
+    //所有预约记录
+    @RequestMapping("find-clOrders2")
+    public List<ClOrders> findClOrders2(){
+        return clOrdersService.findClOrders2();
+    }
 
     //增加预约记录
     @PostMapping("add-clOrders")

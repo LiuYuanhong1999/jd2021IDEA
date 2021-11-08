@@ -27,7 +27,6 @@
     <result column="assess_begain" jdbcType="TIMESTAMP" property="assessBegain" />
     <result column="assess_leave_time" jdbcType="TIMESTAMP" property="assessLeaveTime" />
     <result column="assess_price" javaType="DECIMAL" property="assessPrice"></result>
-    <result column="assess_final_price" jdbcType="DECIMAL" property="assessFinalPrice"></result>
     <association property="clOrders" javaType="cn.gson.jd2021.model.pojos.ClOrders">
 
       <id column="orders_id" jdbcType="VARCHAR" property="ordersId" />
@@ -135,22 +134,22 @@
     where assess_id = #{assessId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="assess_id" keyProperty="assessId" parameterType="cn.gson.jd2021.model.pojos.ClAssess" useGeneratedKeys="true">
-    insert into cl_assess (assess_id,order_id, assess_card, assess_type,
+    insert into cl_assess (assess_id,orders_id, assess_card, assess_type,
       assess_drive, assess_engine, assess_tap, 
       assess_transfer_times, assess_license, assess_appraise, 
       assess_newcar_price, assess_office, assess_user, 
       assess_review, assess_note, factory_id, 
       brand_id, design_id, assess_variator, 
       color_id, assess_displacement, assess_mileage, 
-      assess_begain,assess_leave_time,assess_price,assess_final_price)
-    values (#{assessId,jdbcType=VARCHAR},#{orderId,jdbcType=VARCHAR}, #{assessCard,jdbcType=VARCHAR}, #{assessType,jdbcType=VARCHAR},
+      assess_begain,assess_leave_time,assess_price)
+    values (#{assessId,jdbcType=VARCHAR},#{ordersId,jdbcType=VARCHAR}, #{assessCard,jdbcType=VARCHAR}, #{assessType,jdbcType=VARCHAR},
       #{assessDrive,jdbcType=VARCHAR}, #{assessEngine,jdbcType=VARCHAR}, #{assessTap,jdbcType=VARCHAR}, 
       #{assessTransferTimes,jdbcType=INTEGER}, #{assessLicense,jdbcType=VARCHAR}, #{assessAppraise,jdbcType=VARCHAR}, 
       #{assessNewcarPrice,jdbcType=DECIMAL}, #{assessOffice,jdbcType=DECIMAL}, #{assessUser,jdbcType=VARCHAR}, 
       #{assessReview,jdbcType=VARCHAR}, #{assessNote,jdbcType=VARCHAR}, #{factoryId,jdbcType=INTEGER}, 
       #{brandId,jdbcType=INTEGER}, #{designId,jdbcType=INTEGER}, #{assessVariator,jdbcType=VARCHAR}, 
       #{colorId,jdbcType=INTEGER}, #{assessDisplacement,jdbcType=VARCHAR}, #{assessMileage,jdbcType=INTEGER}, 
-      #{assessBegain,jdbcType=TIMESTAMP},#{assessLeaveTime,jdbcType=TIMESTAMP},#{assessPrice,jdbcType=DECIMAL},#{assesFinalPrice,jdbcType=DECIMAL})
+      #{assessBegain,jdbcType=TIMESTAMP},#{assessLeaveTime,jdbcType=TIMESTAMP},#{assessPrice,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" keyColumn="assess_id" keyProperty="assessId" parameterType="cn.gson.jd2021.model.pojos.ClAssess" useGeneratedKeys="true">
     insert into cl_assess

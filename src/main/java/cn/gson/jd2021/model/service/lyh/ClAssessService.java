@@ -34,9 +34,10 @@ public class ClAssessService {
 
 
     //查询客户预约已预约的客户
-    public List<ClOrders> findClOrdersState(String ordersId){
-       return clOrdersMapper.findClOrdersState(ordersId);
+    public List<ClOrders> findClOrdersState(){
+       return clOrdersMapper.findClOrdersState();
     }
 
-
+    //根据编号查询信息
+    public List<ClOrders> findClOrdersState3(String ordersId){return clOrdersMapper.findClOrdersState3(ordersId);}
 }
