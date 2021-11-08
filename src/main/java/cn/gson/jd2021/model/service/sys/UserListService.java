@@ -37,13 +37,13 @@ public class UserListService {
     LoginRizhiMapper loginRizhiMapper;
 
     //查询用户列表
-    public List<UserList> findUserList(){
-        return userListMapper.findUserList();
+    public List<UserList> findUserList(Integer jsId, String userName, Integer orgId, Integer listSex){
+        return userListMapper.findUserList(jsId,userName,orgId,listSex);
     }
 
     //新增用户时查询角色组
-    public List<UserJuese> findUj(){
-        return userJueseMapper.findUj();
+    public List<UserJuese> findUj(Integer jsId, String jsName){
+        return userJueseMapper.findUj(jsId,jsName);
     }
 
     //新增用户时查询部门
@@ -99,9 +99,6 @@ public class UserListService {
     }
 
     public UserList findUserId(String listNum) {
-        UserList userId = userListMapper.findUserId(listNum);
-        System.out.println("========================================================================");
-        System.out.println(userId);
-        return userId;
+        return userListMapper.findUserId(listNum);
     }
 }

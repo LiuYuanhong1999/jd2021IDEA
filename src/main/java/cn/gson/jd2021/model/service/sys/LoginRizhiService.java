@@ -12,8 +12,8 @@ public class LoginRizhiService {
     @Resource
     LoginRizhiMapper loginRizhiMapper;
 
-    public List<LoginRizhi> findLoginRizhi(){
-        return loginRizhiMapper.findLoginRizhi();
+    public List<LoginRizhi> findLoginRizhi(String userName, String loginIp){
+        return loginRizhiMapper.findLoginRizhi(userName,loginIp);
     }
 
     public void delLoginRizhi(LoginRizhi loginRizhi) {

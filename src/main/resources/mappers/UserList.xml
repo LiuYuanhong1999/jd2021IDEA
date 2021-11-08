@@ -63,6 +63,18 @@
         left join user_juese uj on sru.rold_id=uj.js_id
         left join sys_org so on ul.org_id=so.org_id
         where ul.list_zt=1
+        <if test="jsId!=null">
+            and uj.js_id like '%${jsId}%'
+        </if>
+        <if test="userName!=null">
+            and ul.user_name like '%${userName}%'
+        </if>
+        <if test="orgId!=null">
+            and so.org_id like '%${orgId}%'
+        </if>
+        <if test="listSex!=null">
+            and ul.list_sex like '${listSex}'
+        </if>
     </select>
 
     <!--新增用户权限-->

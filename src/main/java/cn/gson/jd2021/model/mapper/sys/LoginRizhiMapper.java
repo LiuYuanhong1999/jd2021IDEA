@@ -8,5 +8,5 @@ import java.util.List;
 
 @Mapper
 public interface LoginRizhiMapper extends BaseMapper<LoginRizhi> {
-    List<LoginRizhi> findLoginRizhi();
+    List<LoginRizhi> findLoginRizhi(String userName, String loginIp);
 }

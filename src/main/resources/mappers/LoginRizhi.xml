@@ -25,6 +25,13 @@
     <select id="findLoginRizhi" resultMap="loginRizhi">
         select * from login_rizhi lr
         left join user_list ul on lr.list_num=ul.list_num
+        where 1=1
+        <if test="userName!=null">
+            and ul.list_name like '%${userName}%'
+        </if>
+        <if test="loginIp!=null">
+            and lr.rizhi_ip like '%${loginIp}%'
+        </if>
         order by lr.rizhi_time desc
     </select>
 </mapper>
