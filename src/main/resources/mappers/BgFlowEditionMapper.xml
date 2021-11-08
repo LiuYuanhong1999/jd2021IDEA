@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gson.jd2021.model.mapper.jl.BgFlowEditionMapper">
+  <resultMap id="BaseResultMap" type="cn.gson.jd2021.model.pojos.BgFlowEdition">
+    <id column="bgfn_id" jdbcType="INTEGER" property="bgfnId" />
+    <result column="bgfn_serial" jdbcType="VARCHAR" property="bgfnSerial" />
+    <result column="bgfn_designation" jdbcType="VARCHAR" property="bgfnDesignation" />
+    <result column="bgfn_approver" jdbcType="INTEGER" property="bgfnApprover" />
+    <result column="bgfn_bgflowid" jdbcType="INTEGER" property="bgfnBgflowid" />
+    <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList">
+      <id column="list_num" property="listNum" />
+      <result column="user_name" property="userName" />
+      <result column="user_paw" property="userPaw" />
+      <result column="list_name" property="listName" />
+      <result column="list_sex" property="listSex" />
+      <result column="list_old" property="listOld" />
+      <result column="list_card" property="listCard" />
+      <result column="list_salary" property="listSalary" />
+      <result column="list_ipone" property="listIpone" />
+      <result column="list_zt" property="listZt" />
+      <result column="ord_id" property="orgId" />
+    </association>
+    <association property="bgFlow" javaType="cn.gson.jd2021.model.pojos.BgFlow">
+      <id column="bgfw_id" jdbcType="INTEGER" property="bgfwId" />
+      <result column="bgfw_name" jdbcType="VARCHAR" property="bgfwName" />
+    </association>
+  </resultMap>
+  <select id="selectuser" resultMap="BaseResultMap">
+    select * from user_list
+  </select>
+  <select id="selectBybgflow" resultMap="BaseResultMap">
+    select * from bg_flow_edition bgfled
+        left join bg_flow bgfl on bgfled.bgfn_bgflowid = bgfl.bgfw_id
+        left join user_list lis on bgfled.bgfn_approver = lis.list_num
+        where bgfn_bgflowid = #{bgfnBgflowid}
+  </select>
+  <sql id="Base_Column_List">
+    bgfn_id, bgfn_serial, bgfn_designation, bgfn_approver, bgfn_bgflowid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bg_flow_edition
+    where bgfn_id = #{bgfnId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bg_flow_edition
+    where bgfn_id = #{bgfnId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="bgfn_id" keyProperty="bgfnId" parameterType="cn.gson.jd2021.model.pojos.BgFlowEdition" useGeneratedKeys="true">
+    insert into bg_flow_edition (bgfn_serial, bgfn_designation, bgfn_approver, 
+      bgfn_bgflowid)
+    values (#{bgfnSerial,jdbcType=VARCHAR}, #{bgfnDesignation,jdbcType=VARCHAR}, #{bgfnApprover,jdbcType=INTEGER}, 
+      #{bgfnBgflowid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="bgfn_id" keyProperty="bgfnId" parameterType="cn.gson.jd2021.model.pojos.BgFlowEdition" useGeneratedKeys="true">
+    insert into bg_flow_edition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bgfnSerial != null">
+        bgfn_serial,
+      </if>
+      <if test="bgfnDesignation != null">
+        bgfn_designation,
+      </if>
+      <if test="bgfnApprover != null">
+        bgfn_approver,
+      </if>
+      <if test="bgfnBgflowid != null">
+        bgfn_bgflowid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bgfnSerial != null">
+        #{bgfnSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="bgfnDesignation != null">
+        #{bgfnDesignation,jdbcType=VARCHAR},
+      </if>
+      <if test="bgfnApprover != null">
+        #{bgfnApprover,jdbcType=INTEGER},
+      </if>
+      <if test="bgfnBgflowid != null">
+        #{bgfnBgflowid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gson.jd2021.model.pojos.BgFlowEdition">
+    update bg_flow_edition
+    <set>
+      <if test="bgfnSerial != null">
+        bgfn_serial = #{bgfnSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="bgfnDesignation != null">
+        bgfn_designation = #{bgfnDesignation,jdbcType=VARCHAR},
+      </if>
+      <if test="bgfnApprover != null">
+        bgfn_approver = #{bgfnApprover,jdbcType=INTEGER},
+      </if>
+      <if test="bgfnBgflowid != null">
+        bgfn_bgflowid = #{bgfnBgflowid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bgfn_id = #{bgfnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.BgFlowEdition">
+    update bg_flow_edition
+    set bgfn_serial = #{bgfnSerial,jdbcType=VARCHAR},
+      bgfn_designation = #{bgfnDesignation,jdbcType=VARCHAR},
+      bgfn_approver = #{bgfnApprover,jdbcType=INTEGER},
+      bgfn_bgflowid = #{bgfnBgflowid,jdbcType=INTEGER}
+    where bgfn_id = #{bgfnId,jdbcType=INTEGER}
+  </update>
+</mapper>
