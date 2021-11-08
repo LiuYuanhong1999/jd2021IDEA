@@ -49,17 +49,6 @@
                     left join gg_design d on a.design_id=d.design_id
                     left join gg_color e on a.color_id=e.color_id
 
-        <where>
-          <if test="ggBrand.brandName !=null and ggBrand.brandName!=''">
-            and c.brand_name like '%${ggBrand.brandName}%'
-
-          </if>
-            <if test="ggColor.colorName !=null and ggColor.colorName !=''">
-              and e.color_name like '%${ggColor.colorName}%'
-            </if>
-
-        </where>
-
 
     order by a.record_time desc
 

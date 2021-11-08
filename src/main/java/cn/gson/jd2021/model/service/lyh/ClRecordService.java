@@ -28,8 +28,8 @@ public class ClRecordService {
     GgDesignMapper ggDesignMapper;//款式
 
     //查询登记记录
-    public List<ClRecord> findByClRecord(ClRecord clRecord){
-        return clRecordMapper.findByClRecord(clRecord);
+    public List<ClRecord> findByClRecord(){
+        return clRecordMapper.findByClRecord();
     }
 
     //增加登记

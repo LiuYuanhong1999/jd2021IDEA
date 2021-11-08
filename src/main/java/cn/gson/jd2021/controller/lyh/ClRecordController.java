@@ -22,8 +22,8 @@ public class ClRecordController {
 
     //查询收车登记记录
     @RequestMapping("/find-clRecord")
-    public List<ClRecord> findByClRecord(ClRecord clRecord){
-        return clRecordService.findByClRecord(clRecord);
+    public List<ClRecord> findByClRecord(){
+        return clRecordService.findByClRecord();
     }
 
 
