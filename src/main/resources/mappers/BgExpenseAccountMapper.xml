@@ -31,11 +31,20 @@
   <sql id="Base_Column_List">
     bget_id, bget_proposer, bget_money, bget_invoice, bget_cause, bget_time, bget_state
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+  <update id="updateBgExpenByPrimaryKey" parameterType="cn.gson.jd2021.model.pojos.SellOrder">
+    update bg_expense_account
+    set
+      bget_state =  1
+    where bget_id = #{bgetId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectBgExpenByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from bg_expense_account
-    where bget_id = #{bgetId,jdbcType=INTEGER}
+    where bget_state = 0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from bg_expense_account

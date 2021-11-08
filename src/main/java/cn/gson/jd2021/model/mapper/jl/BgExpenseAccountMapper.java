@@ -1,6 +1,7 @@
 package cn.gson.jd2021.model.mapper.jl;
 
 import cn.gson.jd2021.model.pojos.BgExpenseAccount;
+import cn.gson.jd2021.model.pojos.SellOrder;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface BgExpenseAccountMapper {
      */
     void insertSelective(BgExpenseAccount bgExpenseAccount);
 
-    BgExpenseAccount selectByPrimaryKey(Integer bgetId);
+//    BgExpenseAccount selectByPrimaryKey(Integer bgetId);
 
     int updateByPrimaryKeySelective(BgExpenseAccount record);
 
@@ -28,4 +29,8 @@ public interface BgExpenseAccountMapper {
      * @param bgExpenseAccount
      */
     List<BgExpenseAccount> selectBgExpen(BgExpenseAccount bgExpenseAccount);
+
+     int updateBgExpenByPrimaryKey(BgExpenseAccount bgExpenseAccount);
+    List<BgExpenseAccount> selectBgExpenByPrimaryKey();
+
 }

@@ -22,7 +22,7 @@ public interface ClRecordMapper {
 
 
     //查询所有信息
-    List<ClRecord> findByClRecord();
+    List<ClRecord> findByClRecord(ClRecord clRecord);
 
     //根据编号查询登记信息
     List<ClRecord> findClRecordId(String recordId);

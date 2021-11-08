@@ -4,6 +4,8 @@ import cn.gson.jd2021.model.mapper.jl.BgApprovalProcessMapper;
 import cn.gson.jd2021.model.mapper.jl.BgCourseMapper;
 import cn.gson.jd2021.model.mapper.jl.BgExpenseAccountMapper;
 import cn.gson.jd2021.model.pojos.*;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,5 +44,17 @@ public class BgExpenseAccountService {
      */
     public void insert(BgExpenseAccount bgExpenseAccount){
         bgexpeMap.insert(bgExpenseAccount);
+    }
+
+    //修改状态
+    public int updByQka(BgExpenseAccount bgExpenseAccount) {
+            return bgexpeMap.updateBgExpenByPrimaryKey(bgExpenseAccount);
+    }
+
+   public PageInfo<BgExpenseAccount> selectBgExpenByPrimaryKey(int currentPage, int pagesize){
+        PageHelper.startPage(currentPage, pagesize);
+        List<BgExpenseAccount> bgExpenseAccounts = bgexpeMap.selectBgExpenByPrimaryKey();
+        PageInfo<BgExpenseAccount> bgExpenseAccountPageInfo = new PageInfo<>(bgExpenseAccounts);
+        return bgExpenseAccountPageInfo;
     }
 }
