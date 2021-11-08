@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface UserJueseMapper extends BaseMapper<UserJuese> {
     //新增用户时查询角色组
-    List<UserJuese> findUj();
+    List<UserJuese> findUj(Integer jsId, String jsName);
 }

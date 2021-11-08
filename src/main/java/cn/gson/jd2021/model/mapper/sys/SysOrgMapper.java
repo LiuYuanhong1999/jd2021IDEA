@@ -11,5 +11,5 @@ public interface SysOrgMapper extends BaseMapper<SysOrg> {
     //新增用户时查询部门
     List<SysOrg> findUo();
 
-    List<SysOrg> findDept();
+    List<SysOrg> findDept(String deptName);
 }

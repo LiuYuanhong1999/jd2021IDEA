@@ -17,8 +17,8 @@ public class SysOrgController {
     SysOrgService sysOrgService;
 
     @RequestMapping("/find-dept")
-    public List<SysOrg> findDept(){
-        return sysOrgService.findDept();
+    public List<SysOrg> findDept(String deptName){
+        return sysOrgService.findDept(deptName);
     }
 
     @PostMapping("/add-dept")

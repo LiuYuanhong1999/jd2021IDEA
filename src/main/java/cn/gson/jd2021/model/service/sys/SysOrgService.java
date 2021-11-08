@@ -12,8 +12,8 @@ public class SysOrgService {
     @Resource
     SysOrgMapper sysOrgMapper;
 
-    public List<SysOrg> findDept(){
-        return sysOrgMapper.findDept();
+    public List<SysOrg> findDept(String deptName){
+        return sysOrgMapper.findDept(deptName);
     }
 
     public Integer addDept(SysOrg sysOrg) {

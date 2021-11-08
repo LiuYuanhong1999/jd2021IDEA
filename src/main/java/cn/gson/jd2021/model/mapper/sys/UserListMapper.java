@@ -6,13 +6,14 @@ import cn.gson.jd2021.model.pojos.vo.Login;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface UserListMapper extends BaseMapper<UserList> {
     //查询用户列表
-    List<UserList> findUserList();
+    List<UserList> findUserList( Integer jsId,String userName, Integer orgId, Integer listSex);
 
     void addUser(SysRoleuser sysRoleuser);
 

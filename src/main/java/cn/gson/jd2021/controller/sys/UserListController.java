@@ -7,6 +7,7 @@ import cn.gson.jd2021.model.pojos.UserList;
 import cn.gson.jd2021.model.pojos.vo.Login;
 import cn.gson.jd2021.model.service.sys.UserListService;
 import org.apache.catalina.User;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +24,14 @@ public class UserListController {
 
     //查询用户列表
     @RequestMapping("/find-userlist")
-    public List<UserList> findUserList(){
-        return userListService.findUserList();
+    public List<UserList> findUserList(Integer jsId,String userName,Integer orgId,Integer listSex){
+        return userListService.findUserList(jsId,userName,orgId,listSex);
     }
 
     //新增用户时查询角色组
     @RequestMapping("/find-uj")
-    public List<UserJuese> findUj(){
-        return userListService.findUj();
+    public List<UserJuese> findUj(Integer jsId,String jsName){
+        return userListService.findUj(jsId,jsName);
     }
 
     //新增用户时查询部门

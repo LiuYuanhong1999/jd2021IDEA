@@ -17,8 +17,8 @@ public class LoginRizhiController {
     LoginRizhiService loginRizhiService;
 
     @RequestMapping("/find-loginrizhi")
-    public List<LoginRizhi> findLoginRizhi(){
-        return loginRizhiService.findLoginRizhi();
+    public List<LoginRizhi> findLoginRizhi(String userName,String loginIp){
+        return loginRizhiService.findLoginRizhi(userName,loginIp);
     }
 
     @PostMapping("/del-loginrizhi")

@@ -11,5 +11,12 @@
     <!--新增用户时查询角色组-->
     <select id="findUj" resultMap="userJuese">
         select * from user_juese
+        where 1=1
+        <if test="jsId!=null">
+            and js_id like '%${jsId}%'
+        </if>
+        <if test="jsName!=null">
+            and js_name like '%${jsName}%'
+        </if>
     </select>
 </mapper>
