@@ -7,7 +7,12 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ClInventoryMapper {
     int deleteByPrimaryKey(String storageId);
 
+
+    //增加库存数量
     int insert(ClInventory record);
+
+    //初始入库库存
+    void insertInventory(ClInventory clInventory);
 
     int insertSelective(ClInventory record);
 
@@ -16,4 +21,6 @@ public interface ClInventoryMapper {
     int updateByPrimaryKeySelective(ClInventory record);
 
     int updateByPrimaryKey(ClInventory record);
+
+
 }

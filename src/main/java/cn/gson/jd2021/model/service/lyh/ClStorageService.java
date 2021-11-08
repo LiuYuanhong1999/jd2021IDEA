@@ -1,7 +1,9 @@
 package cn.gson.jd2021.model.service.lyh;
 
+import cn.gson.jd2021.model.mapper.lyh.ClInventoryMapper;
 import cn.gson.jd2021.model.mapper.lyh.ClReturnVistMapper;
 import cn.gson.jd2021.model.mapper.lyh.ClStorageMapper;
+import cn.gson.jd2021.model.pojos.ClInventory;
 import cn.gson.jd2021.model.pojos.ClReturnVist;
 import cn.gson.jd2021.model.pojos.ClStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,40 +16,47 @@ public class ClStorageService {
 
 
     @Autowired
-    ClReturnVistMapper clReturnVistMapper;
+    ClReturnVistMapper clReturnVistMapper;//回访
 
     @Autowired
-    ClStorageMapper clStorageMapper;
+    ClStorageMapper clStorageMapper;//收车记录
+
+    @Autowired
+    ClInventoryMapper clInventoryMapper;//车辆库存
 
 
-    //跟表关系字段传值
+
+    //查询库存记录
+    public List<ClStorage> selectClStorageAll(){
+        return clStorageMapper.selectClStorageAll();
+    }
+
+
+
+    //增加库存记录
     public void insert(ClStorage clStorage){
-        ClStorage clStorage1=new ClStorage();
-        clStorage1.setStorageId(clStorage.getStorageId());
-        clStorage1.setFactoryId(clStorage.getFactoryId());
-        clStorage1.setBrandId(clStorage.getBrandId());
-        clStorage1.setDesignId(clStorage.getDesignId());
-        clStorage1.setColorId(clStorage.getColorId());
-        clStorage1.setStorageLeaveTime(clStorage.getStorageLeaveTime());
-        clStorage1.setStorageVariator(clStorage.getStorageVariator());
-        clStorage1.setStorageDisplacement(clStorage.getStorageDisplacement());
-        clStorage1.setStorageMileage(clStorage.getStorageMileage());
-        clStorage1.setStorageBegain(clStorage.getStorageBegain());
-        clStorage1.setStorageCard(clStorage.getStorageCard());
-        clStorage1.setStorageType(clStorage.getStorageType());
-        clStorage1.setStorageDrive(clStorage.getStorageDrive());
-        clStorage1.setStorageEngine(clStorage.getStorageEngine());
-        clStorage1.setStorageTap(clStorage.getStorageTap());
-        clStorage1.setStorageTransferTimes(clStorage.getStorageTransferTimes());
-        clStorage1.setStorageLicense(clStorage.getStorageLicense());
-        clStorage1.setStoragePrcie(clStorage.getStoragePrcie());
-        clStorage1.setStorageUser(clStorage.getStorageUser());
-        clStorage1.setStorageTime(clStorage.getStorageTime());
-        clStorageMapper.insert(clStorage1);
+        clStorageMapper.insert(clStorage);
+    }
+
+    //增加初始入库库存记录
+    public void insertInitial(ClStorage clStorage){
+        clStorageMapper.insertInitial(clStorage);
+    }
+
+
+    //增加库存数量
+    public void insertClInventory(ClInventory clInventory){
+
+        clInventoryMapper.insert(clInventory);
 
     }
 
 
+    //增加初始库存
+    public void insertInventory(ClInventory clInventory){
+
+        clInventoryMapper.insertInventory(clInventory);
+    }
 
     //查询签约的回访单
     public List<ClReturnVist> findByClStorage(){

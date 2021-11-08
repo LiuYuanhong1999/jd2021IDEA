@@ -1,5 +1,6 @@
 package cn.gson.jd2021.controller.lyh;
 
+import cn.gson.jd2021.model.pojos.ClInventory;
 import cn.gson.jd2021.model.pojos.ClReturnVist;
 import cn.gson.jd2021.model.pojos.ClStorage;
 import cn.gson.jd2021.model.service.lyh.ClStorageService;
@@ -19,7 +20,15 @@ public class ClStorageController {
 
 
 
-    //增加入库记录
+    //查询库存记录
+    @RequestMapping("select_ClStorageAll")
+    public List<ClStorage> selectClStorageAll(){
+        return clStorageService.selectClStorageAll();
+    }
+
+
+
+    //增加收车入库记录
     @PostMapping("add-clStorage")
     public void addClStorage(@RequestBody ClStorage clStorage){
 
@@ -27,6 +36,24 @@ public class ClStorageController {
 
     }
 
+    //初始入库记录
+    @PostMapping("add-clInitial")
+    public void insertInventory(@RequestBody ClStorage clStorage){
+        clStorageService.insertInitial(clStorage);
+        }
+
+    //初始入库
+    @PostMapping("add-clInventory")
+      public void insertClInventory(@RequestBody ClInventory clInventory){
+        clStorageService.insertInventory(clInventory);
+
+    }
+
+    //收车入库
+    @PostMapping("add-inventory")
+    public void addClInventory(@RequestBody ClInventory clInventory){
+        clStorageService.insertClInventory(clInventory);
+    }
 
 
     //查询签约的回访单
@@ -36,6 +63,7 @@ public class ClStorageController {
     }
 
     //根据签约单获取数据
+    @RequestMapping("findBy-ClStorageRecord")
     public List<ClReturnVist> findByClStorage2(String vistId){
         return clStorageService.findByClStorage2(vistId);
     }

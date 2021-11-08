@@ -129,7 +129,7 @@
 <!--查询状态成功的回访单-->
     <select id="findByClStorage" resultMap="BaseResultMap">
 
-        select * from cl_return_vist a
+        select * from   cl_return_vist a
                         left join cl_assess b on a.assess_id=b.assess_id
                         left join cl_orders c on b.orders_id=c.orders_id
                         left join cl_record d on d.record_id=c.record_id

@@ -16,6 +16,12 @@ public class ClStorage implements Serializable {
      */
     private String storageId;
 
+
+    /**
+     * 回访编号
+     */
+    private String vistId;
+
     /**
      * 厂商编号
      */
@@ -110,6 +116,15 @@ public class ClStorage implements Serializable {
      * 入库时间
      */
     private Date storageTime;
+
+
+    public String getVistId() {
+        return vistId;
+    }
+
+    public void setVistId(String vistId) {
+        this.vistId = vistId;
+    }
 
     public String getStorageId() {
         return storageId;

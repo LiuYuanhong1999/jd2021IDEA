@@ -111,5 +111,175 @@ public class ClInventory implements Serializable {
      */
     private Date storageTime;
 
-    private static final long serialVersionUID = 1L;
+    public String getStorageId() {
+        return storageId;
+    }
+
+    public void setStorageId(String storageId) {
+        this.storageId = storageId;
+    }
+
+    public Integer getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(Integer factoryId) {
+        this.factoryId = factoryId;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public Integer getDesignId() {
+        return designId;
+    }
+
+    public void setDesignId(Integer designId) {
+        this.designId = designId;
+    }
+
+    public Integer getColorId() {
+        return colorId;
+    }
+
+    public void setColorId(Integer colorId) {
+        this.colorId = colorId;
+    }
+
+    public Date getStorageLeaveTime() {
+        return storageLeaveTime;
+    }
+
+    public void setStorageLeaveTime(Date storageLeaveTime) {
+        this.storageLeaveTime = storageLeaveTime;
+    }
+
+    public String getStorageVariator() {
+        return storageVariator;
+    }
+
+    public void setStorageVariator(String storageVariator) {
+        this.storageVariator = storageVariator;
+    }
+
+    public String getStorageDisplacement() {
+        return storageDisplacement;
+    }
+
+    public void setStorageDisplacement(String storageDisplacement) {
+        this.storageDisplacement = storageDisplacement;
+    }
+
+    public Integer getStorageMileage() {
+        return storageMileage;
+    }
+
+    public void setStorageMileage(Integer storageMileage) {
+        this.storageMileage = storageMileage;
+    }
+
+    public Date getStorageBegain() {
+        return storageBegain;
+    }
+
+    public void setStorageBegain(Date storageBegain) {
+        this.storageBegain = storageBegain;
+    }
+
+    public String getStorageCard() {
+        return storageCard;
+    }
+
+    public void setStorageCard(String storageCard) {
+        this.storageCard = storageCard;
+    }
+
+    public String getStorageType() {
+        return storageType;
+    }
+
+    public void setStorageType(String storageType) {
+        this.storageType = storageType;
+    }
+
+    public String getStorageDrive() {
+        return storageDrive;
+    }
+
+    public void setStorageDrive(String storageDrive) {
+        this.storageDrive = storageDrive;
+    }
+
+    public String getStorageEngine() {
+        return storageEngine;
+    }
+
+    public void setStorageEngine(String storageEngine) {
+        this.storageEngine = storageEngine;
+    }
+
+    public String getStorageTap() {
+        return storageTap;
+    }
+
+    public void setStorageTap(String storageTap) {
+        this.storageTap = storageTap;
+    }
+
+    public Integer getStorageTransferTimes() {
+        return storageTransferTimes;
+    }
+
+    public void setStorageTransferTimes(Integer storageTransferTimes) {
+        this.storageTransferTimes = storageTransferTimes;
+    }
+
+    public String getStorageLicense() {
+        return storageLicense;
+    }
+
+    public void setStorageLicense(String storageLicense) {
+        this.storageLicense = storageLicense;
+    }
+
+    public BigDecimal getStoragePrcie() {
+        return storagePrcie;
+    }
+
+    public void setStoragePrcie(BigDecimal storagePrcie) {
+        this.storagePrcie = storagePrcie;
+    }
+
+    public String getStorageUser() {
+        return storageUser;
+    }
+
+    public void setStorageUser(String storageUser) {
+        this.storageUser = storageUser;
+    }
+
+    public Date getStorageTime() {
+        return storageTime;
+    }
+
+    public void setStorageTime(Date storageTime) {
+        this.storageTime = storageTime;
+    }
+
+
+    //回访记录
+    ClReturnVist clReturnVist;
+
+    public ClReturnVist getClReturnVist() {
+        return clReturnVist;
+    }
+
+    public void setClReturnVist(ClReturnVist clReturnVist) {
+        this.clReturnVist = clReturnVist;
+    }
 }

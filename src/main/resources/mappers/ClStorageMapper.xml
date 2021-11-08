@@ -22,7 +22,7 @@
     <result column="storage_prcie" jdbcType="DECIMAL" property="storagePrcie" />
     <result column="storage_user" jdbcType="VARCHAR" property="storageUser" />
     <result column="storage_time" jdbcType="TIMESTAMP" property="storageTime" />
-
+    <result column="vist_id" jdbcType="VARCHAR" property="vistId"></result>
 
 
 
@@ -61,6 +61,8 @@
         <result column="assess_leave_time" jdbcType="TIMESTAMP" property="assessLeaveTime" />
         <result column="assess_price" javaType="DECIMAL" property="assessPrice"></result>
         <result column="assess_final_price" jdbcType="DECIMAL" property="assessFinalPrice"></result>
+
+
         <association property="clOrders" javaType="cn.gson.jd2021.model.pojos.ClOrders">
 
           <id column="orders_id" jdbcType="VARCHAR" property="ordersId" />
@@ -116,17 +118,29 @@
           <id column="color_id" jdbcType="INTEGER" property="colorId" />
           <result column="color_name" jdbcType="VARCHAR" property="colorName" />
         </association>
-
-
-
-
       </association>
-
-
     </association>
 
 
   </resultMap>
+
+  <select id="selectClStorageAll" resultMap="BaseResultMap">
+
+    select * from cl_storage a
+                    left join cl_return_vist b on  a.vist_id=b.vist_id
+                    left join cl_assess c on b.assess_id=c.assess_id
+                    left join cl_orders d on d.orders_id=c.orders_id
+                    left join cl_record e on e.record_id=d.record_id
+                    left join gg_brand f on f.brand_id=e.brand_id
+                    left join gg_design g on c.design_id=g.design_id
+                    left join gg_color h on c.color_id=h.color_id
+
+        order by a.storage_time desc
+
+  </select>
+
+
+
   <sql id="Base_Column_List">
     storage_id, factory_id, brand_id, design_id, color_id, storage_leave_time, storage_variator, 
     storage_displacement, storage_mileage, storage_begain, storage_card, storage_type, 
@@ -150,15 +164,35 @@
       storage_card, storage_type, storage_drive, 
       storage_engine, storage_tap, storage_transfer_times, 
       storage_license, storage_prcie, storage_user, 
-      storage_time)
-    values (#{storageId,jdbcType=VARCHAR},#{factoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{designId,jdbcType=INTEGER},
-      #{colorId,jdbcType=INTEGER}, #{storageLeaveTime,jdbcType=TIMESTAMP}, #{storageVariator,jdbcType=VARCHAR}, 
-      #{storageDisplacement,jdbcType=VARCHAR}, #{storageMileage,jdbcType=INTEGER}, #{storageBegain,jdbcType=TIMESTAMP}, 
-      #{storageCard,jdbcType=VARCHAR}, #{storageType,jdbcType=VARCHAR}, #{storageDrive,jdbcType=VARCHAR}, 
-      #{storageEngine,jdbcType=VARCHAR}, #{storageTap,jdbcType=VARCHAR}, #{storageTransferTimes,jdbcType=INTEGER}, 
-      #{storageLicense,jdbcType=VARCHAR}, #{storagePrcie,jdbcType=DECIMAL}, #{storageUser,jdbcType=VARCHAR}, 
-      #{storageTime,jdbcType=TIMESTAMP})
+      storage_time,vist_id)
+    values (#{storageId,jdbcType=VARCHAR},#{factoryId,jdbcType=INTEGER}, #{clReturnVist.clAssess.brandId,jdbcType=INTEGER}, #{clReturnVist.clAssess.designId,jdbcType=INTEGER},
+      #{clReturnVist.clAssess.colorId,jdbcType=INTEGER}, #{clReturnVist.clAssess.assessLeaveTime,jdbcType=TIMESTAMP}, #{clReturnVist.clAssess.assessVariator,jdbcType=VARCHAR},
+      #{clReturnVist.clAssess.assessDisplacement,jdbcType=VARCHAR}, #{clReturnVist.clAssess.assessMileage,jdbcType=INTEGER}, #{clReturnVist.clAssess.assessBegain,jdbcType=TIMESTAMP},
+      #{clReturnVist.clAssess.assessCard,jdbcType=VARCHAR}, #{clReturnVist.clAssess.assessType,jdbcType=VARCHAR}, #{clReturnVist.clAssess.assessDrive,jdbcType=VARCHAR},
+      #{clReturnVist.clAssess.assessEngine,jdbcType=VARCHAR}, #{clReturnVist.clAssess.assessTap,jdbcType=VARCHAR}, #{clReturnVist.clAssess.assessTransferTimes,jdbcType=INTEGER},
+      #{clReturnVist.clAssess.assessLicense,jdbcType=VARCHAR}, #{storagePrcie,jdbcType=DECIMAL}, #{storageUser,jdbcType=VARCHAR},
+      #{storageTime,jdbcType=TIMESTAMP},#{vistId,jdbcType=VARCHAR})
   </insert>
+
+
+  <insert id="insertInitial" keyColumn="storage_id" keyProperty="storageId" parameterType="cn.gson.jd2021.model.pojos.ClStorage" useGeneratedKeys="true">
+    insert into cl_storage (storage_id,factory_id, brand_id, design_id,
+                            color_id, storage_leave_time, storage_variator,
+                            storage_displacement, storage_mileage, storage_begain,
+                            storage_card, storage_type, storage_drive,
+                            storage_engine, storage_tap, storage_transfer_times,
+                            storage_license, storage_prcie, storage_user,
+                            storage_time,storage_state)
+    values (#{storageId,jdbcType=VARCHAR},#{factoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{designId,jdbcType=INTEGER},
+            #{colorId,jdbcType=INTEGER}, #{storageLeaveTime,jdbcType=TIMESTAMP}, #{storageVariator,jdbcType=VARCHAR},
+            #{storageDisplacement,jdbcType=VARCHAR}, #{storageMileage,jdbcType=INTEGER}, #{storageBegain,jdbcType=TIMESTAMP},
+            #{storageCard,jdbcType=VARCHAR}, #{storageType,jdbcType=VARCHAR}, #{storageDrive,jdbcType=VARCHAR},
+            #{storageEngine,jdbcType=VARCHAR}, #{storageTap,jdbcType=VARCHAR}, #{storageTransferTimes,jdbcType=INTEGER},
+            #{storageLicense,jdbcType=VARCHAR}, #{storagePrcie,jdbcType=DECIMAL}, #{storageUser,jdbcType=VARCHAR},
+            #{storageTime,jdbcType=TIMESTAMP},1)
+  </insert>
+
+
   <insert id="insertSelective" keyColumn="storage_id" keyProperty="storageId" parameterType="cn.gson.jd2021.model.pojos.ClStorage" useGeneratedKeys="true">
     insert into cl_storage
     <trim prefix="(" suffix=")" suffixOverrides=",">
