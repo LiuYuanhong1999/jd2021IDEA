@@ -24,7 +24,9 @@
                  select="cn.gson.jd2021.model.mapper.tjq.SellCoustomerMapper.selectByPrimaryKey"
                  column="cus_id"/>
 <!--    员工-->
-   <!-- <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList"-->
+    <association property="userList" javaType="cn.gson.jd2021.model.pojos.UserList"
+                 select="cn.gson.jd2021.model.mapper.sys.UserListMapper.findUserId"
+                 column="list_num"/>
   </resultMap>
   <!--//根据客户主键进行查询 访问记录表
     List<SellVisitorlogs> select(SellVisitorlogsVo vo);

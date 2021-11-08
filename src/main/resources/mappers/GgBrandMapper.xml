@@ -78,7 +78,7 @@
   </delete>
   <insert id="insert" keyColumn="brand_id" keyProperty="brandId" parameterType="cn.gson.jd2021.model.pojos.GgBrand" useGeneratedKeys="true">
     insert into gg_brand (brand_name,factory_id)
-    values (#{brandName,jdbcType=VARCHAR},#{factory_id})
+    values (#{brandName,jdbcType=VARCHAR},#{factoryId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="brand_id" keyProperty="brandId" parameterType="cn.gson.jd2021.model.pojos.GgBrand" useGeneratedKeys="true">
     insert into gg_brand
@@ -95,7 +95,7 @@
         #{brandName,jdbcType=VARCHAR},
       </if>
       <if test="factoryId!=null">
-        #{brandId},
+        #{factoryId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

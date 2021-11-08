@@ -13,16 +13,53 @@
     select * from gg_design where brand_id=#{brandId}
 
   </select>
+  <!--selectById-->
+  <resultMap id="select" type="cn.gson.jd2021.model.pojos.GgDesign" extends="BaseResultMap">
+    <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand"
+                 select="cn.gson.jd2021.model.mapper.tjq.GgBrandMapper.selectById"
+                 column="brand_id"/>
+  </resultMap>
+  <!--查询方法resultType="cn.gson.jd2021.model.pojos.GgDesign"-->
+  <select id="selectall" resultMap="select" parameterType="cn.gson.jd2021.model.pojos.vo.GgDesignVo">
+    select <include refid="Base_Column_List"></include> from gg_design
+        <where>
+          <if test="designId!=null and designId!=''">
+             and design_id = #{designId}
+          </if>
+            <if test="designName!=null and designName!=''">
+              and design_name like concat('%',#{designName},'%')
+            </if>
+            <if test="brandId!=null and brandId!=''">
+              and brand_id = #{brandId}
+            </if>
+            <if test="factoryName!=null and factoryName!=''">
+              and brand_id in
+              select b.brand_id from gg_brand b left join gg_factory f
+              on b.factory_id=f.factory_id where factory_name like concat('%',#{factoryName},'%')
+            </if>
+            <if test="brandName!=null and brandName!=''">
+              and brand_id in
+                (select b.brand_id from gg_brand b where brand_name like concat('%',#{brandName},'%'))
+            </if>
+        </where>
+  </select>
 
   <sql id="Base_Column_List">
     design_id, design_name, brand_id
   </sql>
+<!--   //根据汽车品牌表主键 查询 汽车款式
+    List<GgDesign> selectBybrandId(Integer brandId);-->
+  <select id="selectBybrandId" resultType="cn.gson.jd2021.model.pojos.GgDesign">
+    select <include refid="Base_Column_List"></include> from gg_design
+        where brand_id = #{brandId}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from gg_design
     where design_id = #{designId,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from gg_design
     where design_id = #{designId,jdbcType=INTEGER}
