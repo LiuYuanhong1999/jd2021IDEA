@@ -21,6 +21,9 @@ public interface ClReturnVistMapper {
     List<ClReturnVist> findByClStorage();
 
 
+    //所有记录
+    List<ClReturnVist> findClReturnVist2(String vistId);
+
     //根据签约的回访单查询数据
     List<ClReturnVist> findByClStorage2(String vistId);
 

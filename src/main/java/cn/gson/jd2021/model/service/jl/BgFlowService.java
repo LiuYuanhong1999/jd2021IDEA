@@ -4,10 +4,12 @@ import cn.gson.jd2021.model.mapper.jl.BgFlowMapper;
 import cn.gson.jd2021.model.pojos.BgFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class BgFlowService {
     @Autowired
     BgFlowMapper bgFlMap;

@@ -45,7 +45,7 @@
       <!--        other_static like CONCAT(CONCAT('%',#{input},'%'))-->
       <!--      </if>-->
     </where>
-
+    order by finance_paydate desc
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

@@ -8,11 +8,12 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 public class BgExpenseAccountController {
-    @Autowired
+    @Resource
     BgExpenseAccountService bgexpeser;
 
 
@@ -45,7 +46,7 @@ public class BgExpenseAccountController {
         return bgexpeser.updByQka(bgExpenseAccount);
     }
 
-    @GetMapping("/selectBgExpenByPrimaryKey")
+    @RequestMapping("/selectBgExpenByPrimaryKey")
     public PageInfo<BgExpenseAccount> selectBgExpenByPrimary(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize) {
         return bgexpeser.selectBgExpenByPrimaryKey(currentPage,pagesize);
     }

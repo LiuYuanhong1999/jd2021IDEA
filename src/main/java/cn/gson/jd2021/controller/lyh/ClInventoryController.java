@@ -18,8 +18,8 @@ public class ClInventoryController {
 
     //查询库存
     @RequestMapping("find-clInventoryRecord")
-    public List<ClInventory> findAll(){
-        return clInventoryService.findAll();
+    public List<ClInventory> findAll(String storageId){
+        return clInventoryService.findAll(storageId);
     }
 
 

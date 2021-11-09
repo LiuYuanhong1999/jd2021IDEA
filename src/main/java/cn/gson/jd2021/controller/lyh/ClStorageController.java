@@ -27,8 +27,8 @@ public class ClStorageController {
 
     //查询库存记录
     @RequestMapping("select_ClStorageAll")
-    public List<ClStorage> selectClStorageAll(){
-        return clStorageService.selectClStorageAll();
+    public List<ClStorage> selectClStorageAll(String storageId){
+        return clStorageService.selectClStorageAll(storageId);
     }
 
 

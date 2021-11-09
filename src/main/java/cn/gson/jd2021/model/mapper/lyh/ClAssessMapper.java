@@ -13,7 +13,7 @@ public interface ClAssessMapper {
     int deleteByPrimaryKey(String assessId);
 
     //查询评估记录
-    List<ClAssess> findClAssess();
+    List<ClAssess> findClAssess(String assessId);
 
 
     //新增评估记录

@@ -29,8 +29,8 @@ public class ClOrdersController {
 
     //所有预约记录
     @RequestMapping("find-clOrders2")
-    public List<ClOrders> findClOrders2(){
-        return clOrdersService.findClOrders2();
+    public List<ClOrders> findClOrders2(String ordersId){
+        return clOrdersService.findClOrders2(ordersId);
     }
 
     //增加预约记录

@@ -21,8 +21,8 @@ public class ClAssessController {
 
     //查询评估记录
     @RequestMapping("find-clAssess")
-     public List<ClAssess> findClAssess(){
-        return clAssessService.findClAssess();
+     public List<ClAssess> findClAssess(String assessId){
+        return clAssessService.findClAssess(assessId);
     }
 
     //增加评估记录

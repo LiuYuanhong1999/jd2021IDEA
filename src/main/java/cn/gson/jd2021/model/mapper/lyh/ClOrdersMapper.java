@@ -24,7 +24,7 @@ public interface ClOrdersMapper {
     List<ClOrders> findClOrders();
 
     //查询所有记录
-    List<ClOrders> findClOrders2();
+    List<ClOrders> findClOrders2(String ordersId);
 
 
     //车辆评估查询已预约客户

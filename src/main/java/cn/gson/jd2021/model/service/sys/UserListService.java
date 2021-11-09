@@ -5,6 +5,7 @@ import cn.gson.jd2021.model.pojos.*;
 import cn.gson.jd2021.model.pojos.vo.Login;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class UserListService {
     @Resource
     UserListMapper userListMapper;

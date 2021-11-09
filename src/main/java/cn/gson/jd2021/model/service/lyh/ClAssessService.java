@@ -6,10 +6,12 @@ import cn.gson.jd2021.model.pojos.ClAssess;
 import cn.gson.jd2021.model.pojos.ClOrders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ClAssessService {
 
     @Autowired
@@ -21,8 +23,8 @@ public class ClAssessService {
 
 
     //查询评估记录
-    public List<ClAssess> findClAssess(){
-        return clAssessMapper.findClAssess();
+    public List<ClAssess> findClAssess(String assessId){
+        return clAssessMapper.findClAssess(assessId);
     }
 
 

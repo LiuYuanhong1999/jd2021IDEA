@@ -8,10 +8,12 @@ import cn.gson.jd2021.model.pojos.ClReturnVist;
 import cn.gson.jd2021.model.pojos.ClStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ClStorageService {
 
 
@@ -29,8 +31,8 @@ public class ClStorageService {
 
 
     //查询库存记录
-    public List<ClStorage> selectClStorageAll(){
-        return clStorageMapper.selectClStorageAll();
+    public List<ClStorage> selectClStorageAll(String storageId){
+        return clStorageMapper.selectClStorageAll(storageId);
     }
 
 

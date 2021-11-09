@@ -122,8 +122,25 @@
 
     </select>
 
+  <!--  查询所有回访记录-->
+  <select id="findClReturnVist2" resultMap="BaseResultMap">
+    select * from cl_return_vist a
+    left join cl_assess b on a.assess_id=b.assess_id
+    left join cl_orders c on b.orders_id=c.orders_id
+    left join cl_record d on d.record_id=c.record_id
+    left join gg_brand e on b.brand_id=e.brand_id
+    left join gg_design f on b.design_id=f.design_id
+    left join gg_color g on b.color_id=g.color_id
+    <where>
 
+      <if test="vistId !=null and vistId !=''">
+        and a.vist_id =#{vistId}
+      </if>
 
+    </where>
+    order by a.vist_time desc
+
+  </select>
 
 
 <!--查询状态成功的回访单-->

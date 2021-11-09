@@ -36,7 +36,7 @@
         customer_pepo like CONCAT(CONCAT('%',#{input},'%'))
       </if>
     </where>
-
+    order by customer_paydate desc
   </select>
 
   <select id="selectByPrimaryKey"  resultMap="BaseResultMap">

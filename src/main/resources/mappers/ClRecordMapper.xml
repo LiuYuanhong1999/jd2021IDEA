@@ -49,9 +49,15 @@
                     left join gg_design d on a.design_id=d.design_id
                     left join gg_color e on a.color_id=e.color_id
 
+            <where>
+              <if test="recordId !=null and recordId !=''">
 
-    order by a.record_time desc
+                and  a.record_id like '%${recordId}%'
+              </if>
 
+            </where>
+
+                order by a.record_time desc
   </select>
 
 

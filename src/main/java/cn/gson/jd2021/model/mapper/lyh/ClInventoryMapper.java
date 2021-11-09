@@ -19,7 +19,7 @@ public interface ClInventoryMapper {
     int deleteByPrimaryKey(String storageId);
 
     //库存查询
-    List<ClInventory> findAll();
+    List<ClInventory> findAll(String storageId);
 
     //增加库存数量
     int insert(ClInventory record);

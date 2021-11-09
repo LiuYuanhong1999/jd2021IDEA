@@ -3,11 +3,13 @@ package cn.gson.jd2021.model.service.sys;
 import cn.gson.jd2021.model.mapper.sys.LoginRizhiMapper;
 import cn.gson.jd2021.model.pojos.LoginRizhi;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class LoginRizhiService {
     @Resource
     LoginRizhiMapper loginRizhiMapper;

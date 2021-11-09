@@ -10,10 +10,12 @@ import cn.gson.jd2021.model.pojos.GgColor;
 import cn.gson.jd2021.model.pojos.GgDesign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ClRecordService {
     @Autowired
     ClRecordMapper clRecordMapper;//收车登记
@@ -28,8 +30,8 @@ public class ClRecordService {
     GgDesignMapper ggDesignMapper;//款式
 
     //查询登记记录
-    public List<ClRecord> findByClRecord(){
-        return clRecordMapper.findByClRecord();
+    public List<ClRecord> findByClRecord(String  recordId){
+        return clRecordMapper.findByClRecord(recordId);
     }
 
     //增加登记

@@ -5,11 +5,13 @@ import cn.gson.jd2021.model.mapper.sys.SysRoleMenuMapper;
 import cn.gson.jd2021.model.pojos.SysMenu;
 import cn.gson.jd2021.model.pojos.SysRolemenu;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class SysMenuService {
     @Resource
     SysMenuMapper sysMenuMapper;

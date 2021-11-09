@@ -6,10 +6,12 @@ import cn.gson.jd2021.model.pojos.ClAssess;
 import cn.gson.jd2021.model.pojos.ClReturnVist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ClReturnVistService {
 
     @Autowired
@@ -28,6 +30,11 @@ public class ClReturnVistService {
     public void insert(ClReturnVist clReturnVist){
         clReturnVistMapper.insert(clReturnVist);
 
+    }
+
+    //所有记录
+    public List<ClReturnVist> findClReturnVist2(String vistId){
+        return clReturnVistMapper.findClReturnVist2(vistId);
     }
 
 

@@ -9,11 +9,12 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class BgExpenseAccountService {
     @Autowired
     BgExpenseAccountMapper bgexpeMap;
@@ -51,7 +52,7 @@ public class BgExpenseAccountService {
             return bgexpeMap.updateBgExpenByPrimaryKey(bgExpenseAccount);
     }
 
-   public PageInfo<BgExpenseAccount> selectBgExpenByPrimaryKey(int currentPage, int pagesize){
+   public PageInfo<BgExpenseAccount> selectBgExpenByPrimaryKey(@RequestParam("currentPage") int currentPage, @RequestParam("pagesize") int pagesize){
         PageHelper.startPage(currentPage, pagesize);
         List<BgExpenseAccount> bgExpenseAccounts = bgexpeMap.selectBgExpenByPrimaryKey();
         PageInfo<BgExpenseAccount> bgExpenseAccountPageInfo = new PageInfo<>(bgExpenseAccounts);

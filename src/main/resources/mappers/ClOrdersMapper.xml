@@ -86,9 +86,11 @@
                      left join gg_color e on b.color_id=e.color_id
                      left join gg_archive f on a.ac_id=f.ac_id
     <where>
-      <if test="ordersState !=null and ordersState !=''">
-        a.orders_state =#{ordersState}
-      </if>
+
+
+    <if test="ordersId !=null and ordersId !=''">
+        and a.orders_id like  '%${ordersId}%'
+    </if>
     </where>
 
     order by a.orders_time desc

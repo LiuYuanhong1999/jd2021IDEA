@@ -2,6 +2,7 @@ package cn.gson.jd2021.model.mapper.lyh;
 
 import cn.gson.jd2021.model.pojos.ClRecord;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface ClRecordMapper {
 
 
     //查询所有信息
-    List<ClRecord> findByClRecord();
+    List<ClRecord> findByClRecord(String recordId);
 
     //根据编号查询登记信息
     List<ClRecord> findClRecordId(String recordId);

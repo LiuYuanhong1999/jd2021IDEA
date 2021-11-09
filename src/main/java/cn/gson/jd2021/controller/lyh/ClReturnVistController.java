@@ -38,4 +38,9 @@ public class ClReturnVistController {
     }
 
 
+    //所有记录
+    @RequestMapping("find-clReturnVist2")
+    public List<ClReturnVist> findClReturnVist2(String vistId){
+        return clReturnVistService.findClReturnVist2(vistId);
+    }
 }

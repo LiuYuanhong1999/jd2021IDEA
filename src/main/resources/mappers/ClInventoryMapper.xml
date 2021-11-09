@@ -161,9 +161,10 @@
                     left join gg_design c on a.design_id=c.design_id
                     left join gg_color d on a.color_id=d.color_id
             <where>
-                    <if test="storageState !=null and storageState !=''">
+                    <if test="storageId !=null and storageId !=''">
 
-                    and a.storage_state=#{storageState}
+                        a.storage_id like '%${storageId}%'
+
                     </if>
             </where>
     order by a.storage_time desc

@@ -20,7 +20,7 @@ public interface ClStorageMapper {
     int updateByPrimaryKey(ClStorage record);
 
     //查询入库记录
-    List<ClStorage> selectClStorageAll();
+    List<ClStorage> selectClStorageAll(String storageId);
 
 
     //增加初始入库记录

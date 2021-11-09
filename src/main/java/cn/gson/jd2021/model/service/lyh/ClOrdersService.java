@@ -7,11 +7,13 @@ import cn.gson.jd2021.model.pojos.ClOrders;
 import cn.gson.jd2021.model.pojos.GgArchive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ClOrdersService {
 
 
@@ -30,7 +32,7 @@ public class ClOrdersService {
     }
 
     //所有预约记录
-    public List<ClOrders> findClOrders2(){return clOrdersMapper.findClOrders2();}
+    public List<ClOrders> findClOrders2(String ordersId){return clOrdersMapper.findClOrders2(ordersId);}
 
 
     //增加预约记录

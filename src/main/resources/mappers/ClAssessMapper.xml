@@ -93,6 +93,13 @@
             left join gg_brand d on d.brand_id=a.brand_id
             left join gg_design e on a.design_id=e.design_id
             left join gg_color f on a.color_id=f.color_id
+            <where>
+              <if test="assessId !=null and assessId !=''">
+                a.assess_id like '%${assessId}%'
+              </if>
+            </where>
+
+
             order by b.orders_time
 
   </select>
