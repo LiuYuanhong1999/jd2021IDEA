@@ -121,6 +121,20 @@ public class ClStorage implements Serializable {
     private Date storageTime;
 
 
+    /**
+     * 入库类型
+     */
+    private Integer storageState;
+
+
+    public Integer getStorageState() {
+        return storageState;
+    }
+
+    public void setStorageState(Integer storageState) {
+        this.storageState = storageState;
+    }
+
     public String getVistId() {
         return vistId;
     }
@@ -307,5 +321,35 @@ public class ClStorage implements Serializable {
 
     public void setClReturnVist(ClReturnVist clReturnVist) {
         this.clReturnVist = clReturnVist;
+    }
+
+    private GgBrand ggBrand;
+
+    public GgBrand getGgBrand() {
+        return ggBrand;
+    }
+
+    public void setGgBrand(GgBrand ggBrand) {
+        this.ggBrand = ggBrand;
+    }
+
+    private GgDesign ggDesign;
+
+    public GgDesign getGgDesign() {
+        return ggDesign;
+    }
+
+    public void setGgDesign(GgDesign ggDesign) {
+        this.ggDesign = ggDesign;
+    }
+
+    private GgColor ggColor;
+
+    public GgColor getGgColor() {
+        return ggColor;
+    }
+
+    public void setGgColor(GgColor ggColor) {
+        this.ggColor = ggColor;
     }
 }

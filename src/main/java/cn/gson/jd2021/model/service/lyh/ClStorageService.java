@@ -71,6 +71,10 @@ public class ClStorageService {
     }
 
 
+    //查询所有记录
+    public List<ClStorage> selectClStorageAll2(){
+        return clStorageMapper.selectClStorageAll2();
+    }
 
 
 }

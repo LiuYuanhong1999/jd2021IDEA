@@ -23,7 +23,7 @@
     <result column="storage_user" jdbcType="VARCHAR" property="storageUser" />
     <result column="storage_time" jdbcType="TIMESTAMP" property="storageTime" />
     <result column="vist_id" jdbcType="VARCHAR" property="vistId"></result>
-
+    <result column="storage_state" jdbcType="INTEGER" property="storageState"></result>
 
 
     <association property="clReturnVist" javaType="cn.gson.jd2021.model.pojos.ClReturnVist">
@@ -121,6 +121,24 @@
       </association>
     </association>
 
+    <!--    汽车品牌-->
+    <association property="ggBrand" javaType="cn.gson.jd2021.model.pojos.GgBrand">
+      <id column="brand_id" jdbcType="INTEGER" property="brandId" />
+      <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    </association>
+
+    <!--    汽车款式-->
+    <association property="ggDesign" javaType="cn.gson.jd2021.model.pojos.GgDesign">
+      <id column="design_id" jdbcType="INTEGER" property="designId" />
+      <result column="design_name" jdbcType="VARCHAR" property="designName" />
+      <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    </association>
+
+    <!--    汽车颜色-->
+    <association property="ggColor" javaType="cn.gson.jd2021.model.pojos.GgColor">
+      <id column="color_id" jdbcType="INTEGER" property="colorId" />
+      <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+    </association>
 
   </resultMap>
 
@@ -139,6 +157,21 @@
 
   </select>
 
+
+
+  <select id="selectClStorageAll2" resultMap="BaseResultMap">
+
+    select * from cl_storage a
+                    left join cl_return_vist b on  a.vist_id=b.vist_id
+                    left join cl_assess c on b.assess_id=c.assess_id
+                    left join cl_orders d on d.orders_id=c.orders_id
+                    left join cl_record e on e.record_id=d.record_id
+                    left join gg_brand f on f.brand_id=a.brand_id
+                    left join gg_design g on a.design_id=g.design_id
+                    left join gg_color h on a.color_id=h.color_id
+    order by a.storage_time desc
+
+  </select>
 
 
   <sql id="Base_Column_List">

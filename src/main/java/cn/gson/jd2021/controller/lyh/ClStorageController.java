@@ -19,6 +19,11 @@ public class ClStorageController {
     ClStorageService clStorageService;
 
 
+    //查询所有记录
+    @RequestMapping("select_ClStorageAll2")
+    public List<ClStorage> findAll2(){
+     return    clStorageService.selectClStorageAll2();
+    }
 
     //查询库存记录
     @RequestMapping("select_ClStorageAll")

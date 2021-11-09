@@ -26,4 +26,7 @@ public interface ClStorageMapper {
     //增加初始入库记录
     void insertInitial(ClStorage clStorage);
 
+
+    //查询所以记录
+    List<ClStorage> selectClStorageAll2();
 }

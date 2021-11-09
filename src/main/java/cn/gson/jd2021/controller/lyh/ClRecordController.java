@@ -28,11 +28,17 @@ public class ClRecordController {
 
 
     //增加收车登记
-    @PostMapping("add-clRecord")
+    @PostMapping("add-clRecords")
     public void addClRecord(@RequestBody ClRecord clRecord){
         clRecordService.insertRecord(clRecord);
-
     }
+
+    //修改收车登记
+    @PostMapping("update-clRecords")
+    public void updateClRecord(@RequestBody ClRecord clRecord){
+        clRecordService.updateClRecord(clRecord);
+    }
+
 
 
     //根据编号查询所有登记信息

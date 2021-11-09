@@ -34,19 +34,16 @@ public class ClRecordService {
 
     //增加登记
     public void insertRecord(ClRecord clRecord){
-
-        if (clRecord.getRecordId()==null || clRecord.getRecordId()==""){
-
             //增加登记记录
             clRecordMapper.insert(clRecord);
-
-        }else {
-
-
-            //修改登记记录
-            clRecordMapper.updateByPrimaryKeySelective(clRecord);
-        }
     }
+
+    //修改记录
+    public void updateClRecord(ClRecord clRecord){
+        //修改登记记录
+        clRecordMapper.updateByPrimaryKeySelective(clRecord);
+    }
+
 
     //根据编号查询所有信息
     public List<ClRecord> findClRecordId(String recordId){
